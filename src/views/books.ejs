@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <link rel="icon" type="image/x-icon" href="image/favicon.ico">
+    <link rel="stylesheet" href="css/main.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="header js_header" style="background-color:black; top: 0px">
+        <div class="header_mid">
+            <div class="header_content">
+                <div class="hd_logo">
+                    <div class="logo">
+                        <a href="#" class="logo_link">
+                            <img src="image/ads-removebg-preview.png" alt="">
+                        </a>
+                        <div class="logo_text">
+                            BOOKs
+                        </div>
+                    </div>
+                </div>
+                <div class="hd_menu">
+                    <nav class="hd_nav_menu">
+                        <ul class="menu_main">
+                            <li class="menu_list">
+                                <a href="/" class="menu_list_home">
+                                    <span class="list_color" >Home</span>
+                                </a>
+                            </li>
+                            <li class="menu_list">
+                                <a href="#" class="menu_list_home">
+                                    <span style="color: #00bfc5;font-size: 19px">Books</span>
+                                </a>
+                            </li>
+                            <div class="js_logout">
+                                <li class="menu_list">
+                                    <a href="#" class="menu_list_home js_register">
+                                        <span class="list_color">Register</span>
+                                    </a>
+                                </li>
+                                <li class="menu_list">
+                                    <a class="menu_list_home js_login">
+                                        <span class="list_color">Login</span>
+                                    </a>
+                                </li>
+                            </div>
+                            <!-- <li class="menu_list js_contai_search">
+                                <a href="#" class="menu_list_home js_search">
+                                    <span class="list_color"><i class='bx bx-search-alt-2'></i></span>
+                                </a>
+                                <input type="text" class="search js_input_search" placeholder="key word">
+                            </li> -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="books_search">
+       <input id="boxsearch" type="text" class="books_inp" placeholder="Search...">
+       <button class="but_search"><i class='bx bx-search-alt-2'></i></button>
+       <div class="show_option">
+            <div class="show_x3">
+            <span class="l_show_x3">
+                 <span></span>
+                 <span></span>
+                 <span></span>
+            </span>
+            <span class="l_show_x3">
+                 <span></span>
+                 <span></span>
+                 <span></span>
+             </span>
+             <span class="l_show_x3">
+                 <span></span>
+                 <span></span>
+                 <span></span>
+             </span>
+             </div>
+           <div class="show_x4">
+               <span class="l_show_x4">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+               </span>
+               <span class="l_show_x4">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="l_show_x4">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </div>
+            <div class="show_x2">
+                <span class="l_show_x2">
+                     <span></span>
+                     <span class="x2"></span>
+                </span>
+                <span class="l_show_x2">
+                     <span></span>
+                     <span class="x2"></span>
+                 </span>
+                 <span class="l_show_x2">
+                     <span></span>
+                     <span class="x2"></span>
+                 </span>
+                 </div>
+       </div>
+    </div>
+    <div class="books_content">
+        <div class="books_menu">
+            <div class="books_menu_menu">
+                <h1>Classify</h1>
+                <ul class="classify js_classify">
+                    <li><a class="all js_all">All</a></li>
+                    <li><a class="js_title_pub">Publisher <i class='bx bx-chevron-down'></i></a></li>
+                    <div class="publisher js_content_pub">
+                        <span><a>Bantam Books</a></span>
+                        <span><a>Berkley Publishing Group</a></span>
+                        <span><a>HarperFlamingo Canada</a></span>
+                        <span><a>St. Martin's Press</a></span>
+                        <span><a>Oxford University Press</a></span>
+                    </div>
+                    <li><a class="js_year">Year of Publication <i class='bx bx-chevron-down'></i></a></li>
+                    <div class="year_pub js_year_pub">
+                        <span><a>2000</a></span>
+                        <span><a>2001</a></span>
+                        <span><a>2002</a></span>
+                        <span><a>2003</a></span>
+                        <span><a>2004</a></span>
+                    </div>
+                </ul>
+            </div>
+            <div class="books_menu_star">
+                <h1>Rating</h1>
+                <ul class="js_menu_ratings">
+                    <li data-star="10" class="star5">
+                        <i class='bx bxs-star star_full'></i>
+                        <i class='bx bxs-star star_full'></i>
+                        <i class='bx bxs-star star_full'></i>
+                        <i class='bx bxs-star star_full'></i>
+                        <i class='bx bxs-star star_full'></i>
+                        <span><i class='bx bxs-chevrons-left'></i></span>
+                    </li>
+                    <li data-star="8" class="star4">
+                        <i class='bx bxs-star star_full'></i>
+                        <i class='bx bxs-star star_full'></i>
+                        <i class='bx bxs-star star_full'></i>
+                        <i class='bx bxs-star star_full'></i>
+                        <i class='bx bxs-star star_empty' ></i>
+                        <span><i class='bx bxs-chevrons-left'></i></span>
+                    </li>
+                    <li data-star="6" class="star3">
+                        <i class='bx bxs-star star_full'></i>
+                        <i class='bx bxs-star star_full'></i>
+                        <i class='bx bxs-star star_full'></i>
+                        <i class='bx bxs-star star_empty' ></i>
+                        <i class='bx bxs-star star_empty' ></i>
+                        <span><i class='bx bxs-chevrons-left'></i></span>
+                    </li>
+                    <li data-star="4" class="star2">
+                        <i class='bx bxs-star star_full'></i>
+                        <i class='bx bxs-star star_full'></i>
+                        <i class='bx bxs-star star_empty' ></i>
+                        <i class='bx bxs-star star_empty' ></i>
+                        <i class='bx bxs-star star_empty' ></i>
+                        <span><i class='bx bxs-chevrons-left'></i></span>
+                    </li>
+                    <li data-star="2" class="star1">
+                        <i class='bx bxs-star star_full'></i>
+                        <i class='bx bxs-star star_empty' ></i>
+                        <i class='bx bxs-star star_empty' ></i>
+                        <i class='bx bxs-star star_empty' ></i>
+                        <i class='bx bxs-star star_empty' ></i>
+                        <span><i class='bx bxs-chevrons-left'></i></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="books_menu_author">
+                <h1>Author</h1>
+                <ul class="content_author js_author">
+                    <li><a>George Orwell</a></li>
+                    <li><a>Stephan Jaramillo</a></li>
+                    <li><a>Anne Rivers Siddons</a></li>
+                    <li><a>Jane Heller</a></li>
+                </ul>
+            </div>
+            
+        </div>
+        <div class="scr_book">
+            <div id="js_show_book" data-page="pg1" class="js_srcs books_none books_show">
+                <!-- <a style="width: 100%;"><div class="img_loading"><img src="image/loading.gif"/><img src="image/loading.gif"/><img src="image/loading.gif"/></div></a> -->
+                <div class="books_abook">
+                    <div class="abook_image">
+                        <img src="http://images.amazon.com/images/P/0425182908.01.LZZZZZZZ.jpg" alt="" class="abook_img">
+                        <div class="abook_img_ho">
+                            <a href="#"><i class='bx bx-show'></i></a>
+                            <a href="#" class="a2"><i class='bx bx-heart'></i></a>
+                        </div>
+                    </div>
+                    <div class="abook_inf">
+                        <a href="./DetailBooks.html" class="title_book">Isle of Dogs</a>
+                        <div class="aut_book">By: <span>Patricia Cornwell</span></div>
+                    </div>
+                </div>
+            </div>
+            <div id="js_show_book2" data-page="pg2" class="js_srcs books_none">
+                <a style="width: 100%;">
+                    <div class="img_loading">
+                        <img src="image/loading.gif"/>
+                        <img src="image/loading.gif"/>
+                        <img src="image/loading.gif"/>
+                    </div>
+                </a>
+            </div>
+            <div id = "js_show_book3"data-page="pg3" class="js_srcs books_none">
+                <a style="width: 100%;"><div class="img_loading"><img src="image/loading.gif"/><img src="image/loading.gif"/><img src="image/loading.gif"/></div></a>
+                <!-- <div class="books_abook">
+                    <div class="abook_image">
+                        <img src="http://images.amazon.com/images/P/0425182908.01.LZZZZZZZ.jpg" alt="" class="abook_img">
+                        <div class="abook_img_ho">
+                            <a href="#"><i class='bx bx-show'></i></a>
+                            <a href="#" class="a2"><i class='bx bx-heart'></i></a>
+                        </div>
+                    </div>
+                    <div class="abook_inf">
+                        <a href="./DetailBooks.html" class="title_book">Isle of Dogs</a>
+                        <div class="aut_book">By: <span>Patricia Cornwell</span></div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="books_page">
+                <ul class="books_number">
+                    <li><i class='bx bxs-chevron-left'></i></li>
+                    <li id="pg1" class="page1 js_page">1</li>
+                    <li id="pg2" class="js_page">2</li>
+                    <li id="pg3" class="js_page">3</li>
+                    <li><i class='bx bxs-chevron-right'></i></li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+
+
+    <div class="footer">
+        <div class="logo_footer">
+            <div class="lg_ft">
+                <a href="#" class="logo_link_footer">
+                    <img src="image/ads-removebg-preview.png" alt="">
+                </a>
+                <div class="logo_text_footer">
+                    BOOKS
+                </div>
+            </div>
+        </div>
+        <div class="icon_link_footer">
+            <div class="list_icon_footer">
+                <div class="icon_footer ">
+                    <a href="#" class="icon_fb"><i class='bx bxl-facebook size_icon '></i></a>
+                </div>
+                <div class="icon_footer">
+                    <a href="#" class="icon_yt"><i class='bx bxl-youtube size_icon '></i></a>
+                </div>
+                <div class="icon_footer ">
+                    <a href="#" class="icon_twitter "><i class='bx bxl-twitter size_icon'></i></a>
+                </div>
+                <div class="icon_footer ">
+                    <a href="#" class="icon_insagram"><i class='bx bxl-instagram size_icon'></i></a>
+                </div>
+                <div class="icon_footer">
+                    <a href="#" class="icon_map"><i class='bx bxs-map size_icon'></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="rules">
+            <div class="text_rules">
+                <p><a href="#">ThemeREX</a> © 2022 All Rights Reserved. <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal js_modal">      
+        <div class="modal_login js_modal_login">
+            <div class="modal_login_close">
+                <div class="modal_login_x js_modalClose">
+                    <img src="image/x-removebg-preview.png" alt="">
+                </div>
+            </div>
+            <div class="modal_login_header">
+                LOGIN
+            </div>
+            <form action="" class="js_form">
+                <div class="modal_login_body">
+                    <div class="modal_taikhoan">
+                        <label for="" class="modal_login_label"><i class='bx bxs-user'></i></label>
+                        <input type="text" class="modal_login_input js_login_tk" placeholder="Email" > 
+                    </div>
+                    <div class="modal_matkhau">
+                        <label for="" class="modal_login_label"><i class='bx bxs-lock-alt'></i></label>
+                        <input type="password" class="modal_login_input js_pass_login" placeholder="Password">
+                    </div>
+                    <button id="but_login" class="modal_login_login" type="submit">
+                        Login
+                    </button>
+                </div>
+            </form>
+            <footer class="modal_login_footer">
+                <p class="modal_help">Need <a href="#">help?</a></p>
+            </footer>
+        </div>
+    </div>
+    <div class="modal1">
+        <div class="modal_register js_modal_register">
+            <div class="modal_login_close">
+                <div class="modal_login_x js_close_register">
+                    <img src="image/x-removebg-preview.png" alt="">
+                </div>
+            </div>
+            <div class="modal_register_header">
+                Register
+            </div>
+            <form action="" id="formR">
+                <div class="modal_register_content">
+                    <div class="modal_register_name fl">
+                        <label for="">Full name (<span style="color: red;">*</span>)</label>
+                        <div class="vali">
+                            <input class="js_vali_input" type="text">
+                            <small></small>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="modal_register_add fl">
+                        <label for="">Address (<span style="color: red;">*</span>)</label>
+                        <div class="vali">
+                            <input class="js_vali_input" type="text">
+                            <small></small>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="modal_register_birthday fl">
+                        <label for="">Birthday (<span style="color: red;">*</span>)</label>
+                        <div class="vali">
+                            <input class="js_vali_input" type="date">
+                            <small></small>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="modal_register_mail fl">
+                        <label for="">Email (<span style="color: red;">*</span>)</label>
+                        <div class="vali">
+                            <input class="js_vali_input" type="email">
+                            <small></small>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="modal_register_pass fl">
+                        <label for="">Password (<span style="color: red;">*</span>)</label>
+                        <div class="vali">
+                            <input class="js_vali_input" type="password">
+                            <small></small>
+                            <span class=""></span>
+                        </div>
+                    </div>
+                    <div class="modal_register_repass fl">
+                        <label for="">Re-password (<span style="color: red;">*</span>)</label>
+                        <div class="vali">
+                            <input class="js_vali_input" type="password">
+                            <small></small>
+                            <span class=""></span>
+                        </div>
+                    </div>
+                    <div class="modal_but">
+                        <button type="submit">Start</button>
+                    </div>
+                    <!-- <div class="modal_register_footer">
+    
+                    </div> -->
+                </div>
+            </form>
+        </div>
+    </div>
+    <a href="#" class="link_back_home">
+        <div class="back_home"><i style="font-size: 20px;" class='bx bxs-upvote'></i></div>
+    </a>
+</body>
+<script src="js/main.js"></script>
+<script src="js/eventBooks.js"></script>
+
+
+</html>
