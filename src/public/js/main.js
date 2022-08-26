@@ -66,3 +66,28 @@ register.addEventListener("click", showModalRegister);
 close_register.addEventListener("click", closeModalRegister);
 modal_register.addEventListener("click", closeModalRegister);
 register_contern.addEventListener("click", event_modal);
+
+// ratings
+const stars = document.querySelectorAll(".js_star");
+stars.forEach((star) => {
+	star.addEventListener("mouseover", (e) => {
+		e.target.classList.add("js_yello");
+		let valu = parseInt(e.target.getAttribute("value"));
+		stars.forEach((st) => {
+			let vast = st.getAttribute("value");
+			if (vast < valu) {
+				st.classList.add("js_yello");
+			}
+		});
+	});
+	star.addEventListener("mouseout", (e) => {
+		e.target.classList.remove("js_yello");
+		let val = parseInt(e.target.getAttribute("value"));
+		stars.forEach((st) => {
+			let vast = st.getAttribute("value");
+			if (vast < val) {
+				st.classList.remove("js_yello");
+			}
+		});
+	});
+});

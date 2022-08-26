@@ -1,7 +1,7 @@
 const formL = document.querySelector(".js_form1");
 formL.addEventListener("submit", (e) => {
-	const ac = form[0].value;
-	const pass = form[1].value;
+	const ac = formL[0].value;
+	const pass = formL[1].value;
 	const ecPass = btoa(pass);
 	const ecytPass = atob(ecPass);
 	if ((ac == "admin") & (pass == "admin")) {

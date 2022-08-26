@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books</title>
+    <title>DetailBooks</title>
     <link rel="icon" type="image/x-icon" href="image/favicon.ico">
     <link rel="stylesheet" href="css/main.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
@@ -32,8 +32,8 @@
                                 </a>
                             </li>
                             <li class="menu_list">
-                                <a href="#" class="menu_list_home">
-                                    <span style="color: #00bfc5;font-size: 19px">Books</span>
+                                <a href="/books" class="menu_list_home">
+                                    <span class="list_color">Books</span>
                                 </a>
                             </li>
                             <div class="js_logout">
@@ -47,7 +47,7 @@
                                         <span class="list_color">Login</span>
                                     </a>
                                 </li>
-                            </div>
+                            </div>  
                             <!-- <li class="menu_list js_contai_search">
                                 <a href="#" class="menu_list_home js_search">
                                     <span class="list_color"><i class='bx bx-search-alt-2'></i></span>
@@ -60,196 +60,128 @@
             </div>
         </div>
     </div>
-    <div class="books_search">
-       <input id="boxsearch" type="text" class="books_inp" placeholder="Search...">
-       <button class="but_search"><i class='bx bx-search-alt-2'></i></button>
-       <div class="show_option">
-            <div class="show_x3">
-            <span class="l_show_x3">
-                 <span></span>
-                 <span></span>
-                 <span></span>
-            </span>
-            <span class="l_show_x3">
-                 <span></span>
-                 <span></span>
-                 <span></span>
-             </span>
-             <span class="l_show_x3">
-                 <span></span>
-                 <span></span>
-                 <span></span>
-             </span>
-             </div>
-           <div class="show_x4">
-               <span class="l_show_x4">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-               </span>
-               <span class="l_show_x4">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </span>
-                <span class="l_show_x4">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </span>
+    <div class="detail_body">
+        <div id="js_detail" class="detail_book">
+            <!-- <div class="dt_loading"><img src="image/loading.gif" alt=""></div> -->
+            <div class="detail_img">
+                <img src="http://images.amazon.com/images/P/0002005018.01.LZZZZZZZ.jpg" alt="">
             </div>
-            <div class="show_x2">
-                <span class="l_show_x2">
-                     <span></span>
-                     <span class="x2"></span>
-                </span>
-                <span class="l_show_x2">
-                     <span></span>
-                     <span class="x2"></span>
-                 </span>
-                 <span class="l_show_x2">
-                     <span></span>
-                     <span class="x2"></span>
-                 </span>
-                 </div>
-       </div>
-    </div>
-    <div class="books_content">
-        <div class="books_menu">
-            <div class="books_menu_menu">
-                <h1>Classify</h1>
-                <ul class="classify js_classify">
-                    <li><a class="all js_all">All</a></li>
-                    <li><a class="js_title_pub">Publisher <i class='bx bx-chevron-down'></i></a></li>
-                    <div class="publisher js_content_pub">
-                        <span><a>Bantam Books</a></span>
-                        <span><a>Berkley Publishing Group</a></span>
-                        <span><a>HarperFlamingo Canada</a></span>
-                        <span><a>St. Martin's Press</a></span>
-                        <span><a>Oxford University Press</a></span>
-                    </div>
-                    <li><a class="js_year">Year of Publication <i class='bx bx-chevron-down'></i></a></li>
-                    <div class="year_pub js_year_pub">
-                        <span><a>2000</a></span>
-                        <span><a>2001</a></span>
-                        <span><a>2002</a></span>
-                        <span><a>2003</a></span>
-                        <span><a>2004</a></span>
-                    </div>
-                </ul>
-            </div>
-            <div class="books_menu_star">
-                <h1>Rating</h1>
-                <ul class="js_menu_ratings">
-                    <li data-star="10" class="star5">
-                        <i class='bx bxs-star star_full'></i>
-                        <i class='bx bxs-star star_full'></i>
-                        <i class='bx bxs-star star_full'></i>
-                        <i class='bx bxs-star star_full'></i>
-                        <i class='bx bxs-star star_full'></i>
-                        <span><i class='bx bxs-chevrons-left'></i></span>
-                    </li>
-                    <li data-star="8" class="star4">
-                        <i class='bx bxs-star star_full'></i>
-                        <i class='bx bxs-star star_full'></i>
-                        <i class='bx bxs-star star_full'></i>
-                        <i class='bx bxs-star star_full'></i>
-                        <i class='bx bxs-star star_empty' ></i>
-                        <span><i class='bx bxs-chevrons-left'></i></span>
-                    </li>
-                    <li data-star="6" class="star3">
-                        <i class='bx bxs-star star_full'></i>
-                        <i class='bx bxs-star star_full'></i>
-                        <i class='bx bxs-star star_full'></i>
-                        <i class='bx bxs-star star_empty' ></i>
-                        <i class='bx bxs-star star_empty' ></i>
-                        <span><i class='bx bxs-chevrons-left'></i></span>
-                    </li>
-                    <li data-star="4" class="star2">
-                        <i class='bx bxs-star star_full'></i>
-                        <i class='bx bxs-star star_full'></i>
-                        <i class='bx bxs-star star_empty' ></i>
-                        <i class='bx bxs-star star_empty' ></i>
-                        <i class='bx bxs-star star_empty' ></i>
-                        <span><i class='bx bxs-chevrons-left'></i></span>
-                    </li>
-                    <li data-star="2" class="star1">
-                        <i class='bx bxs-star star_full'></i>
-                        <i class='bx bxs-star star_empty' ></i>
-                        <i class='bx bxs-star star_empty' ></i>
-                        <i class='bx bxs-star star_empty' ></i>
-                        <i class='bx bxs-star star_empty' ></i>
-                        <span><i class='bx bxs-chevrons-left'></i></span>
-                    </li>
-                </ul>
-            </div>
-            <div class="books_menu_author">
-                <h1>Author</h1>
-                <ul class="content_author js_author">
-                    <li><a>George Orwell</a></li>
-                    <li><a>Stephan Jaramillo</a></li>
-                    <li><a>Anne Rivers Siddons</a></li>
-                    <li><a>Jane Heller</a></li>
-                </ul>
-            </div>
-            
-        </div>
-        <div class="scr_book">
-            <div id="js_show_book" data-page="pg1" class="js_srcs books_none books_show">
-                <!-- <a style="width: 100%;"><div class="img_loading"><img src="image/loading.gif"/><img src="image/loading.gif"/><img src="image/loading.gif"/></div></a> -->
-                <div class="books_abook">
-                    <div class="abook_image">
-                        <img src="http://images.amazon.com/images/P/0425182908.01.LZZZZZZZ.jpg" alt="" class="abook_img">
-                        <div class="abook_img_ho">
-                            <a href="/detail"><i class='bx bx-show'></i></a>
-                            <a href="#" class="a2"><i class='bx bx-heart'></i></a>
+            <div class="detail_info">
+                <div class="title_info">
+                    <h1 class="detail_titleBook">Clara Callan</h1>
+                </div>
+                <div class="detail_rating">
+                    <ul class="detail_list_star">
+                        <li><i class='bx bxs-star star_full'></i></li>
+                        <li><i class='bx bxs-star star_full'></i></li>
+                        <li><i class='bx bxs-star star_full'></i></li>
+                        <li><i class='bx bxs-star star_full'></i></li>
+                        <li><i class='bx bx-star star_fill' ></i></li>
+                    </ul>
+                </div>
+                <div class="content_info">
+                    <div class="detail_aut_book" style="color: #897c7c;">By: <span>Richard Bruce Wright</span></div>
+                    <div class="detail_aut_book" style="color: #897c7c;">Year-Of-Publication: <span>2001</span></div>
+                    <div class="detail_aut_book" style="color: #897c7c;">Publisher: <span>HarperFlamingo Canada</span></div>
+                    <div class="detail_share">
+                        <h1 class="detail_titleBook">Share</h1>
+                        <div class="list_share">
+                            <i class='bx bxl-facebook-circle fb'></i>
+                            <i class='bx bxl-messenger mes'></i>
+                            <i class='bx bxl-twitter tw'></i>
+                            <i class='bx bx-link-alt lin' ></i>
                         </div>
                     </div>
-                    <div class="abook_inf">
-                        <a href="/detail" class="title_book">Isle of Dogs</a>
-                        <div class="aut_book">By: <span>Patricia Cornwell</span></div>
+                </div>             
+            </div>
+        </div>
+        <div class="detail_ml">
+            <h1>Evaluate</h1>
+            <div class="ratig">
+                <ul class="ra_star">
+                    <li class="sta1 " ><i class='bx bxs-star js_star' data-value="2" data-star="1" value="1"></i></li>
+                    <li class="sta2 " ><i class='bx bxs-star js_star' data-value="4" data-star="2" value="2"></i></li>
+                    <li class="sta3 " ><i class='bx bxs-star js_star' data-value="6" data-star="3" value="3"></i></li>
+                    <li class="sta4 " ><i class='bx bxs-star js_star' data-value="8" data-star="4" value="4"></i></li>
+                    <li class="sta5 " ><i class='bx bxs-star js_star' data-value="10" data-star="5" value="5"></i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="htgy">
+        <h1>Similarly rated books</h1>
+        <div id="js_htgy" class="htgy_content">
+            <div class="item_best_book">
+                <div class="image_book">
+                    <img src="http://images.amazon.com/images/P/0425182908.01.LZZZZZZZ.jpg" alt="">
+                    <div class="image_hover">
+                        <div class="search_image">
+                            <a href="./DetailBooks.html" class="icon_search"><i class='bx bx-search-alt-2'></i></a>
+                        </div>
                     </div>
                 </div>
+                <div class="tt_book">
+                    <a href="./DetailBooks.html" class="title_book">Isle of Dogs</a>
+                    <div class="aut_book">By: <span>Patricia Cornwell</span></div>
+                </div>
             </div>
-            <div id="js_show_book2" data-page="pg2" class="js_srcs books_none">
-                <a style="width: 100%;">
-                    <div class="img_loading">
-                        <img src="image/loading.gif"/>
-                        <img src="image/loading.gif"/>
-                        <img src="image/loading.gif"/>
-                    </div>
-                </a>
-            </div>
-            <div id = "js_show_book3"data-page="pg3" class="js_srcs books_none">
-                <a style="width: 100%;"><div class="img_loading"><img src="image/loading.gif"/><img src="image/loading.gif"/><img src="image/loading.gif"/></div></a>
-                <!-- <div class="books_abook">
-                    <div class="abook_image">
-                        <img src="http://images.amazon.com/images/P/0425182908.01.LZZZZZZZ.jpg" alt="" class="abook_img">
-                        <div class="abook_img_ho">
-                            <a href="#"><i class='bx bx-show'></i></a>
-                            <a href="#" class="a2"><i class='bx bx-heart'></i></a>
+            <div class="item_best_book">
+                <div class="image_book">
+                    <img src="http://images.amazon.com/images/P/0195153448.01.LZZZZZZZ.jpg" alt="">
+                    <div class="image_hover">
+                        <div class="search_image">
+                            <a href="./DetailBooks.html" class="icon_search"><i class='bx bx-search-alt-2'></i></a>
                         </div>
                     </div>
-                    <div class="abook_inf">
-                        <a href="./DetailBooks.html" class="title_book">Isle of Dogs</a>
-                        <div class="aut_book">By: <span>Patricia Cornwell</span></div>
-                    </div>
-                </div> -->
+                </div>
+                <div class="tt_book">
+                    <a href="./DetailBooks.html" class="title_book">Classical Mythology</a>
+                    <div class="aut_book">By: <span>Mark P.O.Morford</span></div>
+                </div>
             </div>
-            <div class="books_page">
-                <ul class="books_number">
-                    <li><i class='bx bxs-chevron-left'></i></li>
-                    <li id="pg1" class="page1 js_page">1</li>
-                    <li id="pg2" class="js_page">2</li>
-                    <li id="pg3" class="js_page">3</li>
-                    <li><i class='bx bxs-chevron-right'></i></li>
-                </ul>
+            <div class="item_best_book">
+                <div class="image_book">
+                    <img src="http://images.amazon.com/images/P/0393045218.01.LZZZZZZZ.jpg" alt="">
+                    <div class="image_hover">
+                        <div class="search_image">
+                            <a href="./DetailBooks.html" class="icon_search"><i class='bx bx-search-alt-2'></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tt_book">
+                    <a href="./DetailBooks.html" class="title_book">The Mummies of Urumchi</a>
+                    <div class="aut_book">By: <span>E.J.W.Barber</span></div>
+                </div>
+            </div>
+            <div class="item_best_book">
+                <div class="image_book">
+                    <img src="http://images.amazon.com/images/P/0440234743.01.LZZZZZZZ.jpg" alt="">
+                    <div class="image_hover">
+                        <div class="search_image">
+                            <a href="./DetailBooks.html" class="icon_search"><i class='bx bx-search-alt-2'></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tt_book">
+                    <a href="./DetailBooks.html" class="title_book">The Testament</a>
+                    <div class="aut_book">By: <span>John Grisham</span></div>
+                </div>
+            </div>
+            <div class="item_best_book">
+                <div class="image_book">
+                    <img src="http://images.amazon.com/images/P/0002005018.01.LZZZZZZZ.jpg" alt="">
+                    <div class="image_hover">
+                        <div class="search_image">
+                            <a href="./DetailBooks.html" class="icon_search"><i class='bx bx-search-alt-2'></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tt_book">
+                    <a href="./DetailBooks.html" class="title_book">Classical Mythology</a>
+                    <div class="aut_book">By: <span>Mark P.O.Morford</span></div>
+                </div>
             </div>
         </div>
-        
     </div>
 
 
@@ -394,7 +326,5 @@
     </a>
 </body>
 <script src="js/main.js"></script>
-<script src="js/eventBooks.js"></script>
-
-
+<script src="js/validateRegister.js"></script>
 </html>

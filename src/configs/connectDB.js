@@ -4,11 +4,11 @@ import mysql from "mysql2";
 const connection = mysql.createConnection({
 	host: "localhost",
 	user: "root",
-	database: "learnnodejs",
+	database: "WebsiteTVS",
 });
 
 // simple query
-// connection.query("SELECT * FROM `user` ", function (err, results, fields) {
+// connection.query("SELECT * FROM `books` ", function (err, results, fields) {
 // 	console.log(results);
 // });
 

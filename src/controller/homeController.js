@@ -9,9 +9,13 @@ let getBooksPage = (req, res) => {
 let getAdminPage = (req, res) => {
 	return res.render("./admin.ejs");
 };
+let getDetailPage = (req, res) => {
+	return res.render("./detail.ejs");
+};
 
 module.exports = {
 	getHomePage,
 	getBooksPage,
 	getAdminPage,
+	getDetailPage,
 };
