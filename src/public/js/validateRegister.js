@@ -1,22 +1,34 @@
 const formRegister = document.getElementById("formR");
-formRegister.addEventListener("submit", (e) => {
-	const form = e.target;
-	const Fullname = form[0].value;
-	const Addr = form[1].value;
-	const Birthday = form[2].value;
-	const Email = form[3].value;
-	const Password = form[4].value;
-	const BirD = new Date(Birthday);
-	const TimeS = new Date();
-	const encodePass = btoa(Password);
-	const Old = TimeS.getFullYear() - BirD.getFullYear();
+fetch("http://localhost:3000/api/v1/users")
+	.then((Response) => Response.json())
+	.then((users) => {
+		formRegister.addEventListener("submit", (e) => {
+			const form = e.target;
+			// const Fullname = form[0].value;
+			// const Addr = form[1].value;
+			// const Birthday = form[2].value;
+			const Email = form[3].value;
+			// const Password = form[4].value;
+			// const BirD = new Date(Birthday);
+			// const TimeS = new Date();
+			// const encodePass = btoa(Password);
+			// const Old = TimeS.getFullYear() - BirD.getFullYear();
 
-	if (validate(form)) {
-		alert("Đăng ký tài khoản thành công!");
-	} else {
-		e.preventDefault();
-	}
-});
+			if (validate(form)) {
+				const checkEmail = users.some((user) => {
+					return Email === user.Email;
+				});
+				if (checkEmail) {
+					alert("Tài khoản đã tồn tại");
+					e.preventDefault();
+				} else {
+					alert("Đăng ký tài khoản thành công!");
+				}
+			} else {
+				e.preventDefault();
+			}
+		});
+	});
 
 const validate = (form) => {
 	const Fullname = form[0].value;
@@ -91,15 +103,4 @@ const showSus = (input) => {
 	parent.classList.remove("error");
 	span.classList.remove("ckeck");
 	small.innerHTML = "";
-};
-
-const random = (length) => {
-	var result = "";
-	var characters =
-		"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	var charactersLength = characters.length;
-	for (var i = 0; i < length; i++) {
-		result += characters.charAt(Math.floor(Math.random() * charactersLength));
-	}
-	return result;
 };

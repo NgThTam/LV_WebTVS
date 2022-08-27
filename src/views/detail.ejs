@@ -62,8 +62,8 @@
     </div>
     <div class="detail_body">
         <div id="js_detail" class="detail_book">
-            <!-- <div class="dt_loading"><img src="image/loading.gif" alt=""></div> -->
-            <div class="detail_img">
+            <div class="dt_loading"><img src="image/loading.gif" alt=""></div>
+            <!-- <div class="detail_img">
                 <img src="http://images.amazon.com/images/P/0002005018.01.LZZZZZZZ.jpg" alt="">
             </div>
             <div class="detail_info">
@@ -93,7 +93,7 @@
                         </div>
                     </div>
                 </div>             
-            </div>
+            </div> -->
         </div>
         <div class="detail_ml">
             <h1>Evaluate</h1>
@@ -261,12 +261,12 @@
             <div class="modal_register_header">
                 Register
             </div>
-            <form action="" id="formR">
+            <form action="/reate-new-user" method="POST" id="formR">
                 <div class="modal_register_content">
                     <div class="modal_register_name fl">
                         <label for="">Full name (<span style="color: red;">*</span>)</label>
                         <div class="vali">
-                            <input class="js_vali_input" type="text">
+                            <input class="js_vali_input" type="text" name = "fullname">
                             <small></small>
                             <span></span>
                         </div>
@@ -274,7 +274,7 @@
                     <div class="modal_register_add fl">
                         <label for="">Address (<span style="color: red;">*</span>)</label>
                         <div class="vali">
-                            <input class="js_vali_input" type="text">
+                            <input class="js_vali_input" type="text" name = "addr">
                             <small></small>
                             <span></span>
                         </div>
@@ -282,7 +282,7 @@
                     <div class="modal_register_birthday fl">
                         <label for="">Birthday (<span style="color: red;">*</span>)</label>
                         <div class="vali">
-                            <input class="js_vali_input" type="date">
+                            <input class="js_vali_input" type="date" name="birthday">
                             <small></small>
                             <span></span>
                         </div>
@@ -290,7 +290,7 @@
                     <div class="modal_register_mail fl">
                         <label for="">Email (<span style="color: red;">*</span>)</label>
                         <div class="vali">
-                            <input class="js_vali_input" type="email">
+                            <input class="js_vali_input" type="email" name="email">
                             <small></small>
                             <span></span>
                         </div>
@@ -298,7 +298,7 @@
                     <div class="modal_register_pass fl">
                         <label for="">Password (<span style="color: red;">*</span>)</label>
                         <div class="vali">
-                            <input class="js_vali_input" type="password">
+                            <input class="js_vali_input" type="password" name="password">
                             <small></small>
                             <span class=""></span>
                         </div>
@@ -306,7 +306,7 @@
                     <div class="modal_register_repass fl">
                         <label for="">Re-password (<span style="color: red;">*</span>)</label>
                         <div class="vali">
-                            <input class="js_vali_input" type="password">
+                            <input class="js_vali_input" type="password" name="repassword">
                             <small></small>
                             <span class=""></span>
                         </div>
@@ -327,4 +327,5 @@
 </body>
 <script src="js/main.js"></script>
 <script src="js/validateRegister.js"></script>
+<script src="js/dtDetail.js"></script>
 </html>

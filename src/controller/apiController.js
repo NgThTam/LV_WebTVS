@@ -1,27 +1,48 @@
 import connection from "../configs/connectDB";
 
-let getAllUser = (req, res) => {
-	connection.query("SELECT * FROM `user` ", (err, results, fields) => {
+let getAllbook = (req, res) => {
+	connection.query("SELECT * FROM `books` ", (err, results, fields) => {
 		let data = results.map((dt) => dt);
-
-		// return res.render("./home.ejs", { dataUser: data });
 		return res.status(200).json(data);
 	});
-	// return res.status(200).json({
-	// 	massage: "oke",
-	// });
 };
+
+let getAllUser = (req, res) => {
+	connection.query("SELECT * FROM `users` ", (err, results, fields) => {
+		let data = results.map((dt) => dt);
+		return res.status(200).json(data);
+	});
+};
+
+const random = (length) => {
+	var result = "";
+	var characters =
+		"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	var charactersLength = characters.length;
+	for (var i = 0; i < length; i++) {
+		result += characters.charAt(Math.floor(Math.random() * charactersLength));
+	}
+	return result;
+};
+
 let createUser = (req, res) => {
-	let { firstName, lastName, address } = req.body;
-	console.log(firstName);
+	let { fullname, addr, birthday, email, password, repassword } = req.body;
+	const BirD = new Date(birthday);
+	const TimeS = new Date();
+	const Old = TimeS.getFullYear() - BirD.getFullYear();
+	const encodePass = btoa(password);
+	const id = random(8);
+
 	connection.query(
-		"insert into user (firstName, lastName, address) values (?,?,?)",
-		[firstName, lastName, address]
+		"INSERT INTO `users`(`IDu`, `FullName`, `Old`, `Addr`, `Email`, `Pass`) VALUES (?,?,?,?,?,?)",
+		// "insert into users (firstName, lastName, address) values (?,?,?)",
+		[id, fullname, Old, addr, email, encodePass]
 	);
 	return res.redirect("/");
 };
 
 module.exports = {
-	getAllUser,
 	createUser,
+	getAllbook,
+	getAllUser,
 };
