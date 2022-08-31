@@ -14,6 +14,13 @@ let getAllUser = (req, res) => {
 	});
 };
 
+let getAllRating = (req, res) => {
+	connection.query("SELECT * FROM `ratings` ", (err, results, fields) => {
+		let data = results.map((dt) => dt);
+		return res.status(200).json(data);
+	});
+};
+
 const random = (length) => {
 	var result = "";
 	var characters =
@@ -45,4 +52,5 @@ module.exports = {
 	createUser,
 	getAllbook,
 	getAllUser,
+	getAllRating,
 };

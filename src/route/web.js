@@ -12,6 +12,8 @@ const initWebRouter = (app) => {
 	router.get("/detail", getPage.getDetailPage);
 	router.get("/api/v1/books", apiController.getAllbook);
 	router.get("/api/v1/users", apiController.getAllUser);
+	router.get("/api/v1/ratings", apiController.getAllRating);
+
 	router.post("/reate-new-user", apiController.createUser);
 	// router.get("/detail/:userId", getPage.getAllUser);
 
