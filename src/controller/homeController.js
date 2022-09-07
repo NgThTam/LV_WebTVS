@@ -12,10 +12,14 @@ let getAdminPage = (req, res) => {
 let getDetailPage = (req, res) => {
 	return res.render("./detail.ejs");
 };
+let getProfilePage = (req, res) => {
+	return res.render("./profile.ejs");
+};
 
 module.exports = {
 	getHomePage,
 	getBooksPage,
 	getAdminPage,
 	getDetailPage,
+	getProfilePage,
 };

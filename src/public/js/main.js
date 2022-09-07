@@ -91,3 +91,21 @@ stars.forEach((star) => {
 		});
 	});
 });
+
+//cart
+const divCart = document.querySelector(".js_cart");
+const modalCart = document.querySelector(".js_modalcart");
+const ctCart = document.querySelector(".js_contentCart");
+const imgCart = document.querySelector(".js_imgcart");
+divCart.addEventListener("click", () => {
+	modalCart.classList.add("js_openCart");
+});
+modalCart.addEventListener("click", () => {
+	modalCart.classList.remove("js_openCart");
+});
+imgCart.addEventListener("click", () => {
+	modalCart.classList.remove("js_openCart");
+});
+ctCart.addEventListener("click", (e) => {
+	e.stopPropagation();
+});

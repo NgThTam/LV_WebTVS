@@ -28,6 +28,11 @@ let renderB = (book) => {
                             <i class='bx bx-link-alt lin' ></i>
                         </div>
                     </div>
+					<div class="addTocart">
+                    <div class="addcart js_addcard" data-id= "${book.IDb}">
+                        <p>Add To Cart</p>
+                    </div>
+                </div> 
                 </div>             
             </div>`;
 };
@@ -45,6 +50,27 @@ fetch("http://localhost:3000/api/v1/books")
 			if (abook != undefined) {
 				divdetail.innerHTML = abook;
 			}
+		});
+		return books;
+	})
+	.then((books) => {
+		const eacart = document.querySelector(".js_addcard");
+		// let arr = [];
+		// let arr = JSON.parse(localStorage.getItem("addCart");
+
+		// let arr = JSON.parse(localStorage.getItem("addCart")) || [];
+		let arrs = localStorage.getItem("addCart");
+		if (arrs != null) {
+			var arr = JSON.parse(localStorage.getItem("addCart"));
+		} else {
+			var arr = [];
+		}
+		console.log(arr);
+		eacart.addEventListener("click", () => {
+			arr.push(eacart.dataset.id);
+			arr = arr.filter(onlyUnique); //loc gtri trung
+			localStorage.setItem("addCart", JSON.stringify(arr));
+			console.log(JSON.parse(localStorage.getItem("addCart")));
 		});
 	});
 
@@ -101,3 +127,7 @@ const mean = (arr) => {
 	});
 	return smean / length;
 };
+
+function onlyUnique(value, index, self) {
+	return self.indexOf(value) === index;
+}
