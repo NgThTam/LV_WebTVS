@@ -1481,6 +1481,64 @@ body {
     color: white;
     margin-top: 20px;;
 }
-.pro .menu_list a span{
+/* .pro .menu_list a span{
 	font-size: 16px;
+} */
+.detail_img{
+	position: relative;
+    top: 10px;
+}
+/* profile */
+.in4{
+	display: flex;
+	justify-content: center;
+	padding-top: 6px;
+}
+.inf{
+	border: 1px solid;
+	width: 94%;
+	position: relative;
+	border-color: #00000063;
+}
+.pro_ava{
+	background-color: #1c8adb;
+    width: 11rem;
+    height: 13rem;
+    position: absolute;
+    top: 0;
+    left: -1px;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+	justify-content: center;
+    display: flex;
+    align-items: flex-end;
+}
+.pro_ava img{
+	border-radius: 100px;
+    width: 10rem;
+    height: 10rem;
+    padding-bottom: 10px;
+}
+/* numcart */
+.numcart{
+	display: flex;
+    position: relative;
+}
+.numelcart{
+	width: 15px;
+    height: 15px;
+    font-size: 13px;
+    background-color: white;
+    border-radius: 100px;
+    font-weight: 800;
+    color: red;
+    position: absolute;
+    top: -8px;
+    right: -16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.numelcart p{
+	padding-top: 1px;
 }

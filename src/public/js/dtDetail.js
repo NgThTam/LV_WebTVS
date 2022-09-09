@@ -65,12 +65,18 @@ fetch("http://localhost:3000/api/v1/books")
 		} else {
 			var arr = [];
 		}
-		console.log(arr);
+		// console.log(arr);
+		const elnum = document.querySelector(".js_num");
+		// console.log(elnum);
 		eacart.addEventListener("click", () => {
 			arr.push(eacart.dataset.id);
 			arr = arr.filter(onlyUnique); //loc gtri trung
 			localStorage.setItem("addCart", JSON.stringify(arr));
 			console.log(JSON.parse(localStorage.getItem("addCart")));
+			const Cart = JSON.parse(localStorage.getItem("addCart"));
+			let numelCart = Cart.length;
+			elnum.innerHTML = `${numelCart}`;
+			console.log(numelCart);
 		});
 	});
 
