@@ -46,12 +46,12 @@ fetch("http://localhost:3000/api/v1/books")
 				});
 				const scr1 = document.querySelector("#scr1 table > tbody");
 				scr1.innerHTML = newUers.join(" ");
-				// const detailViews = document.querySelectorAll(".js_view > a");
-				// detailViews.forEach((detailView) => {
-				//     detailView.addEventListener("click", () => {
-				//         localStorage.setItem("id_book", detailView.id);
-				//     });
-				// });
+				const detailViews = document.querySelectorAll(".js_view > a");
+				detailViews.forEach((detailView) => {
+					detailView.addEventListener("click", () => {
+						localStorage.setItem("id_book", detailView.id);
+					});
+				});
 			});
 		const detailViews = document.querySelectorAll(".js_view > a");
 		detailViews.forEach((detailView) => {
@@ -59,4 +59,20 @@ fetch("http://localhost:3000/api/v1/books")
 				localStorage.setItem("id_book", detailView.id);
 			});
 		});
+		fetch("http://localhost:3000/api/v1/ratings")
+			.then((res) => res.json())
+			.then((ratings) => {
+				const newbooks = ratings.map((rating) => {
+					const book = bks.find((bk) => {
+						return bk.IDb === rating.IDb;
+					});
+					const name = book.NameB;
+					return { ...rating, name };
+				});
+				const books = newbooks.map((book) => {
+					return render3(book);
+				});
+				const scr3 = document.querySelector("#scr3 table > tbody");
+				scr3.innerHTML = books.join(" ");
+			});
 	});
