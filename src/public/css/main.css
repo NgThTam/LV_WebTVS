@@ -1542,3 +1542,147 @@ body {
 .numelcart p{
 	padding-top: 1px;
 }
+/* noi dung cart */
+.contentCart table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+  
+.contentCart table td, th {
+	border: 1px solid #dddddd;
+	text-align: center;
+	padding: 8px;
+  }
+  
+.contentCart table tr:nth-child(even) {
+	background-color: #dddddd;
+  }
+.imgCart{
+	width: 25px;
+}
+.contentCart i{
+	font-size: 27px;
+    font-weight: 600;
+    color: red;
+	cursor: pointer;
+}
+/* comment */
+.comments{
+	padding: 0px 130px 20px 130px;
+}
+.comments h1{
+	text-transform: uppercase;
+    font-size: 27px;
+    font-family: sans-serif;
+    padding-bottom: 13px;
+}
+.content_cmt{
+	display: flex;
+    justify-content: space-between;
+}
+.cmt{
+	display: flex;
+	padding-bottom: 11px;
+}
+.imgCmt img{
+	width: 36px;
+    border-radius: 100px;
+    border: 1px solid #1b666ab0;
+}
+.nameCmt{
+	padding-left: 10px;
+}
+.nameCmt p{
+	padding: 2px 0px 1px 5px;
+}
+.name{
+	font-weight: 600;
+    font-family: sans-serif;
+    font-size: 15px;
+	display: flex;
+}
+.cmtLike{
+	display: flex;
+}
+.cmtLike p{
+	padding-right: 10px;
+    font-size: 13px;
+	color: blue;
+	cursor: default;
+}
+.date{
+	padding-left: 14px;
+    font-size: 12px;
+    padding-top: 3px;
+	color: #00000047;
+}
+.cmts{
+	padding: 0px 17px 0px 17px;
+	width: 73%;
+}
+.tkratings{
+	width: 25%;
+	border-radius: 7px;
+	border: 1px solid #00000085;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cmtrat{
+	width: 90%;
+}
+.iconS{
+	color: #ecd006;
+}
+.iconS .bx-star{
+	color: #0000004a;;
+}
+.tk5s,.tk4s,.tk3s,.tk2s,.tk1s{
+	display: flex;
+}
+.startk{
+	width: 50%;
+    position: relative;
+    display: flex;
+	align-items: center;
+}
+.tkback{
+	background-color: #e2dcdc;
+    width: 100%;
+    height: 10px;
+}
+.tk5s .tkst{
+	width: 30%;
+    background-color: black;
+    height: 10px;
+    position: absolute;
+}
+.tk4s .tkst{
+	width: 20%;
+    background-color: black;
+    height: 10px;
+    position: absolute;
+}
+.tk3s .tkst{
+	width: 40%;
+    background-color: black;
+    height: 10px;
+    position: absolute;
+}
+.tk2s .tkst{
+	width: 5%;
+    background-color: black;
+    height: 10px;
+    position: absolute;
+}
+.tk1s .tkst{
+	width: 5%;
+    background-color: black;
+    height: 10px;
+    position: absolute;
+}
+.tkst{
+	border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}

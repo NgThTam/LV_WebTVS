@@ -37,6 +37,15 @@ let renderB = (book) => {
             </div>`;
 };
 
+const innerBookCart = (book) => {
+	return `<tr>
+				<td class="titleB">${book.NameB}</td>
+				<td><img class="imgCart" src="${book.ImgB}" alt=""></td>
+				<td>x1</td>
+				<td><i data-idBcart='${book.IDb}' class='bx bx-x'></i></td>
+			</tr>`;
+};
+
 fetch("http://localhost:3000/api/v1/books")
 	.then((Response) => Response.json())
 	.then((books) => {
@@ -72,11 +81,20 @@ fetch("http://localhost:3000/api/v1/books")
 			arr.push(eacart.dataset.id);
 			arr = arr.filter(onlyUnique); //loc gtri trung
 			localStorage.setItem("addCart", JSON.stringify(arr));
-			console.log(JSON.parse(localStorage.getItem("addCart")));
+			// console.log(JSON.parse(localStorage.getItem("addCart")));
 			const Cart = JSON.parse(localStorage.getItem("addCart"));
 			let numelCart = Cart.length;
 			elnum.innerHTML = `${numelCart}`;
-			console.log(numelCart);
+			const newBookCart = [];
+			Cart.forEach((cartt) => {
+				books.forEach((book) => {
+					if (book.IDb == cartt) {
+						newBookCart.push(innerBookCart(book));
+					}
+				});
+			});
+			const bodyCart = document.querySelector(".js_bodyCart");
+			bodyCart.innerHTML = newBookCart.join(" ");
 		});
 	});
 
