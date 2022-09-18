@@ -3,7 +3,7 @@ let innerBCart = (book) => {
 				<td class="titleB">${book.NameB}</td>
 				<td><img class="imgCart" src="${book.ImgB}" alt=""></td>
 				<td>x1</td>
-				<td><i data-idBcart='${book.IDb}' class='bx bx-x'></i></td>
+				<td><i data-idBcart='${book.IDb}' class='bx bx-x js_del'></i></td>
 			</tr>`;
 };
 const reCart = document.querySelector(".remov");
@@ -32,6 +32,18 @@ if (!carts) {
 			const bodyCart = document.querySelector(".js_bodyCart");
 			bodyCart.innerHTML = newBookCart.join(" ");
 			// console.log(newBookCart);
+		})
+		.then(() => {
+			// const iconDeletes = document.querySelectorAll(".js_del");
+			// console.log(carts);
+			// iconDeletes.forEach((iconDel) => {
+			// 	iconDel.addEventListener("click", () => {
+			// 		const iddel = iconDel.dataset.idbcart;
+			// 		let newCart = carts.filter((cart) => cart != iddel);
+			// 		console.log(iddel);
+			// 		console.log(newCart);
+			// 	});
+			// });
 		});
 }
 

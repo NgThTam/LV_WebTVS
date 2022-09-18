@@ -42,7 +42,7 @@ const innerBookCart = (book) => {
 				<td class="titleB">${book.NameB}</td>
 				<td><img class="imgCart" src="${book.ImgB}" alt=""></td>
 				<td>x1</td>
-				<td><i data-idBcart='${book.IDb}' class='bx bx-x'></i></td>
+				<td><i data-idBcart='${book.IDb}' class='bx bx-x js_del'></i></td>
 			</tr>`;
 };
 
@@ -86,15 +86,37 @@ fetch("http://localhost:3000/api/v1/books")
 			let numelCart = Cart.length;
 			elnum.innerHTML = `${numelCart}`;
 			const newBookCart = [];
+			const newBcart = [];
 			Cart.forEach((cartt) => {
 				books.forEach((book) => {
 					if (book.IDb == cartt) {
 						newBookCart.push(innerBookCart(book));
+						newBcart.push(book.IDb);
 					}
 				});
 			});
 			const bodyCart = document.querySelector(".js_bodyCart");
 			bodyCart.innerHTML = newBookCart.join(" ");
+			const iconDeletes = document.querySelectorAll(".js_del");
+			iconDeletes.forEach((iconDel) => {
+				iconDel.addEventListener("click", () => {
+					const iddel = iconDel.dataset.idbcart;
+					let newCartvjp = newBcart.filter((cart) => cart != iddel);
+					localStorage.setItem("addCart", JSON.stringify(newCartvjp));
+					let newC = JSON.parse(localStorage.getItem("addCart"));
+					let contCart = [];
+					newC.forEach((newm) => {
+						books.forEach((book) => {
+							if (book.IDb == newm) {
+								contCart.push(innerBookCart(book));
+							}
+						});
+					});
+					bodyCart.innerHTML = contCart.join(" ");
+					let numelCart = newC.length;
+					elnum.innerHTML = `${numelCart}`;
+				});
+			});
 		});
 	});
 

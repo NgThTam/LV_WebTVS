@@ -10,6 +10,7 @@ const initWebRouter = (app) => {
 	router.get("/books", getPage.getBooksPage);
 	router.get("/admin", getPage.getAdminPage);
 	router.get("/detail", getPage.getDetailPage);
+	// router.get("/voucher", getPage.getDetailPage);
 	router.get("/profile", getPage.getProfilePage);
 	router.get("/api/v1/books", apiController.getAllbook);
 	router.get("/api/v1/users", apiController.getAllUser);
