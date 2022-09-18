@@ -47,10 +47,20 @@ let createUser = (req, res) => {
 	);
 	return res.redirect("/");
 };
+let createComment = (req, res) => {
+	let cmt = req.body;
+	connection.query(
+		"INSERT INTO `comments`(`IDb`, `IDu`, `Comment`, `TimeCmt`) VALUES (?,?,?,?)",
+		// "insert into users (firstName, lastName, address) values (?,?,?)",
+		[cmt.idBook, cmt.idUser, cmt.comment, cmt.timeCmt]
+	);
+	return res.redirect("/detail");
+};
 
 module.exports = {
 	createUser,
 	getAllbook,
 	getAllUser,
 	getAllRating,
+	createComment,
 };

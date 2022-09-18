@@ -1628,9 +1628,11 @@ body {
 	display: flex;
     align-items: center;
     justify-content: center;
+	max-height: 9rem;
 }
 .cmtrat{
 	width: 90%;
+	padding-left: 20px;
 }
 .iconS{
 	color: #ecd006;
@@ -1646,6 +1648,7 @@ body {
     position: relative;
     display: flex;
 	align-items: center;
+	margin-left: 10px;
 }
 .tkback{
 	background-color: #e2dcdc;
@@ -1685,4 +1688,30 @@ body {
 .tkst{
 	border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+.inpcmt{
+	display: flex;
+    padding-left: 10px;
+    align-items: center;
+    width: 90%;
+	position: relative;
+}
+.inpcmt input{
+	height: 26px;
+    border: none;
+    border-bottom: 1px solid #baa9a9;
+    width: 100%;
+	outline: none;
+	padding-left: 5px;
+}
+.inpcmt span{
+	width: 0px;
+    border-bottom: 2px solid #1b666a;
+    position: absolute;
+    bottom: 7px;
+	transition: 0.4s;
+	left: 10px;
+}
+.inpcmt input:focus ~ span{
+	width: 99%;
 }

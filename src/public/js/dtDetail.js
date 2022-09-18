@@ -155,3 +155,71 @@ const mean = (arr) => {
 function onlyUnique(value, index, self) {
 	return self.indexOf(value) === index;
 }
+
+// comment
+const formCmt = document.querySelector(".js_formcmt");
+formCmt.addEventListener("submit", () => {
+	if (localStorage.getItem("IDuser")) {
+		const timeCmt = new Date();
+		// console.log(localStorage.getItem("IDuser"));
+		// console.log(localStorage.getItem("id_book"));
+		formCmt[1].value = localStorage.getItem("id_book");
+		formCmt[2].value = localStorage.getItem("IDuser");
+		let Strtime1 = "";
+		let htime = timeCmt.getHours() - 12;
+		if (timeCmt.getMonth() < 10) {
+			if (timeCmt.getHours() >= 12) {
+				Strtime1 =
+					timeCmt.getDate() +
+					"/0" +
+					timeCmt.getMonth() +
+					" + " +
+					htime +
+					":" +
+					timeCmt.getMinutes() +
+					" PM";
+			} else {
+				Strtime1 =
+					timeCmt.getDate() +
+					"/0" +
+					timeCmt.getMonth() +
+					" + " +
+					timeCmt.getHours() +
+					":" +
+					timeCmt.getMinutes() +
+					" AM";
+			}
+		} else {
+			if (timeCmt.getHours() >= 12) {
+				Strtime1 =
+					timeCmt.getDate() +
+					"/" +
+					timeCmt.getMonth() +
+					" + " +
+					htime +
+					":" +
+					timeCmt.getMinutes() +
+					" PM";
+			} else {
+				Strtime1 =
+					timeCmt.getDate() +
+					"/" +
+					timeCmt.getMonth() +
+					" + " +
+					timeCmt.getHours() +
+					":" +
+					timeCmt.getMinutes() +
+					" AM";
+			}
+		}
+		// console.log(Strtime1);
+		formCmt[3].value = Strtime1;
+		// console.log(timeCmt.getDate() + "/" + timeCmt.getMonth());
+		// console.log(timeCmt.getHours() + ":" + timeCmt.getMinutes());
+	} else {
+		console.log("pls login");
+		event.preventDefault();
+	}
+
+	// event.preventDefault();
+});
