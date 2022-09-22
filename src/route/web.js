@@ -10,12 +10,12 @@ const initWebRouter = (app) => {
 	router.get("/books", getPage.getBooksPage);
 	router.get("/admin", getPage.getAdminPage);
 	router.get("/detail", getPage.getDetailPage);
-	// router.get("/voucher", getPage.getDetailPage);
+	router.get("/voucher", getPage.getVoucherPage);
 	router.get("/profile", getPage.getProfilePage);
 	router.get("/api/v1/books", apiController.getAllbook);
 	router.get("/api/v1/users", apiController.getAllUser);
 	router.get("/api/v1/ratings", apiController.getAllRating);
-
+	router.post("/reate-new-oder", apiController.createOder);
 	router.post("/reate-new-user", apiController.createUser);
 	router.post("/reate-new-comment", apiController.createComment);
 	// router.get("/detail/:userId", getPage.getAllUser);

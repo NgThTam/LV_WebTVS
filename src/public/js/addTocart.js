@@ -32,21 +32,76 @@ if (!carts) {
 			const bodyCart = document.querySelector(".js_bodyCart");
 			bodyCart.innerHTML = newBookCart.join(" ");
 			// console.log(newBookCart);
+			return books;
 		})
-		.then(() => {
-			// const iconDeletes = document.querySelectorAll(".js_del");
-			// console.log(carts);
-			// iconDeletes.forEach((iconDel) => {
-			// 	iconDel.addEventListener("click", () => {
-			// 		const iddel = iconDel.dataset.idbcart;
-			// 		let newCart = carts.filter((cart) => cart != iddel);
-			// 		console.log(iddel);
-			// 		console.log(newCart);
-			// 	});
-			// });
+		.then((books) => {
+			let iconDeletes = document.querySelectorAll(".js_del");
+			let newCartt = carts;
+			iconDeletes.forEach((iconDel) => {
+				iconDel.addEventListener("click", () => {
+					const trNode = iconDel.parentElement.parentElement;
+					trNode.setAttribute("hidden", " ");
+					const iddel = iconDel.dataset.idbcart;
+					delete newCartt[carts.indexOf(iddel)];
+					const cartVjp = newCartt.filter((ele) => ele);
+					localStorage.setItem("addCart", JSON.stringify(cartVjp));
+					innerNum.innerHTML = `${cartVjp.length}`;
+				});
+			});
 		});
 }
 
+const nextCart = document.querySelector(".js_nextBuy");
+nextCart.addEventListener("click", () => {
+	if (localStorage.getItem("IDuser")) {
+		const ca = JSON.parse(localStorage.getItem("addCart"));
+		if (ca.length != 0) {
+			window.location = "/voucher";
+			const dateCreate = new Date();
+			let dateString = "";
+			if (dateCreate.getDate() < 10) {
+				if (dateCreate.getMonth() < 10) {
+					dateString =
+						"0" +
+						dateCreate.getDate() +
+						"/0" +
+						dateCreate.getMonth() +
+						"/" +
+						dateCreate.getFullYear();
+				} else {
+					dateString =
+						"0" +
+						dateCreate.getDate() +
+						"/" +
+						dateCreate.getMonth() +
+						"/" +
+						dateCreate.getFullYear();
+				}
+			} else {
+				if (dateCreate.getMonth() < 10) {
+					dateString =
+						dateCreate.getDate() +
+						"/0" +
+						dateCreate.getMonth() +
+						"/" +
+						dateCreate.getFullYear();
+				} else {
+					dateString =
+						dateCreate.getDate() +
+						"/" +
+						dateCreate.getMonth() +
+						"/" +
+						dateCreate.getFullYear();
+				}
+			}
+			localStorage.setItem("dateCreate", dateString);
+		} else {
+			window.alert("error: must have at least one product");
+		}
+	} else {
+		window.alert("please log in !");
+	}
+});
 // fetch("http://localhost:3000/api/v1/books")
 // 	.then((response) => response.json())
 // 	.then((books) => {

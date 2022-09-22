@@ -4,9 +4,151 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BOOKs Store</title>
+    <link rel="icon" type="image/x-icon" href="image/favicon.ico">
+    <link rel="stylesheet" href="css/main.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <h1>okela</h1>
+    <div class="header js_header" style="background-color:black; top: 0px">
+        <div class="header_mid">
+            <div class="header_content">
+                <div class="hd_logo">
+                    <div class="logo">
+                        <a href="#" class="logo_link">
+                            <img src="image/ads-removebg-preview.png" alt="">
+                        </a>
+                        <div class="logo_text">
+                            BOOKs
+                        </div>
+                    </div>
+                </div>
+                <div class="hd_menu">
+                    <nav class="hd_nav_menu">
+                        <ul class="menu_main">
+                            <li class="menu_list">
+                                <a href="/" class="menu_list_home">
+                                    <span class="list_color" >Home</span>
+                                </a>
+                            </li>
+                            <li class="menu_list">
+                                <a href="/books" class="menu_list_home">
+                                    <span class="list_color">Books</span>
+                                </a>
+                            </li>
+                            <div class="js_logout">
+                                <li class="menu_list">
+                                    <a href="/profile" class="menu_list_home">
+                                        <span class="list_color">Profile</span>
+                                    </a>
+                                </li>
+                                <li class="menu_list">
+                                    <a href="/" class="menu_list_home js_out">
+                                        <span class="list_color">Logout</span>
+                                    </a>
+                                </li>
+                            </div>
+                            <li class="menu_list" style="cursor: default;">
+                                    <!-- <a href="./books" class="menu_list_home"> -->
+                                        <span style="color: #00bfc5" class="list_color js_cart numcart">
+                                            <i style="cursor: default;" class='bx bx-cart'></i>
+                                        </span>
+                                    <!-- </a> -->
+                            </li>  
+                            <!-- <li class="menu_list js_contai_search">
+                                <a href="#" class="menu_list_home js_search">
+                                    <span class="list_color"><i class='bx bx-search-alt-2'></i></span>
+                                </a>
+                                <input type="text" class="search js_input_search" placeholder="key word">
+                            </li> -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bodyVcart">
+        <div class="voucher">
+            <h1>Book rental confirmation <img src="image/ads-removebg-preview.png" alt=""></h1>
+            <div class="bodyVoucher js_renderV">
+                <!-- <div class="loadCart">
+                    <img src="image/load.gif" alt="">
+                </div> -->
+                <div class="cntV">
+                    <span><i class='bx bxs-user'></i> Full name of book tenant :</span>
+                    <div class="cntText"><img src="image/load.gif" alt=""></div>
+                </div>
+                <div class="cntV">
+                    <span><i class='bx bxs-map-pin' ></i> The address of the book renter :</span>
+                    <div class="cntText"><img src="image/load.gif" alt=""></div>
+                </div>
+                <div class="cntV">
+                    <span><i class='bx bx-mail-send'></i> Contact email :</span>
+                    <div class="cntText"><div class="cntText"><img src="image/load.gif" alt=""></div></div>
+                </div>
+                <div class="cntV">
+                    <span><i class='bx bxs-book-add'></i> Number of books to rent :</span>
+                    <div class="cntText"><div class="cntText"><img src="image/load.gif" alt=""></div></div>
+                </div>
+                <div class="cntV">
+                    <span><i class='bx bx-calendar-check'></i> Book rental date :</span>
+                    <div class="cntText"><div class="cntText"><img src="image/load.gif" alt=""></div></div>
+                </div>
+                <form action="" method="POST">
+                    <div class="cntV">
+                        <span><i class='bx bxs-calendar-edit'></i> Date of payment :</span>
+                        <input type="date">
+                    </div>
+                    <div class="subVcart">
+                        <button type="submit">OK</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="logo_footer">
+            <div class="lg_ft">
+                <a href="#" class="logo_link_footer">
+                    <img src="image/ads-removebg-preview.png" alt="">
+                </a>
+                <div class="logo_text_footer">
+                    BOOKS
+                </div>
+            </div>
+        </div>
+        <div class="icon_link_footer">
+            <div class="list_icon_footer">
+                <div class="icon_footer ">
+                    <a href="#" class="icon_fb"><i class='bx bxl-facebook size_icon '></i></a>
+                </div>
+                <div class="icon_footer">
+                    <a href="#" class="icon_yt"><i class='bx bxl-youtube size_icon '></i></a>
+                </div>
+                <div class="icon_footer ">
+                    <a href="#" class="icon_twitter "><i class='bx bxl-twitter size_icon'></i></a>
+                </div>
+                <div class="icon_footer ">
+                    <a href="#" class="icon_insagram"><i class='bx bxl-instagram size_icon'></i></a>
+                </div>
+                <div class="icon_footer">
+                    <a href="#" class="icon_map"><i class='bx bxs-map size_icon'></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="rules">
+            <div class="text_rules">
+                <p><a href="#">ThemeREX</a> © 2022 All Rights Reserved. <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>
+            </div>
+        </div>
+    </div>
 </body>
+<script>
+    const out = document.querySelector(".js_out");
+    out.addEventListener("click",()=>{
+        localStorage.removeItem("IDuser");
+    })
+</script>
+<script src="js/dtVcart.js"></script>
 </html>

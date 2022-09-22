@@ -1747,3 +1747,68 @@ body {
 .inpcmt input:focus ~ span{
 	width: 99%;
 }
+/* page vcart */
+.bodyVcart{
+	/* min-height: 25rem; */
+	padding: 30px 130px;
+}
+.voucher{
+	border: 1px solid black;
+    min-height: 20rem;
+    width: 60%;
+	padding-top: 15px;
+}
+.bodyVoucher{
+	padding-top: 15px;
+	padding-left: 40px;
+    line-height: 33px;
+
+}
+.voucher h1{
+	text-align: center;
+	color: #05959a;
+	position: relative;
+}
+.voucher h1 img{
+	position: absolute;
+    width: 120px;
+    top: -14px;
+    right: 0px;
+}
+.cntV{
+	display: flex;
+}
+.cntText{
+	padding-left: 20px;
+}
+.cntV input{
+	margin-left: 20px;
+}
+.cntV span i{
+	padding-right: 7px;
+}
+.cntV span{
+	font-weight: 600;
+	font-family: sans-serif;
+}
+.subVcart{
+	display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+    padding-right: 14px;
+}
+.subVcart button{
+	width: 5rem;
+    height: 32px;
+    background-color: #05959a;
+    border: 1px solid #9ce6f4;
+    color: white;
+    border-radius: 7px;
+}
+.subVcart button:hover{
+	box-shadow: 1px 1px 9px 1px #0000005c;
+}
+.cntText img{
+	width: 15px;
+	margin-left: 15px;
+}

@@ -56,6 +56,11 @@ let createComment = (req, res) => {
 	);
 	return res.redirect("/detail");
 };
+let createOder = (req, res) => {
+	let oders = req.body;
+	console.log(oders);
+	// return res.redirect("/detail");
+};
 
 module.exports = {
 	createUser,
@@ -63,4 +68,5 @@ module.exports = {
 	getAllUser,
 	getAllRating,
 	createComment,
+	createOder,
 };

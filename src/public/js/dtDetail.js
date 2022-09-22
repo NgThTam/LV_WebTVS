@@ -97,24 +97,17 @@ fetch("http://localhost:3000/api/v1/books")
 			});
 			const bodyCart = document.querySelector(".js_bodyCart");
 			bodyCart.innerHTML = newBookCart.join(" ");
-			const iconDeletes = document.querySelectorAll(".js_del");
+			let iconDeletes = document.querySelectorAll(".js_del");
+			let newCartt = carts;
 			iconDeletes.forEach((iconDel) => {
 				iconDel.addEventListener("click", () => {
+					const trNode = iconDel.parentElement.parentElement;
+					trNode.setAttribute("hidden", " ");
 					const iddel = iconDel.dataset.idbcart;
-					let newCartvjp = newBcart.filter((cart) => cart != iddel);
-					localStorage.setItem("addCart", JSON.stringify(newCartvjp));
-					let newC = JSON.parse(localStorage.getItem("addCart"));
-					let contCart = [];
-					newC.forEach((newm) => {
-						books.forEach((book) => {
-							if (book.IDb == newm) {
-								contCart.push(innerBookCart(book));
-							}
-						});
-					});
-					bodyCart.innerHTML = contCart.join(" ");
-					let numelCart = newC.length;
-					elnum.innerHTML = `${numelCart}`;
+					delete newCartt[carts.indexOf(iddel)];
+					const cartVjp = newCartt.filter((ele) => ele);
+					localStorage.setItem("addCart", JSON.stringify(cartVjp));
+					innerNum.innerHTML = `${cartVjp.length}`;
 				});
 			});
 		});
