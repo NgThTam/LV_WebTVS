@@ -32,6 +32,9 @@ const renderVou = (user, numCar, dateC) => `<div class="cntV">
                                                     <button type="submit">OK</button>
                                                 </div>
                             </form>`;
+const renderIB = (book) => `<div class="imageLB">
+								<img src="${book.ImgB}" alt="${book.NameB}">
+							</div>`;
 fetch("http://localhost:3000/api/v1/users")
 	.then((respone) => respone.json())
 	.then((users) => {
@@ -41,10 +44,11 @@ fetch("http://localhost:3000/api/v1/users")
 		const dateBuy = localStorage.getItem("dateCreate");
 		const innerVou = document.querySelector(".js_renderV");
 		innerVou.innerHTML = renderVou(user, cart.length, dateBuy);
+
 		const formVou = document.querySelector(".js_subV");
 		const dateCreatee = new Date();
 		formVou.addEventListener("submit", (e) => {
-			// e.preventDefault();
+			const getM = dateCreatee.getMonth() + 1;
 			const dateP = formVou[0].value;
 			// console.log(reverseDate(dateP).slice(0, 2));
 			if (!dateP) {
@@ -58,17 +62,13 @@ fetch("http://localhost:3000/api/v1/users")
 						parseInt(reverseDate(dateP).slice(6, 10)) ==
 						dateCreatee.getFullYear()
 					) {
-						if (
-							parseInt(reverseDate(dateP).slice(3, 5)) >= dateCreatee.getMonth()
-						) {
-							if (
-								parseInt(reverseDate(dateP).slice(3, 5)) ==
-								dateCreatee.getMonth()
-							) {
+						if (parseInt(reverseDate(dateP).slice(3, 5)) >= getM) {
+							if (parseInt(reverseDate(dateP).slice(3, 5)) == getM) {
 								if (
 									parseInt(reverseDate(dateP).slice(0, 2)) >=
 									dateCreatee.getDate()
 								) {
+									alert("successful rental registration!!");
 								} else {
 									window.alert("date no!");
 									e.preventDefault();
@@ -91,10 +91,7 @@ fetch("http://localhost:3000/api/v1/users")
 			formVou[4].value = dateBuy;
 			formVou[5].value = reverseDate(dateP);
 
-			// console.log(idu);
-			// console.log(cart);
-			// console.log(dateBuy);
-			// console.log(random(8));
+			delete localStorage.addCart;
 		});
 	});
 
@@ -111,3 +108,15 @@ const random = (length) => {
 const reverseDate = (string) => {
 	return string.split("-").reverse().join("/");
 };
+
+fetch("http://localhost:3000/api/v1/books")
+	.then((res) => res.json())
+	.then((books) => {
+		const innerLB = document.querySelector(".js_listC");
+		const cart = JSON.parse(localStorage.getItem("addCart"));
+		const arrIner = cart.map((ca) => {
+			const book = books.find((book) => book.IDb == ca);
+			return renderIB(book);
+		});
+		innerLB.innerHTML = arrIner.join("");
+	});

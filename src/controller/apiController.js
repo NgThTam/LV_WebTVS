@@ -57,9 +57,20 @@ let createComment = (req, res) => {
 	return res.redirect("/detail");
 };
 let createOder = (req, res) => {
-	let oders = req.body;
-	console.log(oders);
-	// return res.redirect("/detail");
+	let { IDo, IDu, Cart, DateRental, DatePay } = req.body;
+	connection.query(
+		"INSERT INTO `oders`(`IDo`, `IDu`, `Cart`, `DateRental`, `DatePay`) VALUES (?,?,?,?,?)",
+		[IDo, IDu, Cart, DateRental, DatePay]
+	);
+	return res.redirect("/");
+};
+let createRating = (req, res) => {
+	let { star, Idu, Idb } = req.body;
+	connection.query(
+		"INSERT INTO `ratings`(`IDb`, `IDu`, `Star`) VALUES (?,?,?)",
+		[Idb, Idu, star]
+	);
+	return res.redirect("/detail");
 };
 
 module.exports = {
@@ -69,4 +80,5 @@ module.exports = {
 	getAllRating,
 	createComment,
 	createOder,
+	createRating,
 };

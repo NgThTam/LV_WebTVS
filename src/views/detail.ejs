@@ -112,13 +112,38 @@
         <div class="detail_ml">
             <h1>Evaluate</h1>
             <div class="ratig">
-                <ul class="ra_star">
-                    <li class="sta1 " ><i class='bx bxs-star js_star' data-value="2" data-star="1" value="1"></i></li>
-                    <li class="sta2 " ><i class='bx bxs-star js_star' data-value="4" data-star="2" value="2"></i></li>
-                    <li class="sta3 " ><i class='bx bxs-star js_star' data-value="6" data-star="3" value="3"></i></li>
-                    <li class="sta4 " ><i class='bx bxs-star js_star' data-value="8" data-star="4" value="4"></i></li>
-                    <li class="sta5 " ><i class='bx bxs-star js_star' data-value="10" data-star="5" value="5"></i></li>
-                </ul>
+                    <ul class="ra_star">
+                        <form action="/reate-new-rating" method="POST"  class="js_formRating">
+                            <li class="sta1 " ><button type="submit"><i class='bx bxs-star js_star' data-value="2" data-star="1" value="1"></i></button></li>
+                            <input type="number" hidden name="star" value="2">
+                            <input type="text" hidden name="Idu" >
+                            <input type="text" hidden name="Idb" >
+                        </form>
+                        <form action="/reate-new-rating" method="POST"  class="js_formRating">
+                            <li class="sta2 " ><button type="submit"><i class='bx bxs-star js_star' data-value="4" data-star="2" value="2"></button></i></li>
+                            <input type="number" hidden name="star" value="4">
+                            <input type="text" hidden name="Idu" >
+                            <input type="text" hidden name="Idb" >
+                        </form>
+                        <form action="/reate-new-rating" method="POST"  class="js_formRating">
+                            <li class="sta3 " ><button type="submit"><i class='bx bxs-star js_star' data-value="6" data-star="3" value="3"></i></button></li>
+                            <input type="number" hidden name="star" value="6">
+                            <input type="text" hidden name="Idu" >
+                            <input type="text" hidden name="Idb" >
+                        </form>
+                        <form action="/reate-new-rating" method="POST"  class="js_formRating">
+                            <li class="sta4 " ><button type="submit"><i class='bx bxs-star js_star' data-value="8" data-star="4" value="4"></i></button></li>
+                            <input type="number" hidden name="star" value="8">
+                            <input type="text" hidden name="Idu" >
+                            <input type="text" hidden name="Idb" >
+                        </form>
+                        <form action="/reate-new-rating" method="POST"  class="js_formRating">
+                            <input type="number" hidden name="star" value="10">
+                            <li class="sta5 " ><button type="submit"><i class='bx bxs-star js_star' data-value="10" data-star="5" value="5"></i></button></li>
+                            <input type="text" hidden name="Idu" >
+                            <input type="text" hidden name="Idb" >
+                        </form>
+                    </ul>
             </div>
         </div>
     </div>
@@ -498,4 +523,5 @@
 <script src="js/dtDetail.js"></script>
 <script src="js/RS.js"></script>
 <script src="js/addTocart.js"></script>
+<script src="js/feedback.js"></script>
 </html>

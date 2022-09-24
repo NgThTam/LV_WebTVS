@@ -1751,6 +1751,8 @@ body {
 .bodyVcart{
 	/* min-height: 25rem; */
 	padding: 30px 130px;
+	display: flex;
+    justify-content: space-between;
 }
 .voucher{
 	border: 1px solid black;
@@ -1811,4 +1813,53 @@ body {
 .cntText img{
 	width: 15px;
 	margin-left: 15px;
+}
+.VListbooks{
+	width: 30%;
+    border: 1px solid black;
+	padding-top: 15px;
+}
+.VListbooks h1{
+	text-align: center;
+	color: #05959a;
+	position: relative;
+}
+.imageLB img{
+	width: 50px;
+	height: 80px;
+    border: 1px solid #00000033;
+}
+.imageLB{
+	width: 52px;
+}
+.bodyLB{
+	justify-content: center;
+	display: grid;
+	gap: 20px 25px;
+    padding: 20px 50px 0px 50px;
+	text-align: center;
+	grid-template-columns: auto auto auto;
+}
+.loadImg{
+	height: 193px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 52px;
+}
+.loadImg img{
+	width: 2rem;
+}
+.js_formRating button{
+	border: none;
+    background-color: white;
+	color: #a39e9eba;
+}
+.js_formRating button i{
+	font-size: 25px;
+    /* color: #a39e9eba; */
+}
+.js_formRating li{
+	cursor: default;
 }

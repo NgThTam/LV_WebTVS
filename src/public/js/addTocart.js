@@ -58,14 +58,15 @@ nextCart.addEventListener("click", () => {
 		if (ca.length != 0) {
 			window.location = "/voucher";
 			const dateCreate = new Date();
+			const Month = dateCreate.getMonth() + 1;
 			let dateString = "";
 			if (dateCreate.getDate() < 10) {
-				if (dateCreate.getMonth() < 10) {
+				if (Month < 10) {
 					dateString =
 						"0" +
 						dateCreate.getDate() +
 						"/0" +
-						dateCreate.getMonth() +
+						Month +
 						"/" +
 						dateCreate.getFullYear();
 				} else {
@@ -73,25 +74,21 @@ nextCart.addEventListener("click", () => {
 						"0" +
 						dateCreate.getDate() +
 						"/" +
-						dateCreate.getMonth() +
+						Month +
 						"/" +
 						dateCreate.getFullYear();
 				}
 			} else {
-				if (dateCreate.getMonth() < 10) {
+				if (Month < 10) {
 					dateString =
 						dateCreate.getDate() +
 						"/0" +
-						dateCreate.getMonth() +
+						Month +
 						"/" +
 						dateCreate.getFullYear();
 				} else {
 					dateString =
-						dateCreate.getDate() +
-						"/" +
-						dateCreate.getMonth() +
-						"/" +
-						dateCreate.getFullYear();
+						dateCreate.getDate() + "/" + Month + "/" + dateCreate.getFullYear();
 				}
 			}
 			localStorage.setItem("dateCreate", dateString);
