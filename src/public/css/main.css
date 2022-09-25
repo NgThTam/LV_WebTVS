@@ -1664,7 +1664,7 @@ body {
 }
 .cmtrat{
 	width: 90%;
-	padding-left: 20px;
+	padding-left: 10px;
 }
 .iconS{
 	color: #ecd006;
@@ -1720,6 +1720,13 @@ body {
 .tkst{
 	border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+.slstar{
+	position: absolute;
+    right: -24px;
+    font-weight: 600;
+    font-family: monospace;
+    color: #00000069;
 }
 .inpcmt{
 	display: flex;
@@ -1862,4 +1869,35 @@ body {
 }
 .js_formRating li{
 	cursor: default;
+}
+/* page profile */
+.newprofile{
+	background-color: whitesmoke;
+	box-shadow: 4px -2px 9px -3px #0000003b;
+	z-index: 0;
+}
+.content_profile{
+	background-color: white;
+}
+.newpro_ad p{
+	color: black;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	padding-top: 10px;
+}
+.newpro_ad div{
+	padding-top: 70px;
+    background-color: #1c8adb;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+    width: 66%;
+    box-shadow: 2px 1px 6px #000000a6;
+}
+.newpro_ad{
+	padding-top: 0;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
 }

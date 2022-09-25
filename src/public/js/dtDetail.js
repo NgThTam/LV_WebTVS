@@ -46,6 +46,77 @@ const innerBookCart = (book) => {
 			</tr>`;
 };
 
+const renderTKStar = (valueSt, oblength) => `<div class="tk5s">
+													<div class="iconS">
+														<i class='bx bxs-star' ></i>
+														<i class='bx bxs-star' ></i>
+														<i class='bx bxs-star' ></i>
+														<i class='bx bxs-star' ></i>
+														<i class='bx bxs-star' ></i>
+													</div>
+													<div class="startk">
+														<div class="tkback"></div>
+														<div class="tkst" style="width: ${valueSt.vl5}%;"></div>
+														<div class="slstar">${oblength.ol5}</div>
+													</div>
+													</div>
+													<div class="tk4s">
+													<div class="iconS">
+														<i class='bx bxs-star' ></i>
+														<i class='bx bxs-star' ></i>
+														<i class='bx bxs-star' ></i>
+														<i class='bx bxs-star' ></i>
+														<i class='bx bx-star' ></i>
+													</div>
+													<div class="startk">
+														<div class="tkback"></div>
+														<div class="tkst" style="width: ${valueSt.vl4}%;"></div>
+														<div class="slstar">${oblength.ol4}</div>
+													</div>
+													</div>
+													<div class="tk3s">
+													<div class="iconS">
+														<i class='bx bxs-star' ></i>
+														<i class='bx bxs-star' ></i>
+														<i class='bx bxs-star' ></i>
+														<i class='bx bx-star' ></i>
+														<i class='bx bx-star' ></i>
+													</div>
+													<div class="startk">
+														<div class="tkback"></div>
+														<div class="tkst" style="width: ${valueSt.vl3}%;"></div>
+														<div class="slstar">${oblength.ol3}</div>
+													</div>
+													</div>
+													<div class="tk2s">
+													<div class="iconS">
+														<i class='bx bxs-star' ></i>
+														<i class='bx bxs-star' ></i>
+														<i class='bx bx-star' ></i>
+														<i class='bx bx-star' ></i>
+														<i class='bx bx-star' ></i>
+													</div>
+													<div class="startk">
+														<div class="tkback"></div>
+														<div class="tkst" style="width: ${valueSt.vl2}%;"></div>
+														<div class="slstar">${oblength.ol2}</div>
+													</div>
+													</div>
+													<div class="tk1s">
+													<div class="iconS">
+														<i class='bx bxs-star' ></i>
+														<i class='bx bx-star' ></i>
+														<i class='bx bx-star' ></i>
+														<i class='bx bx-star' ></i>
+														<i class='bx bx-star' ></i>
+													</div>
+													<div class="startk">
+														<div class="tkback"></div>
+														<div class="tkst" style="width: ${valueSt.vl1}%;"></div>
+														<div class="slstar">${oblength.ol1}</div>
+													</div>
+													</div>`;
+
 fetch("http://localhost:3000/api/v1/books")
 	.then((Response) => Response.json())
 	.then((books) => {
@@ -156,6 +227,33 @@ fetch("http://localhost:3000/api/v1/ratings")
 		                        <li><i class='bx bxs-star star_full'></i></li>
 		                        <li><i class='bx bxs-star star_full'></i></li>`;
 		}
+		return ratings;
+	})
+	.then((ratings) => {
+		const idB = localStorage.getItem("id_book");
+		const ratingsBook = ratings.filter((rating) => rating.IDb == idB);
+		const sumarr = sum(ratingsBook);
+		const arr1 = ratingsBook.filter((rating) => rating.Star == 2);
+		const arr2 = ratingsBook.filter((rating) => rating.Star == 4);
+		const arr3 = ratingsBook.filter((rating) => rating.Star == 6);
+		const arr4 = ratingsBook.filter((rating) => rating.Star == 8);
+		const arr5 = ratingsBook.filter((rating) => rating.Star == 10);
+		const obTkStar = {
+			vl1: (sum(arr1) * 100) / sumarr,
+			vl2: (sum(arr2) * 100) / sumarr,
+			vl3: (sum(arr3) * 100) / sumarr,
+			vl4: (sum(arr4) * 100) / sumarr,
+			vl5: (sum(arr5) * 100) / sumarr,
+		};
+		const oblength = {
+			ol1: arr1.length,
+			ol2: arr2.length,
+			ol3: arr3.length,
+			ol4: arr4.length,
+			ol5: arr5.length,
+		};
+		const innerTKStar = document.querySelector(".js_tkStar");
+		innerTKStar.innerHTML = renderTKStar(obTkStar, oblength);
 	});
 
 const mean = (arr) => {
@@ -165,6 +263,13 @@ const mean = (arr) => {
 		smean += value.Star;
 	});
 	return smean / length;
+};
+const sum = (arr) => {
+	let smean = 0;
+	arr.forEach((value) => {
+		smean++;
+	});
+	return smean;
 };
 
 function onlyUnique(value, index, self) {
