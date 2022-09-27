@@ -1,12 +1,32 @@
-const nameU = document.querySelector(".prof_ad p");
-
-fetch("http://localhost:3000/api/v1/users")
-	.then((response) => response.json())
-	.then((users) => {
-		let id = localStorage.IDuser;
-		const Us = users.find((user) => user.IDu == id);
-		// const em = Us.Email;
-		const name = Us.Email.slice(0, Us.Email.indexOf("@"));
-		// console.log(em.indexOf("@"));
-		nameU.innerHTML = `@-${name}`;
+const funs = document.querySelectorAll(".js_fun");
+const srfuns = document.querySelectorAll(".js_srfun");
+funs.forEach((fun) => {
+	fun.addEventListener("click", (e) => {
+		// console.log(fun.children[0]);
+		funs.forEach((fn) => {
+			fn.classList.remove("boder_click");
+			fn.children[0].classList.remove("text_color");
+		});
+		fun.classList.add("boder_click");
+		fun.children[0].classList.add("text_color");
+		srfuns.forEach((sr) => {
+			sr.classList.remove("showSr");
+		});
+		const elsr = document.getElementById(fun.dataset.srid);
+		elsr.classList.add("showSr");
 	});
+});
+const viewOs = document.querySelectorAll(".js_viewO");
+const modalO = document.querySelector(".js_modalview");
+const cntO = document.querySelector(".js_cntO");
+viewOs.forEach((view) => {
+	view.addEventListener("click", () => {
+		modalO.classList.add("showM");
+	});
+});
+modalO.addEventListener("click", () => {
+	modalO.classList.remove("showM");
+});
+cntO.addEventListener("click", (e) => {
+	e.stopPropagation();
+});
