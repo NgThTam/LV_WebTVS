@@ -20,6 +20,12 @@ let getAllRating = (req, res) => {
 		return res.status(200).json(data);
 	});
 };
+let getAllOder = (req, res) => {
+	connection.query("SELECT * FROM `oders` ", (err, results, fields) => {
+		let data = results.map((dt) => dt);
+		return res.status(200).json(data);
+	});
+};
 
 const random = (length) => {
 	var result = "";
@@ -78,6 +84,7 @@ module.exports = {
 	getAllbook,
 	getAllUser,
 	getAllRating,
+	getAllOder,
 	createComment,
 	createOder,
 	createRating,
