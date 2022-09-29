@@ -26,6 +26,12 @@ let getAllOder = (req, res) => {
 		return res.status(200).json(data);
 	});
 };
+let getAllComment = (req, res) => {
+	connection.query("SELECT * FROM `comments` ", (err, results, fields) => {
+		let data = results.map((dt) => dt);
+		return res.status(200).json(data);
+	});
+};
 
 const random = (length) => {
 	var result = "";
@@ -79,13 +85,24 @@ let createRating = (req, res) => {
 	return res.redirect("/detail");
 };
 
+let updateUser = (req, res) => {
+	let { FullName, Addr, IDuser, Old, Email, Pass } = req.body;
+	connection.query(
+		"UPDATE `users` SET `FullName`=?,`Old`=?,`Addr`=?,`Email`=?,`Pass`=? WHERE `IDu`= ?",
+		[FullName, Old, Addr, Email, Pass, IDuser]
+	);
+	return res.redirect("/profile");
+};
+
 module.exports = {
 	createUser,
 	getAllbook,
 	getAllUser,
 	getAllRating,
 	getAllOder,
+	getAllComment,
 	createComment,
 	createOder,
 	createRating,
+	updateUser,
 };

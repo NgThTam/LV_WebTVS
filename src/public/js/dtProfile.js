@@ -26,6 +26,10 @@ fetch("http://localhost:3000/api/v1/users")
 				text.classList.toggle("cssnone");
 			});
 		});
+		const formUpdate = document.querySelector(".js_formUd");
+		formUpdate.addEventListener("submit", () => {
+			alert("Successfully updated!!!");
+		});
 	});
 
 fetch("http://localhost:3000/api/v1/books")
@@ -56,7 +60,7 @@ fetch("http://localhost:3000/api/v1/books")
 						} else {
 							if (parseInt(dateP.slice(3, 5)) >= Tomonth) {
 								if (parseInt(dateP.slice(3, 5)) > Tomonth) {
-									hsdOder = "expired";
+									hsdOder = "unexpired";
 								} else {
 									if (parseInt(dateP.slice(0, 2)) >= Today.getDate()) {
 										hsdOder = "unexpired";
@@ -159,6 +163,23 @@ fetch("http://localhost:3000/api/v1/books")
 							viewOs.forEach((view) => {
 								view.addEventListener("click", () => {
 									modalO.classList.add("showM");
+									let listNameBooks = [];
+									const Ooder = listOder.find(
+										(Odd) => Odd.IDo == view.dataset.idoder
+									);
+									const listIDb = Ooder.Cart.split(",");
+									listIDb.forEach((IDbook) => {
+										books.forEach((book) => {
+											if (IDbook == book.IDb) {
+												listNameBooks.push(book.NameB);
+											}
+										});
+									});
+									const detailView = document.querySelector(".js_detailView");
+									detailView.innerHTML = innerDetailView(
+										Ooder,
+										listNameBooks.join(" <span>;</span> ")
+									);
 								});
 							});
 							modalO.addEventListener("click", () => {
@@ -347,15 +368,21 @@ fetch("http://localhost:3000/api/v1/books")
 // 		});
 // 	});
 
-const innerInf = (user) => `<form action="">
+const innerInf = (
+	user
+) => `<form action="/update-user" method="POST" class="js_formUd">
 	<ul>
 		<li><span class="titleinf"><i class='bx bx-user-pin'></i> Full name :</span> <div class="js_hidtext">${user.FullName}</div></li>
-		<input class="ipnutInf cssnone js_inputInf" type="text" placeholder="${user.FullName}" value="${user.FullName}">
+		<input class="ipnutInf cssnone js_inputInf" type="text" placeholder="${user.FullName}" value="${user.FullName}" name="FullName">
 		<li><span class="titleinf"><i class='bx bx-map'></i> Address :</span> <div class="js_hidtext">${user.Addr}</div></li>
-		<input class="ipnutInf cssnone js_inputInf" type="text" placeholder="${user.Addr}" value="${user.Addr}">
+		<input class="ipnutInf cssnone js_inputInf" type="text" placeholder="${user.Addr}" value="${user.Addr}" name="Addr">
 		<li><span class="titleinf"><i class='bx bx-envelope'></i> Email :</span> <div>${user.Email}</div></li>
+		<input type="text" name="IDuser" hidden value="${user.IDu}">
+		<input type="number" name="Old" hidden value="${user.Old}">
+		<input type="Email" name="Email" hidden value="${user.Email}">
+		<input type="text" name="Pass" hidden value="${user.Pass}">
 	</ul>
-	<div class="butInf cssnone js_inputInf"><button type="submit">submit</button></div>
+	<div class="butInf cssnone js_inputInf"><button type="submit">Update</button></div>
 	</form>`;
 const innerRVunex = (oder) => `<tr>
 	<td>${oder.IDo}</td>
@@ -387,7 +414,7 @@ const innerVOuser = (user) => `<div class="cntV">
 	</div>`;
 const innerDetailView = (oder, listName) => `<div class="cntV">
 	<span style="min-width: 143px;"><i class='bx bxs-book-add'></i> Rented books :</span>
-	<div class="cntText spantext">(${oder.lenghtCart})  ${listName}</div>
+	<div class="cntText spantext">(<span style="color: black; font-size: 14px;">${oder.lenghtCart}</span>)  ${listName}</div>
 	</div>
 	<div class="cntV">
 	<span><i class='bx bx-calendar-check'></i> Book rental date :</span>

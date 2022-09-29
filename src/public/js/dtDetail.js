@@ -343,3 +343,35 @@ formCmt.addEventListener("submit", () => {
 
 	// event.preventDefault();
 });
+const innerCmt = (user, cmt) => `<div class="cmt">
+	<div class="imgCmt">
+		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN0wR21lrB1tZAW3ihK1Zy3CXpXy4PazEU1w&usqp=CAU" alt="">
+	</div>
+	<div class="nameCmt">
+		<div class="name">${user.FullName} <div class="date">${cmt.TimeCmt}</div></div>
+		<p>${cmt.Comment}</p>
+		<div class="cmtLike">
+			<p class="like"><i class='bx bx-like'></i> like</p>
+			<p class="rep">reply <i class='bx bx-reply'></i></p>
+		</div>
+	</div>
+
+	</div>`;
+const divCmts = document.querySelector(".js_cmts");
+fetch("http://localhost:3000/api/v1/users")
+	.then((response) => response.json())
+	.then((users) => {
+		fetch("http://localhost:3000/api/v1/comments")
+			.then((res) => res.json())
+			.then((comments) => {
+				const newListComment = [];
+				let listComment = comments.filter(
+					(cmt) => cmt.IDb == localStorage.getItem("id_book")
+				);
+				listComment.forEach((comment) => {
+					const userComment = users.find((user) => user.IDu == comment.IDu);
+					newListComment.unshift(innerCmt(userComment, comment));
+				});
+				divCmts.innerHTML = newListComment.join(" ");
+			});
+	});
