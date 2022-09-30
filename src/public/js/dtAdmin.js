@@ -5,74 +5,45 @@ const render1 = (user) => {
                 <td>${user.Old}</td>
             </tr>`;
 };
-
-const render2 = (book) => {
-	return `<tr>
-                <td>${book.IDb}</td>
-                <td>${book.NameB}</td>
-                <td>${book.Author}</td>
-                <td>${book.Publiser}</td>
-                <td>${book.YearPub}</td>
-				<td style="text-align: center;" class="view js_view">
-					<a id="${book.IDb}" href="./detail"><i class='bx bx-show'></i></a>
-				</td>
-            </tr>`;
-};
-const render3 = (book) => {
-	return `<tr>
-                <td>${book.IDu}</td>
-                <td>${book.IDb}</td>
-                <td>${book.name}</td>
-                <td>${book.Star}</td>
-            </tr>`;
+const renderBook = (book) => {
+	return `<tr class="tableBadmin">
+				<td><img src="${book.ImgB}" alt=""></td>
+				<td style="text-align:left;">${book.NameB}</td>
+				<td>${book.Author}</td>
+				<td>${book.YearPub}</td>
+				<td>${book.Publiser}</td>
+				<td><i class='bx bxs-edit'></i></td>
+				<td><i class='bx bx-x'></i></td>
+			</tr>`;
 };
 
-fetch("http://localhost:3000/api/v1/books")
-	.then((response) => response.json())
-	.then((bks) => {
-		const scr2 = document.querySelector("#scr2 table > tbody");
-		const books = bks.map((book) => {
-			return render2(book);
+fetch("http://localhost:3000/api/v1/users")
+	.then((res) => res.json())
+	.then((users) => {
+		const newUers = users.map((user) => {
+			return render1(user);
 		});
-		scr2.innerHTML = books.join(" ");
-		return bks;
-	})
-	.then((bks) => {
-		fetch("http://localhost:3000/api/v1/users")
-			.then((res) => res.json())
-			.then((users) => {
-				const newUers = users.map((user) => {
-					return render1(user);
-				});
-				const scr1 = document.querySelector("#scr1 table > tbody");
-				scr1.innerHTML = newUers.join(" ");
-				const detailViews = document.querySelectorAll(".js_view > a");
-				detailViews.forEach((detailView) => {
-					detailView.addEventListener("click", () => {
-						localStorage.setItem("id_book", detailView.id);
-					});
-				});
-			});
+		const scr1 = document.querySelector("#scr1 table > tbody");
+		scr1.innerHTML = newUers.join(" ");
 		const detailViews = document.querySelectorAll(".js_view > a");
 		detailViews.forEach((detailView) => {
 			detailView.addEventListener("click", () => {
 				localStorage.setItem("id_book", detailView.id);
 			});
 		});
-		fetch("http://localhost:3000/api/v1/ratings")
-			.then((res) => res.json())
-			.then((ratings) => {
-				const newbooks = ratings.map((rating) => {
-					const book = bks.find((bk) => {
-						return bk.IDb === rating.IDb;
-					});
-					const name = book.NameB;
-					return { ...rating, name };
-				});
-				const books = newbooks.map((book) => {
-					return render3(book);
-				});
-				const scr3 = document.querySelector("#scr3 table > tbody");
-				scr3.innerHTML = books.join(" ");
-			});
 	});
+const innerRenB = document.querySelector(".js_renderB");
+fetch("http://localhost:3000/api/v1/books")
+	.then((response) => response.json())
+	.then((books) => {
+		innerRenB.innerHTML = books.map((book) => renderBook(book)).join(" ");
+	});
+
+const formAddB = document.querySelector(".js_formAddBook");
+formAddB.addEventListener("submit", (e) => {
+	// e.preventDefault();
+	// for (let i = 0; i <= 6; i++) {
+	// 	console.log(formAddB[i].value);
+	// }
+	console.log(typeof formAddB[5].value);
+});
