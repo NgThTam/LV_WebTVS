@@ -22,6 +22,7 @@ const initWebRouter = (app) => {
 	router.post("/reate-new-user", apiController.createUser);
 	router.post("/reate-new-comment", apiController.createComment);
 	router.post("/update-user", apiController.updateUser);
+	router.post("/reate-new-book", apiController.createBook);
 	// router.get("/detail/:userId", getPage.getAllUser);
 
 	return app.use("/", router);

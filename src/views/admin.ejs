@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="css/main.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 </head>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <style>
     html{
         font-family: arial, sans-serif;
@@ -53,7 +56,7 @@
             </div>
             <div id="scr2" class="scr js_scr js_show_scr">
                 <div class="iconFunAdmins">
-                    <div class="funBookad">
+                    <div class="funBookad js_showAddbook">
                         <div class="iconAd"><i class='bx bx-book-add'></i></div>
                         <p class="texticonad">Add new books</p>
                     </div>
@@ -62,29 +65,32 @@
                         <p class="texticonad">book statistics</p>
                     </div>
                 </div>
-                <div class="addNewBook">
+                <div class="chartBook">
+                    <div id="HighChartPubYear" class="highchar1"></div>
+                </div>
+                <div class="addNewBook hiddenSr js_showAB">
                     <div class="divAdd">
                         <h3>Add new books</h3>
-                        <form action="" class="js_formAddBook">
+                        <form action="/reate-new-book" class="js_formAddBook" method="POST">
                             <div class="contentAdd">
                                 <div class="elAdd">
                                     <div class="textAdd">Book title :</div>
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="title" id="">
                                     <span class="Elspan"></span>
                                 </div>
                                 <div class="elAdd">
                                     <div class="textAdd">Author :</div>
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="author" id="">
                                     <span class="span2"></span>
                                 </div>
                                 <div class="elAdd">
                                     <div class="textAdd">Publishing year :</div>
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="yearPub" id="">
                                     <span class="span3"></span>
                                 </div>
                                 <div class="elAdd">
                                     <div class="textAdd">Publisher :</div>
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="publisher" id="">
                                     <span class="span4"></span>
                                 </div>
                                 <div class="addImg">
@@ -94,10 +100,11 @@
                                             <input type="file" id="inputImg" style="display:none" accept="image/png, image/gif, image/jpeg">
                                             <span>or add by link</span>
                                             <input type="text">
-                                            <input type="text" name="" hidden>
+                                            <input type="text" name="image" hidden>
                                         </div>
                                     </div>
                                 </div>
+                                <input type="text" name="Idb" hidden>
                             </div>
                             <div class="butSubmit">
                                 <button type="submit">Save</button>
@@ -105,8 +112,44 @@
                         </form>
                     </div>
                 </div>
+                <div class="funEdit">
+                    <div class="bodyedit">
+                        <h3>Book editing</h3>
+                        <div class="bdedit">
+                            <div class="imageEdit"><img src="http://images.amazon.com/images/P/1896860982.0" alt=""></div>
+                            <div class="contentEdit">
+                                <input type="text" name="idB" hidden>
+                                <div class="eledit">
+                                    <p>Title :</p>
+                                    <input type="text" name="title">
+                                </div>
+                                <div class="eledit">
+                                    <p>Author :</p>
+                                    <input type="text" name="author">
+                                </div>
+                                <div class="eledit">
+                                    <p>Publishing year :</p>
+                                    <input type="number" name="yearpub">
+                                </div>
+                                <div class="eledit">
+                                    <p>Publisher :</p>
+                                    <input type="text" name="publisher">
+                                </div>
+                                <input type="text" name="imageB" hidden>
+                                <div class="butSubmitEdit">
+                                    <button>Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="bodyRenderbooks">
-                    <div class="searchBooks"></div>
+                    <div class="searchBooks">
+                        <div class="iconSearch"><i class='bx bx-search-alt-2'></i></div>
+                        <div class="inpsearch">
+                            <input type="text" class="js_iptSearch">
+                        </div>
+                    </div>
                     <div class="listRenbooks">
                         <table>
                             <tr style="background-color: #fdc111;">

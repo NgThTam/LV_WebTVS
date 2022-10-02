@@ -93,6 +93,14 @@ let updateUser = (req, res) => {
 	);
 	return res.redirect("/profile");
 };
+let createBook = (req, res) => {
+	let { title, author, yearPub, publisher, image, Idb } = req.body;
+	connection.query(
+		"INSERT INTO `books`(`IDb`, `NameB`, `Author`, `YearPub`, `Publiser`, `ImgB`) VALUES (?,?,?,?,?,?)",
+		[Idb, title, author, yearPub, publisher, image]
+	);
+	return res.redirect("/admin");
+};
 
 module.exports = {
 	createUser,
@@ -105,4 +113,5 @@ module.exports = {
 	createOder,
 	createRating,
 	updateUser,
+	createBook,
 };
