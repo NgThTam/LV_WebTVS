@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="elAdd">
                                     <div class="textAdd">Publishing year :</div>
-                                    <input type="text" name="yearPub" id="">
+                                    <input type="number" name="yearPub" id="">
                                     <span class="span3"></span>
                                 </div>
                                 <div class="elAdd">
@@ -112,35 +112,37 @@
                         </form>
                     </div>
                 </div>
-                <div class="funEdit">
+                <div class="funEdit cssnone js_showedit">
                     <div class="bodyedit">
-                        <h3>Book editing</h3>
-                        <div class="bdedit">
-                            <div class="imageEdit"><img src="http://images.amazon.com/images/P/1896860982.0" alt=""></div>
-                            <div class="contentEdit">
-                                <input type="text" name="idB" hidden>
-                                <div class="eledit">
-                                    <p>Title :</p>
-                                    <input type="text" name="title">
-                                </div>
-                                <div class="eledit">
-                                    <p>Author :</p>
-                                    <input type="text" name="author">
-                                </div>
-                                <div class="eledit">
-                                    <p>Publishing year :</p>
-                                    <input type="number" name="yearpub">
-                                </div>
-                                <div class="eledit">
-                                    <p>Publisher :</p>
-                                    <input type="text" name="publisher">
-                                </div>
-                                <input type="text" name="imageB" hidden>
-                                <div class="butSubmitEdit">
-                                    <button>Save</button>
-                                </div>
+                        <h3>Book editing <i class='bx bx-x js_closeE'></i></h3>
+                        <form action="/update-book" method="POST">
+                            <div class="bdedit js_bodyformedit">
+                                    <div class="imageEdit"><img src="http://images.amazon.com/images/P/1896860982.0" alt=""></div>
+                                    <div class="contentEdit">
+                                        <input type="text" name="idB" hidden value="">
+                                        <div class="eledit">
+                                            <p>Title :</p>
+                                            <input type="text" name="title" value="">
+                                        </div>
+                                        <div class="eledit">
+                                            <p>Author :</p>
+                                            <input type="text" name="author" value="">
+                                        </div>
+                                        <div class="eledit">
+                                            <p>Publishing year :</p>
+                                            <input type="number" name="yearpub" value="">
+                                        </div>
+                                        <div class="eledit">
+                                            <p>Publisher :</p>
+                                            <input type="text" name="publisher" value="">
+                                        </div>
+                                        <input type="text" name="imageB" hidden value="">
+                                        <div class="butSubmitEdit">
+                                            <button type="submit">Save</button>
+                                        </div>
+                                    </div>
                             </div>
-                        </div>
+                    </form>
                     </div>
                 </div>
                 <div class="bodyRenderbooks">

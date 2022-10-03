@@ -101,6 +101,20 @@ let createBook = (req, res) => {
 	);
 	return res.redirect("/admin");
 };
+let updateBook = (req, res) => {
+	let { idB, title, author, yearpub, publisher, imageB } = req.body;
+	connection.query(
+		"UPDATE `books` SET `NameB`=?,`Author`=?,`YearPub`=?,`Publiser`=?,`ImgB`=? WHERE `IDb`=?",
+		[title, author, yearpub, publisher, imageB, idB]
+	);
+	return res.redirect("/admin");
+};
+let deleteBook = (req, res) => {
+	let { idB } = req.body;
+	console.log(idB);
+	// connection.query("DELETE FROM `books` WHERE `IDb`=?", [idB]);
+	return res.redirect("/admin");
+};
 
 module.exports = {
 	createUser,
@@ -114,4 +128,6 @@ module.exports = {
 	createRating,
 	updateUser,
 	createBook,
+	updateBook,
+	deleteBook,
 };
