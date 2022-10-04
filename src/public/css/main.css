@@ -2186,7 +2186,7 @@ body {
     max-height: 500px;
 }
 .listRenbooks::-webkit-scrollbar-track {
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	--webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	background-color: #F5F5F5;
 	border-radius: 10px;
 }
@@ -2441,4 +2441,27 @@ body {
     height: 30px;
 	cursor: pointer;
 	border-color: #fdc111;
+}
+/* sr3 */
+.bodyRenderOders{
+	padding: 25px 30px 25px 30px;
+}
+.listRenOders table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+  }
+  
+.listRenOders td, th {
+	border: 1px solid #dddddd;
+	text-align: center;
+	padding: 8px;
+}
+.listRenOders th{
+	border: 1px solid #5d5c5c;
+}
+.divi{
+	font-size: 20px;
+    color: #097fa4;
+    cursor: pointer;
 }

@@ -57,6 +57,58 @@ const renderFormEdit = (book) => {
 					</div>
 				</div>`;
 };
+const innerRVex = (oder) => {
+	return `<tr>
+				<td>${oder.IDo}</td>
+				<td>${oder.User.FullName}</td>
+				<td>${oder.lenghtCart}</td>
+				<td>${oder.DateRental}</td>
+				<td>${oder.DatePay}</td>
+				<td><div class="status"><p class="exD">expired</p></div></td>
+				<td><i class='bx bxs-show divi js_viewO' data-idoder="${oder.IDo}"></i></td>
+			</tr>`;
+};
+const innerRVunex = (oder) => {
+	return `<tr>
+				<td>${oder.IDo}</td>
+				<td>${oder.User.FullName}</td>
+				<td>${oder.lenghtCart}</td>
+				<td>${oder.DateRental}</td>
+				<td>${oder.DatePay}</td>
+				<td><div class="status"><p class="unexD">unexpired</p></div></td>
+				<td><i class='bx bxs-show divi js_viewO' data-idoder="${oder.IDo}"></i></td>
+			</tr>`;
+};
+const innerDetailView = (oder, listName) => {
+	return `<div class="js_viewVouUser">
+				<div class="cntV">
+					<span><i class='bx bxs-user'></i> Full name of book tenant :</span>
+					<div class="cntText">${oder.User.FullName}</div>
+				</div>
+				<div class="cntV">
+					<span><i class='bx bxs-map-pin' ></i> The address of the book renter :</span>
+					<div class="cntText">${oder.User.Addr}</div>
+				</div>
+				<div class="cntV">
+					<span><i class='bx bx-mail-send'></i> Contact email :</span>
+					<div class="cntText">${oder.User.Email}</div>
+				</div>
+			</div>
+			<div >
+				<div class="cntV">
+					<span style="min-width: 143px;"><i class='bx bxs-book-add'></i> Rented books :</span>
+					<div class="cntText spantext">(<span style="color: black; font-size: 14px;">${oder.lenghtCart}</span>)  ${listName}</div>
+				</div>
+				<div class="cntV">
+					<span><i class='bx bx-calendar-check'></i> Book rental date :</span>
+					<div class="cntText ">${oder.DateRental}</div>
+				</div>
+				<div class="cntV">
+					<span><i class='bx bx-calendar-check'></i> Date of payment :</span>
+					<div class="cntText">${oder.DatePay}</div>
+				</div>
+			</div>`;
+};
 
 fetch("http://localhost:3000/api/v1/users")
 	.then((res) => res.json())
@@ -207,6 +259,187 @@ fetch("http://localhost:3000/api/v1/books")
 				},
 			],
 		});
+		return books;
+	})
+	.then((books) => {
+		fetch("http://localhost:3000/api/v1/oders")
+			.then((res) => res.json())
+			.then((oders) => {
+				fetch("http://localhost:3000/api/v1/users")
+					.then((res) => res.json())
+					.then((users) => {
+						const scr3 = document.querySelector(".js_scr3");
+						let Today = new Date();
+						scr3.addEventListener("click", () => {
+							Today = new Date();
+						});
+						let Tomonth = Today.getMonth() + 1;
+						const newlistOder = [];
+						oders.forEach((eloder) => {
+							const lengthCart = eloder.Cart.split(",").length;
+							eloder.lenghtCart = lengthCart;
+							const userOder = users.find((user) => user.IDu == eloder.IDu);
+							// eloder.NameUser = userOder.FullName;
+							eloder.User = userOder;
+							const dateP = eloder.DatePay;
+							let hsdOder = "";
+							if (parseInt(dateP.slice(6, 10)) >= Today.getFullYear()) {
+								if (parseInt(dateP.slice(6, 10)) > Today.getFullYear()) {
+									hsdOder = "expired";
+								} else {
+									if (parseInt(dateP.slice(3, 5)) >= Tomonth) {
+										if (parseInt(dateP.slice(3, 5)) > Tomonth) {
+											hsdOder = "unexpired";
+										} else {
+											if (parseInt(dateP.slice(0, 2)) >= Today.getDate()) {
+												hsdOder = "unexpired";
+											} else {
+												hsdOder = "expired";
+											}
+										}
+									} else {
+										hsdOder = "expired";
+									}
+								}
+							} else {
+								hsdOder = "expired";
+							}
+							eloder.status = hsdOder;
+							if (hsdOder == "unexpired") {
+								newlistOder.push(innerRVunex(eloder));
+							} else {
+								newlistOder.push(innerRVex(eloder));
+							}
+						});
+						const innerListOder = document.querySelector(".js_innOder");
+						innerListOder.innerHTML = newlistOder.join(" ");
+					})
+					.then(() => {
+						const iconfils = document.querySelectorAll(".js_filStatus");
+						const newlistUn = [];
+						const newlistEx = [];
+						oders.forEach((od) => {
+							if (od.status == "unexpired") {
+								newlistUn.push(od);
+							} else {
+								newlistEx.push(od);
+							}
+						});
+						iconfils.forEach((icon) => {
+							icon.addEventListener("click", () => {
+								if (icon.innerText == "unexpired") {
+									const cntUn = newlistUn.map((elUn) => innerRVunex(elUn));
+									const innerListOder = document.querySelector(".js_innOder");
+									innerListOder.innerHTML = cntUn.join(" ");
+									const viewOs = document.querySelectorAll(".js_viewO");
+									const modalO = document.querySelector(".js_modalview");
+									const cntO = document.querySelector(".js_cntO");
+									viewOs.forEach((view) => {
+										view.addEventListener("click", () => {
+											modalO.classList.add("showM");
+											let listNameBooks = [];
+											const Ooder = oders.find(
+												(Odd) => Odd.IDo == view.dataset.idoder
+											);
+											// console.log(Ooder);
+											const listIDb = Ooder.Cart.split(",");
+											listIDb.forEach((IDbook) => {
+												books.forEach((book) => {
+													if (IDbook == book.IDb) {
+														listNameBooks.push(book.NameB);
+													}
+												});
+											});
+											const detailView =
+												document.querySelector(".js_detailView");
+											detailView.innerHTML = innerDetailView(
+												Ooder,
+												listNameBooks.join(" <span>;</span> ")
+											);
+										});
+									});
+									modalO.addEventListener("click", () => {
+										modalO.classList.remove("showM");
+									});
+									cntO.addEventListener("click", (e) => {
+										e.stopPropagation();
+									});
+								} else {
+									const cntEx = newlistEx.map((elEx) => innerRVex(elEx));
+									const innerListOder = document.querySelector(".js_innOder");
+									innerListOder.innerHTML = cntEx.join(" ");
+									const viewOs = document.querySelectorAll(".js_viewO");
+									const modalO = document.querySelector(".js_modalview");
+									const cntO = document.querySelector(".js_cntO");
+									viewOs.forEach((view) => {
+										view.addEventListener("click", () => {
+											modalO.classList.add("showM");
+											let listNameBooks = [];
+											const Ooder = oders.find(
+												(Odd) => Odd.IDo == view.dataset.idoder
+											);
+											// console.log(Ooder);
+											const listIDb = Ooder.Cart.split(",");
+											listIDb.forEach((IDbook) => {
+												books.forEach((book) => {
+													if (IDbook == book.IDb) {
+														listNameBooks.push(book.NameB);
+													}
+												});
+											});
+											const detailView =
+												document.querySelector(".js_detailView");
+											detailView.innerHTML = innerDetailView(
+												Ooder,
+												listNameBooks.join(" <span>;</span> ")
+											);
+										});
+									});
+									modalO.addEventListener("click", () => {
+										modalO.classList.remove("showM");
+									});
+									cntO.addEventListener("click", (e) => {
+										e.stopPropagation();
+									});
+								}
+							});
+						});
+					})
+					.then(() => {
+						const viewOs = document.querySelectorAll(".js_viewO");
+						const modalO = document.querySelector(".js_modalview");
+						const cntO = document.querySelector(".js_cntO");
+						viewOs.forEach((view) => {
+							view.addEventListener("click", () => {
+								modalO.classList.add("showM");
+								let listNameBooks = [];
+								const Ooder = oders.find(
+									(Odd) => Odd.IDo == view.dataset.idoder
+								);
+								// console.log(Ooder);
+								const listIDb = Ooder.Cart.split(",");
+								listIDb.forEach((IDbook) => {
+									books.forEach((book) => {
+										if (IDbook == book.IDb) {
+											listNameBooks.push(book.NameB);
+										}
+									});
+								});
+								const detailView = document.querySelector(".js_detailView");
+								detailView.innerHTML = innerDetailView(
+									Ooder,
+									listNameBooks.join(" <span>;</span> ")
+								);
+							});
+						});
+						modalO.addEventListener("click", () => {
+							modalO.classList.remove("showM");
+						});
+						cntO.addEventListener("click", (e) => {
+							e.stopPropagation();
+						});
+					});
+			});
 	});
 
 const formAddB = document.querySelector(".js_formAddBook");
