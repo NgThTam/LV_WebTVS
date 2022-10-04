@@ -66,6 +66,27 @@ const innerRVex = (oder) => {
 				<td>${oder.DatePay}</td>
 				<td><div class="status"><p class="exD">expired</p></div></td>
 				<td><i class='bx bxs-show divi js_viewO' data-idoder="${oder.IDo}"></i></td>
+				<td><form action="/update-paystatus" method="POST">
+                                        <input type="text" name="IDo" hidden value="${oder.IDo}">
+                                        <input type="text" name="IDu" hidden value="${oder.IDu}">
+                                        <input type="text" name="Cart" hidden value="${oder.Cart}">
+                                        <input type="text" name="DateRental" hidden value="${oder.DateRental}">
+                                        <input type="text" name="DatePay" hidden value="${oder.DatePay}">
+                                        <input type="text" name="PayStatus" hidden value="1">
+                                        <button class="butPaystatus" type="submit">yes</button>
+                                    </form></td>
+			</tr>`;
+};
+const innerRVex1 = (oder) => {
+	return `<tr>
+				<td>${oder.IDo}</td>
+				<td>${oder.User.FullName}</td>
+				<td>${oder.lenghtCart}</td>
+				<td>${oder.DateRental}</td>
+				<td>${oder.DatePay}</td>
+				<td><div class="status"><p class="exD">expired</p></div></td>
+				<td><i class='bx bxs-show divi js_viewO' data-idoder="${oder.IDo}"></i></td>
+				<td><i class='bx bx-check-circle'></i></td>
 			</tr>`;
 };
 const innerRVunex = (oder) => {
@@ -77,6 +98,27 @@ const innerRVunex = (oder) => {
 				<td>${oder.DatePay}</td>
 				<td><div class="status"><p class="unexD">unexpired</p></div></td>
 				<td><i class='bx bxs-show divi js_viewO' data-idoder="${oder.IDo}"></i></td>
+				<td><form action="/update-paystatus" method="POST">
+										<input type="text" name="IDo" hidden value="${oder.IDo}">
+										<input type="text" name="IDu" hidden value="${oder.IDu}">
+										<input type="text" name="Cart" hidden value="${oder.Cart}">
+										<input type="text" name="DateRental" hidden value="${oder.DateRental}">
+										<input type="text" name="DatePay" hidden value="${oder.DatePay}">
+                                        <input type="text" name="PayStatus" hidden value="1">
+                                        <button class="butPaystatus" type="submit">yes</button>
+                                    </form></td>
+			</tr>`;
+};
+const innerRVunex1 = (oder) => {
+	return `<tr>
+				<td>${oder.IDo}</td>
+				<td>${oder.User.FullName}</td>
+				<td>${oder.lenghtCart}</td>
+				<td>${oder.DateRental}</td>
+				<td>${oder.DatePay}</td>
+				<td><div class="status"><p class="unexD">unexpired</p></div></td>
+				<td><i class='bx bxs-show divi js_viewO' data-idoder="${oder.IDo}"></i></td>
+				<td><i class='bx bx-check-circle'></i></td>
 			</tr>`;
 };
 const innerDetailView = (oder, listName) => {
@@ -306,9 +348,17 @@ fetch("http://localhost:3000/api/v1/books")
 							}
 							eloder.status = hsdOder;
 							if (hsdOder == "unexpired") {
-								newlistOder.push(innerRVunex(eloder));
+								if (eloder.PayStatus == 0) {
+									newlistOder.push(innerRVunex(eloder));
+								} else {
+									newlistOder.push(innerRVunex1(eloder));
+								}
 							} else {
-								newlistOder.push(innerRVex(eloder));
+								if (eloder.PayStatus == 0) {
+									newlistOder.push(innerRVex(eloder));
+								} else {
+									newlistOder.push(innerRVex1(eloder));
+								}
 							}
 						});
 						const innerListOder = document.querySelector(".js_innOder");
@@ -328,7 +378,13 @@ fetch("http://localhost:3000/api/v1/books")
 						iconfils.forEach((icon) => {
 							icon.addEventListener("click", () => {
 								if (icon.innerText == "unexpired") {
-									const cntUn = newlistUn.map((elUn) => innerRVunex(elUn));
+									const cntUn = newlistUn.map((elUn) => {
+										if (elUn.PayStatus == 0) {
+											return innerRVunex(elUn);
+										} else {
+											return innerRVunex1(elUn);
+										}
+									});
 									const innerListOder = document.querySelector(".js_innOder");
 									innerListOder.innerHTML = cntUn.join(" ");
 									const viewOs = document.querySelectorAll(".js_viewO");
@@ -365,7 +421,13 @@ fetch("http://localhost:3000/api/v1/books")
 										e.stopPropagation();
 									});
 								} else {
-									const cntEx = newlistEx.map((elEx) => innerRVex(elEx));
+									const cntEx = newlistEx.map((elEx) => {
+										if (elEx.PayStatus == 0) {
+											return innerRVex(elEx);
+										} else {
+											return innerRVex1(elEx);
+										}
+									});
 									const innerListOder = document.querySelector(".js_innOder");
 									innerListOder.innerHTML = cntEx.join(" ");
 									const viewOs = document.querySelectorAll(".js_viewO");
@@ -439,6 +501,61 @@ fetch("http://localhost:3000/api/v1/books")
 							e.stopPropagation();
 						});
 					});
+				return oders;
+			})
+			.then((oders) => {
+				const value12month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+				const listvalueMonth = value12month.map((month) => {
+					const listValue = oders.filter(
+						(oder) => parseInt(oder.DateRental.slice(3, 5)) == month
+					);
+					return listValue.length;
+				});
+				Highcharts.chart("ChartOderY", {
+					title: {
+						text: "Statistics of rental orders in 2022",
+					},
+					xAxis: {
+						categories: [
+							"Jan",
+							"Feb",
+							"Mar",
+							"Apr",
+							"May",
+							"Jun",
+							"Jul",
+							"Aug",
+							"Sep",
+							"Oct",
+							"Nov",
+							"Dec",
+						],
+					},
+					yAxis: {
+						title: {
+							text: "number of orders",
+						},
+						plotLines: [
+							{
+								value: 0,
+								width: 1,
+								color: "#808080",
+							},
+						],
+					},
+					tooltip: {
+						valueSuffix: " oders",
+					},
+					legend: {
+						enabled: false,
+					},
+					series: [
+						{
+							name: "This month there are",
+							data: listvalueMonth,
+						},
+					],
+				});
 			});
 	});
 

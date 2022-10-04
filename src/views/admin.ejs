@@ -32,7 +32,7 @@
                 <ul>
                     <li data-id="scr1" class="js_admin_li "><i class='bx bxs-user'></i>User management</li>
                     <li data-id="scr2" class="js_admin_li js_admin_active"><i class='bx bxs-book'></i>Book management</li>
-                    <li data-id="scr3" class="js_admin_li js_scr3"><i class='bx bxs-star'></i>Book rental management</li>
+                    <li data-id="scr3" class="js_admin_li js_scr3"><i class='bx bxs-book-reader'></i>Book rental management</li>
                 </ul>
             </div>
         </div>
@@ -180,6 +180,9 @@
             </div>
             <div id="scr3" class="scr js_scr js_show_scr">
                 <div class="bodyRenderOders">
+                    <div class="chartOder">
+                        <div id="ChartOderY" class="highchar2"></div>
+                    </div>
                     <div class="funStatus">
                         <p><i class='bx bx-filter-alt'style="position: relative;top: 2px;padding-right: 4px;"></i>: </p>
                         <div class="unex ">
@@ -199,9 +202,10 @@
                               <th>Date of payment</th>
                               <th>Status</th>
                               <th>Detail</th>
+                              <th>Payment</th>
                             </tr>
                             <tbody class="js_innOder">
-                                <tr>
+                                <!-- <tr>
                                     <td>4nwkvurE</td>
                                     <td>Nguyen Thanh Tam</td>
                                     <td>2</td>
@@ -209,7 +213,16 @@
                                     <td>29/09/2022</td>
                                     <td><div class="status"><p class="exD">expired</p></div></td>
                                     <td><i class='bx bxs-show'></i></td>
-                                </tr>
+                                    <td><form action="">
+                                        <input type="text" name="IDo" hidden value="">
+                                        <input type="text" name="IDu" hidden value="">
+                                        <input type="text" name="Cart" hidden value="">
+                                        <input type="text" name="DateRental" hidden value="">
+                                        <input type="text" name="DatePay" hidden value="">
+                                        <input type="text" name="PayStatus" hidden value="1">
+                                        <button class="butPaystatus" type="submit">yes</button>
+                                    </form></td>
+                                </tr> -->
                             </tbody>
                           </table>                          
                     </div>

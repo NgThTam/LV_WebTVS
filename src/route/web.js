@@ -25,6 +25,7 @@ const initWebRouter = (app) => {
 	router.post("/reate-new-book", apiController.createBook);
 	router.post("/update-book", apiController.updateBook);
 	router.post("/delete-book", apiController.deleteBook);
+	router.post("/update-paystatus", apiController.updateStatus);
 	// router.get("/detail/:userId", getPage.getAllUser);
 
 	return app.use("/", router);

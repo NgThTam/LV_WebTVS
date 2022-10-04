@@ -116,6 +116,15 @@ let deleteBook = (req, res) => {
 	return res.redirect("/admin");
 };
 
+let updateStatus = (req, res) => {
+	let { IDo, IDu, Cart, DateRental, DatePay, PayStatus } = req.body;
+	connection.query(
+		"UPDATE `oders` SET `IDu`=?,`Cart`=?,`DateRental`=?,`DatePay`=?,`PayStatus`=? WHERE `IDo`=?",
+		[IDu, Cart, DateRental, DatePay, PayStatus, IDo]
+	);
+	return res.redirect("/admin");
+};
+
 module.exports = {
 	createUser,
 	getAllbook,
@@ -130,4 +139,5 @@ module.exports = {
 	createBook,
 	updateBook,
 	deleteBook,
+	updateStatus,
 };

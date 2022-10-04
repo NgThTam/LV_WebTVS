@@ -77,9 +77,17 @@ fetch("http://localhost:3000/api/v1/books")
 					}
 					eloder.status = hsdOder;
 					if (hsdOder == "unexpired") {
-						newlistOder.push(innerRVunex(eloder));
+						if (eloder.PayStatus == 0) {
+							newlistOder.push(innerRVunex(eloder));
+						} else {
+							newlistOder.push(innerRVunex1(eloder));
+						}
 					} else {
-						newlistOder.push(innerRVex(eloder));
+						if (eloder.PayStatus == 0) {
+							newlistOder.push(innerRVex(eloder));
+						} else {
+							newlistOder.push(innerRVex1(eloder));
+						}
 					}
 				});
 				const cntOder = document.querySelector(".js_tableRV");
@@ -119,7 +127,13 @@ fetch("http://localhost:3000/api/v1/books")
 				iconfils.forEach((icon) => {
 					icon.addEventListener("click", () => {
 						if (icon.innerText == "unexpired") {
-							const cntUn = newlistUn.map((elUn) => innerRVunex(elUn));
+							const cntUn = newlistUn.map((elUn) => {
+								if (elUn.PayStatus == 0) {
+									return innerRVunex(elUn);
+								} else {
+									return innerRVunex1(elUn);
+								}
+							});
 							const cntOder = document.querySelector(".js_tableRV");
 							cntOder.innerHTML = cntUn.join(" ");
 							const viewOs = document.querySelectorAll(".js_viewO");
@@ -154,7 +168,13 @@ fetch("http://localhost:3000/api/v1/books")
 								e.stopPropagation();
 							});
 						} else {
-							const cntEx = newlistEx.map((elEx) => innerRVex(elEx));
+							const cntEx = newlistEx.map((elEx) => {
+								if (elEx.PayStatus == 0) {
+									return innerRVex(elEx);
+								} else {
+									return innerRVex1(elEx);
+								}
+							});
 							const cntOder = document.querySelector(".js_tableRV");
 							cntOder.innerHTML = cntEx.join(" ");
 							const viewOs = document.querySelectorAll(".js_viewO");
@@ -391,6 +411,16 @@ const innerRVunex = (oder) => `<tr>
 	<td>${oder.DatePay}</td>
 	<td><div class="status"><p class="unexD">unexpired</p></div></td>
 	<td><i class='bx bxs-show js_viewO' data-idoder='${oder.IDo}'></i></td>
+	<td><i class='bx bx-x-circle'></i></td>
+	</tr>`;
+const innerRVunex1 = (oder) => `<tr>
+	<td>${oder.IDo}</td>
+	<td>${oder.lenghtCart}</td>
+	<td>${oder.DateRental}</td>
+	<td>${oder.DatePay}</td>
+	<td><div class="status"><p class="unexD">unexpired</p></div></td>
+	<td><i class='bx bxs-show js_viewO' data-idoder='${oder.IDo}'></i></td>
+	<td><i class='bx bx-check-circle'></i></td>
 	</tr>`;
 const innerRVex = (oder) => `<tr>
 	<td>${oder.IDo}</td>
@@ -399,6 +429,16 @@ const innerRVex = (oder) => `<tr>
 	<td>${oder.DatePay}</td>
 	<td><div class="status"><p class="exD">expired</p></div></td>
 	<td><i class='bx bxs-show js_viewO' data-idoder='${oder.IDo}'></i></td>
+	<td><i class='bx bx-x-circle'></i></td>
+	</tr>`;
+const innerRVex1 = (oder) => `<tr>
+	<td>${oder.IDo}</td>
+	<td>${oder.lenghtCart}</td>
+	<td>${oder.DateRental}</td>
+	<td>${oder.DatePay}</td>
+	<td><div class="status"><p class="exD">expired</p></div></td>
+	<td><i class='bx bxs-show js_viewO' data-idoder='${oder.IDo}'></i></td>
+	<td><i class='bx bx-check-circle'></i></td>
 	</tr>`;
 const innerVOuser = (user) => `<div class="cntV">
 	<span><i class='bx bxs-user'></i> Full name of book tenant :</span>
