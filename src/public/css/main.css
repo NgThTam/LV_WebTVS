@@ -2489,3 +2489,25 @@ body {
     height: 400px;
     margin: 0 auto;
 }
+.renderListUser{
+	padding: 25px 30px 25px 30px;
+}
+.bodyrenderUser table{
+	font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+.bodyrenderUser table td, th{
+	border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+    cursor: default;
+}
+.bodyrenderUser table th{
+	border: 1px solid #5d5c5c;
+}
+.sendmail i{
+	font-size: 20px;
+    color: #0e0ed0;
+	cursor: pointer;
+}

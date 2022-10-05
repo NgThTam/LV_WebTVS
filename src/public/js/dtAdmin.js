@@ -1,9 +1,12 @@
-const render1 = (user) => {
+const renderUser = (user, index) => {
 	return `<tr>
-                <td>${user.IDu}</td>
-                <td>${user.Addr}</td>
-                <td>${user.Old}</td>
-            </tr>`;
+				<td>${index}</td>
+				<td>${user.Email}</td>
+				<td>${user.FullName}</td>
+				<td>${user.Old}</td>
+				<td>${user.Addr}</td>
+				<td><div class="sendmail"><i class='bx bx-mail-send js_iconmail' data-emailu = "${user.Email}"></i></div></td>
+			</tr>`;
 };
 const renderBook = (book) => {
 	return `<tr class="tableBadmin">
@@ -155,15 +158,16 @@ const innerDetailView = (oder, listName) => {
 fetch("http://localhost:3000/api/v1/users")
 	.then((res) => res.json())
 	.then((users) => {
-		const newUers = users.map((user) => {
-			return render1(user);
+		const innerrenUser = document.querySelector(".js_renderUser");
+		const listUser = [];
+		users.forEach((user, index) => {
+			listUser.push(renderUser(user, index));
 		});
-		const scr1 = document.querySelector("#scr1 table > tbody");
-		scr1.innerHTML = newUers.join(" ");
-		const detailViews = document.querySelectorAll(".js_view > a");
-		detailViews.forEach((detailView) => {
-			detailView.addEventListener("click", () => {
-				localStorage.setItem("id_book", detailView.id);
+		innerrenUser.innerHTML = listUser.join(" ");
+		const mails = document.querySelectorAll(".js_iconmail");
+		mails.forEach((mail) => {
+			mail.addEventListener("click", () => {
+				window.open(`mailto:${mail.dataset.emailu}`);
 			});
 		});
 	});

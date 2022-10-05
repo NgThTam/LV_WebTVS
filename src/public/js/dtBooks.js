@@ -8,11 +8,11 @@ const renderBook = (book) => {
 					<img src="${book.ImgB}" alt="" class="abook_img">
 					<div class="abook_img_ho">
 						<a data-id="${book.IDb}" class="js_lbk" href="/detail"><i data-id="${book.IDb}" class='bx bx-show'></i></a>
-						<a href="#" class="a2"><i class='bx bx-heart'></i></a>
+						<a href="#" class="a2 js_likeB" data-idb="${book.IDb}"><i class='bx bx-heart '></i></a>
 					</div>
 				</div>
 				<div class="abook_inf">
-					<a href="./DetailBooks.html" class="title_book">${book.NameB}</a>
+					<a href="" style="cursor: default" class="title_book">${book.NameB}</a>
 					<div class="aut_book">By: <span>${book.Author}</span></div>
 				</div>
 			</div>`;
@@ -76,6 +76,13 @@ fetch("http://localhost:3000/api/v1/books")
 					localStorage.setItem("id_book", e.target.dataset.id);
 				});
 			});
+			//like book
+			const likebooks = document.querySelectorAll(".js_likeB");
+			likebooks.forEach((like) => {
+				like.addEventListener("click", () => {
+					console.log(like.dataset.idb);
+				});
+			});
 		});
 		//show yearpub
 		const textYear = document.querySelectorAll(".js_year_pub span a");
@@ -98,6 +105,13 @@ fetch("http://localhost:3000/api/v1/books")
 						localStorage.setItem("id_book", e.target.dataset.id);
 					});
 				});
+				//like book
+				const likebooks = document.querySelectorAll(".js_likeB");
+				likebooks.forEach((like) => {
+					like.addEventListener("click", () => {
+						console.log(like.dataset.idb);
+					});
+				});
 			});
 		});
 		//show publiser
@@ -115,6 +129,13 @@ fetch("http://localhost:3000/api/v1/books")
 						localStorage.setItem("id_book", e.target.dataset.id);
 					});
 				});
+				//like book
+				const likebooks = document.querySelectorAll(".js_likeB");
+				likebooks.forEach((like) => {
+					like.addEventListener("click", () => {
+						console.log(like.dataset.idb);
+					});
+				});
 			});
 		});
 		//show author
@@ -130,6 +151,13 @@ fetch("http://localhost:3000/api/v1/books")
 				abooks.forEach((abook) => {
 					abook.addEventListener("click", (e) => {
 						localStorage.setItem("id_book", e.target.dataset.id);
+					});
+				});
+				//like book
+				const likebooks = document.querySelectorAll(".js_likeB");
+				likebooks.forEach((like) => {
+					like.addEventListener("click", () => {
+						console.log(like.dataset.idb);
 					});
 				});
 			});
@@ -158,6 +186,22 @@ fetch("http://localhost:3000/api/v1/books")
 				abook.addEventListener("click", (e) => {
 					localStorage.setItem("id_book", e.target.dataset.id);
 				});
+			});
+			//like book
+			const likebooks = document.querySelectorAll(".js_likeB");
+			likebooks.forEach((like) => {
+				like.addEventListener("click", () => {
+					console.log(like.dataset.idb);
+				});
+			});
+		});
+		return ab;
+	})
+	.then((books) => {
+		const likebooks = document.querySelectorAll(".js_likeB");
+		likebooks.forEach((like) => {
+			like.addEventListener("click", () => {
+				console.log(like.dataset.idb);
 			});
 		});
 	});
