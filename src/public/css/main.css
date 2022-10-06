@@ -2511,3 +2511,38 @@ body {
     color: #0e0ed0;
 	cursor: pointer;
 }
+/* like book profile */
+.bodylikeB{
+	min-height: 30rem;
+}
+.ellike{
+	/* border: 1px solid; */
+    width: 188px;
+    display: flex;
+	border: 1px solid #02020252;
+}
+.ellike img{
+	width: 150px;
+	height: 227px;
+}
+.iconlistLi{
+	font-size: 23px;
+	display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 6px;
+}
+.renderlikelist{
+	display: flex;
+    flex-wrap: wrap;
+	padding-top: 10px;
+	/* justify-content: center; */
+	/* display: grid; */
+    /* flex-wrap: wrap; */
+    /* grid-template-columns: auto auto auto auto auto;
+    text-align: left; */
+}
+.paddingEllike{
+	padding: 0px 30px 30px 0px;
+	/* width: 188px; */
+}

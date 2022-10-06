@@ -246,6 +246,30 @@ fetch("http://localhost:3000/api/v1/books")
 					e.stopPropagation();
 				});
 			});
+		return books;
+	})
+	.then((books) => {
+		fetch("http://localhost:3000/api/v1/likes")
+			.then((res) => res.json())
+			.then((likes) => {
+				const innerBookLike = document.querySelector(".js_renderlikelist");
+				const iduserLike = localStorage.getItem("IDuser");
+				const userLike = likes.find((lk) => lk.IDu == iduserLike);
+				const arrLike = userLike.ListBook.split(",");
+				const renderBookLike = [];
+				arrLike.forEach((like) => {
+					renderBookLike.push(
+						renderLike(books.find((book) => book.IDb == like))
+					);
+				});
+				innerBookLike.innerHTML = renderBookLike.join(" ");
+				const alikes = document.querySelectorAll(".js_likedetail");
+				alikes.forEach((alike) => {
+					alike.addEventListener("click", () => {
+						localStorage.setItem("id_book", alike.dataset.idblike);
+					});
+				});
+			});
 	});
 // fetch("http://localhost:3000/api/v1/oders")
 // 	.then((res) => res.json())
@@ -464,3 +488,15 @@ const innerDetailView = (oder, listName) => `<div class="cntV">
 	<span><i class='bx bx-calendar-check'></i> Date of payment :</span>
 	<div class="cntText">${oder.DatePay}</div>
 	</div>`;
+const renderLike = (book) => {
+	return `<div class="paddingEllike">
+				<div class="ellike">
+					<img src="${book.ImgB}" alt="">
+					<div class="iconlistLi">
+						<div><i class='bx bxs-heart' style="color: red;"></i></div>
+						<div><a href="/detail" class="js_likedetail" data-idblike="${book.IDb}"><i class='bx bx-search'></i></a></div>
+						<div><i class='bx bx-trash'></i></div>
+					</div>
+				</div>
+			</div>`;
+};

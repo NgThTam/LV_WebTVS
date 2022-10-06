@@ -1,6 +1,14 @@
 const showBook = document.getElementById("js_show_book");
 const showBook2 = document.getElementById("js_show_book2");
 const showBook3 = document.getElementById("js_show_book3");
+const filterY = function (books, year) {
+	return books.filter((book) => book.YearPub == year);
+};
+const filterX = (books, publiser) =>
+	books.filter((book) => book.Publiser === publiser);
+
+const filterA = (books, author) =>
+	books.filter((book) => book.Author === author);
 
 const renderBook = (book) => {
 	return `<div id="${book.IDb}" class="books_abook">
@@ -13,6 +21,11 @@ const renderBook = (book) => {
 				</div>
 				<div class="abook_inf">
 					<a href="" style="cursor: default" class="title_book">${book.NameB}</a>
+					<form action="#" class="js_formlikes" data-idbook = "${book.IDb}" id="Get${book.IDb}" hidden>
+						<input type="text" name="Idu" id="" value="">
+						<input type="text" name="listBlike" id="" value="">
+						<button type="submit" id="Sub${book.IDb}"></button>
+					</form>
 					<div class="aut_book">By: <span>${book.Author}</span></div>
 				</div>
 			</div>`;
@@ -77,12 +90,64 @@ fetch("http://localhost:3000/api/v1/books")
 				});
 			});
 			//like book
-			const likebooks = document.querySelectorAll(".js_likeB");
-			likebooks.forEach((like) => {
-				like.addEventListener("click", () => {
-					console.log(like.dataset.idb);
+			fetch("http://localhost:3000/api/v1/likes")
+				.then((res) => res.json())
+				.then((likes) => {
+					const likebooks = document.querySelectorAll(".js_likeB");
+					const formlikes = document.querySelectorAll(".js_formlikes");
+					const iduser = localStorage.getItem("IDuser");
+					if (iduser) {
+						const userL = likes.find((like) => like.IDu == iduser);
+						if (userL) {
+							formlikes.forEach((flike) => {
+								flike.setAttribute("action", "/update-listlike");
+								flike.setAttribute("method", "POST");
+								flike[0].value = iduser;
+								// flike.addEventListener("submit", (e) => {
+								// 	e.preventDefault();
+								// });
+							});
+							const listNewBLike = userL.ListBook.split(",");
+							likebooks.forEach((ilike) => {
+								ilike.addEventListener("click", () => {
+									const formLikeID = document.getElementById(
+										`Get${ilike.dataset.idb}`
+									);
+									listNewBLike.push(ilike.dataset.idb);
+									console.log(ilike.dataset.idb);
+									const listBookNewO = [...new Set(listNewBLike)];
+									formLikeID[1].value = listBookNewO.join(",");
+								});
+							});
+						} else {
+							formlikes.forEach((like) => {
+								like.setAttribute("action", "/reate-listlike");
+								like.setAttribute("method", "POST");
+								like[0].value = iduser;
+							});
+							likebooks.forEach((ilike) => {
+								ilike.addEventListener("click", () => {
+									const formLikeID = document.getElementById(
+										`Get${ilike.dataset.idb}`
+									);
+									formLikeID[1].value = ilike.dataset.idb;
+								});
+							});
+						}
+					} else {
+						formlikes.forEach((flike) => {
+							flike.addEventListener("submit", (e) => {
+								e.preventDefault();
+								window.alert("Pls Login");
+							});
+						});
+					}
+					likebooks.forEach((like) => {
+						like.addEventListener("click", () => {
+							document.getElementById(`Sub${like.dataset.idb}`).click();
+						});
+					});
 				});
-			});
 		});
 		//show yearpub
 		const textYear = document.querySelectorAll(".js_year_pub span a");
@@ -106,12 +171,64 @@ fetch("http://localhost:3000/api/v1/books")
 					});
 				});
 				//like book
-				const likebooks = document.querySelectorAll(".js_likeB");
-				likebooks.forEach((like) => {
-					like.addEventListener("click", () => {
-						console.log(like.dataset.idb);
+				fetch("http://localhost:3000/api/v1/likes")
+					.then((res) => res.json())
+					.then((likes) => {
+						const likebooks = document.querySelectorAll(".js_likeB");
+						const formlikes = document.querySelectorAll(".js_formlikes");
+						const iduser = localStorage.getItem("IDuser");
+						if (iduser) {
+							const userL = likes.find((like) => like.IDu == iduser);
+							if (userL) {
+								formlikes.forEach((flike) => {
+									flike.setAttribute("action", "/update-listlike");
+									flike.setAttribute("method", "POST");
+									flike[0].value = iduser;
+									// flike.addEventListener("submit", (e) => {
+									// 	e.preventDefault();
+									// });
+								});
+								const listNewBLike = userL.ListBook.split(",");
+								likebooks.forEach((ilike) => {
+									ilike.addEventListener("click", () => {
+										const formLikeID = document.getElementById(
+											`Get${ilike.dataset.idb}`
+										);
+										listNewBLike.push(ilike.dataset.idb);
+										console.log(ilike.dataset.idb);
+										const listBookNewO = [...new Set(listNewBLike)];
+										formLikeID[1].value = listBookNewO.join(",");
+									});
+								});
+							} else {
+								formlikes.forEach((like) => {
+									like.setAttribute("action", "/reate-listlike");
+									like.setAttribute("method", "POST");
+									like[0].value = iduser;
+								});
+								likebooks.forEach((ilike) => {
+									ilike.addEventListener("click", () => {
+										const formLikeID = document.getElementById(
+											`Get${ilike.dataset.idb}`
+										);
+										formLikeID[1].value = ilike.dataset.idb;
+									});
+								});
+							}
+						} else {
+							formlikes.forEach((flike) => {
+								flike.addEventListener("submit", (e) => {
+									e.preventDefault();
+									window.alert("Pls Login");
+								});
+							});
+						}
+						likebooks.forEach((like) => {
+							like.addEventListener("click", () => {
+								document.getElementById(`Sub${like.dataset.idb}`).click();
+							});
+						});
 					});
-				});
 			});
 		});
 		//show publiser
@@ -130,12 +247,64 @@ fetch("http://localhost:3000/api/v1/books")
 					});
 				});
 				//like book
-				const likebooks = document.querySelectorAll(".js_likeB");
-				likebooks.forEach((like) => {
-					like.addEventListener("click", () => {
-						console.log(like.dataset.idb);
+				fetch("http://localhost:3000/api/v1/likes")
+					.then((res) => res.json())
+					.then((likes) => {
+						const likebooks = document.querySelectorAll(".js_likeB");
+						const formlikes = document.querySelectorAll(".js_formlikes");
+						const iduser = localStorage.getItem("IDuser");
+						if (iduser) {
+							const userL = likes.find((like) => like.IDu == iduser);
+							if (userL) {
+								formlikes.forEach((flike) => {
+									flike.setAttribute("action", "/update-listlike");
+									flike.setAttribute("method", "POST");
+									flike[0].value = iduser;
+									// flike.addEventListener("submit", (e) => {
+									// 	e.preventDefault();
+									// });
+								});
+								const listNewBLike = userL.ListBook.split(",");
+								likebooks.forEach((ilike) => {
+									ilike.addEventListener("click", () => {
+										const formLikeID = document.getElementById(
+											`Get${ilike.dataset.idb}`
+										);
+										listNewBLike.push(ilike.dataset.idb);
+										console.log(ilike.dataset.idb);
+										const listBookNewO = [...new Set(listNewBLike)];
+										formLikeID[1].value = listBookNewO.join(",");
+									});
+								});
+							} else {
+								formlikes.forEach((like) => {
+									like.setAttribute("action", "/reate-listlike");
+									like.setAttribute("method", "POST");
+									like[0].value = iduser;
+								});
+								likebooks.forEach((ilike) => {
+									ilike.addEventListener("click", () => {
+										const formLikeID = document.getElementById(
+											`Get${ilike.dataset.idb}`
+										);
+										formLikeID[1].value = ilike.dataset.idb;
+									});
+								});
+							}
+						} else {
+							formlikes.forEach((flike) => {
+								flike.addEventListener("submit", (e) => {
+									e.preventDefault();
+									window.alert("Pls Login");
+								});
+							});
+						}
+						likebooks.forEach((like) => {
+							like.addEventListener("click", () => {
+								document.getElementById(`Sub${like.dataset.idb}`).click();
+							});
+						});
 					});
-				});
 			});
 		});
 		//show author
@@ -154,12 +323,64 @@ fetch("http://localhost:3000/api/v1/books")
 					});
 				});
 				//like book
-				const likebooks = document.querySelectorAll(".js_likeB");
-				likebooks.forEach((like) => {
-					like.addEventListener("click", () => {
-						console.log(like.dataset.idb);
+				fetch("http://localhost:3000/api/v1/likes")
+					.then((res) => res.json())
+					.then((likes) => {
+						const likebooks = document.querySelectorAll(".js_likeB");
+						const formlikes = document.querySelectorAll(".js_formlikes");
+						const iduser = localStorage.getItem("IDuser");
+						if (iduser) {
+							const userL = likes.find((like) => like.IDu == iduser);
+							if (userL) {
+								formlikes.forEach((flike) => {
+									flike.setAttribute("action", "/update-listlike");
+									flike.setAttribute("method", "POST");
+									flike[0].value = iduser;
+									// flike.addEventListener("submit", (e) => {
+									// 	e.preventDefault();
+									// });
+								});
+								const listNewBLike = userL.ListBook.split(",");
+								likebooks.forEach((ilike) => {
+									ilike.addEventListener("click", () => {
+										const formLikeID = document.getElementById(
+											`Get${ilike.dataset.idb}`
+										);
+										listNewBLike.push(ilike.dataset.idb);
+										console.log(ilike.dataset.idb);
+										const listBookNewO = [...new Set(listNewBLike)];
+										formLikeID[1].value = listBookNewO.join(",");
+									});
+								});
+							} else {
+								formlikes.forEach((like) => {
+									like.setAttribute("action", "/reate-listlike");
+									like.setAttribute("method", "POST");
+									like[0].value = iduser;
+								});
+								likebooks.forEach((ilike) => {
+									ilike.addEventListener("click", () => {
+										const formLikeID = document.getElementById(
+											`Get${ilike.dataset.idb}`
+										);
+										formLikeID[1].value = ilike.dataset.idb;
+									});
+								});
+							}
+						} else {
+							formlikes.forEach((flike) => {
+								flike.addEventListener("submit", (e) => {
+									e.preventDefault();
+									window.alert("Pls Login");
+								});
+							});
+						}
+						likebooks.forEach((like) => {
+							like.addEventListener("click", () => {
+								document.getElementById(`Sub${like.dataset.idb}`).click();
+							});
+						});
 					});
-				});
 			});
 		});
 		return ab;
@@ -188,29 +409,124 @@ fetch("http://localhost:3000/api/v1/books")
 				});
 			});
 			//like book
-			const likebooks = document.querySelectorAll(".js_likeB");
-			likebooks.forEach((like) => {
-				like.addEventListener("click", () => {
-					console.log(like.dataset.idb);
+			fetch("http://localhost:3000/api/v1/likes")
+				.then((res) => res.json())
+				.then((likes) => {
+					const likebooks = document.querySelectorAll(".js_likeB");
+					const formlikes = document.querySelectorAll(".js_formlikes");
+					const iduser = localStorage.getItem("IDuser");
+					if (iduser) {
+						const userL = likes.find((like) => like.IDu == iduser);
+						if (userL) {
+							formlikes.forEach((flike) => {
+								flike.setAttribute("action", "/update-listlike");
+								flike.setAttribute("method", "POST");
+								flike[0].value = iduser;
+								// flike.addEventListener("submit", (e) => {
+								// 	e.preventDefault();
+								// });
+							});
+							const listNewBLike = userL.ListBook.split(",");
+							likebooks.forEach((ilike) => {
+								ilike.addEventListener("click", () => {
+									const formLikeID = document.getElementById(
+										`Get${ilike.dataset.idb}`
+									);
+									listNewBLike.push(ilike.dataset.idb);
+									console.log(ilike.dataset.idb);
+									const listBookNewO = [...new Set(listNewBLike)];
+									formLikeID[1].value = listBookNewO.join(",");
+								});
+							});
+						} else {
+							formlikes.forEach((like) => {
+								like.setAttribute("action", "/reate-listlike");
+								like.setAttribute("method", "POST");
+								like[0].value = iduser;
+							});
+							likebooks.forEach((ilike) => {
+								ilike.addEventListener("click", () => {
+									const formLikeID = document.getElementById(
+										`Get${ilike.dataset.idb}`
+									);
+									formLikeID[1].value = ilike.dataset.idb;
+								});
+							});
+						}
+					} else {
+						formlikes.forEach((flike) => {
+							flike.addEventListener("submit", (e) => {
+								e.preventDefault();
+								window.alert("Pls Login");
+							});
+						});
+					}
+					likebooks.forEach((like) => {
+						like.addEventListener("click", () => {
+							document.getElementById(`Sub${like.dataset.idb}`).click();
+						});
+					});
 				});
-			});
 		});
 		return ab;
 	})
 	.then((books) => {
-		const likebooks = document.querySelectorAll(".js_likeB");
-		likebooks.forEach((like) => {
-			like.addEventListener("click", () => {
-				console.log(like.dataset.idb);
+		fetch("http://localhost:3000/api/v1/likes")
+			.then((res) => res.json())
+			.then((likes) => {
+				const likebooks = document.querySelectorAll(".js_likeB");
+				const formlikes = document.querySelectorAll(".js_formlikes");
+				const iduser = localStorage.getItem("IDuser");
+				if (iduser) {
+					const userL = likes.find((like) => like.IDu == iduser);
+					if (userL) {
+						formlikes.forEach((flike) => {
+							flike.setAttribute("action", "/update-listlike");
+							flike.setAttribute("method", "POST");
+							flike[0].value = iduser;
+							// flike.addEventListener("submit", (e) => {
+							// 	e.preventDefault();
+							// });
+						});
+						const listNewBLike = userL.ListBook.split(",");
+						likebooks.forEach((ilike) => {
+							ilike.addEventListener("click", () => {
+								const formLikeID = document.getElementById(
+									`Get${ilike.dataset.idb}`
+								);
+								listNewBLike.push(ilike.dataset.idb);
+								console.log(ilike.dataset.idb);
+								const listBookNewO = [...new Set(listNewBLike)];
+								formLikeID[1].value = listBookNewO.join(",");
+							});
+						});
+					} else {
+						formlikes.forEach((like) => {
+							like.setAttribute("action", "/reate-listlike");
+							like.setAttribute("method", "POST");
+							like[0].value = iduser;
+						});
+						likebooks.forEach((ilike) => {
+							ilike.addEventListener("click", () => {
+								const formLikeID = document.getElementById(
+									`Get${ilike.dataset.idb}`
+								);
+								formLikeID[1].value = ilike.dataset.idb;
+							});
+						});
+					}
+				} else {
+					formlikes.forEach((flike) => {
+						flike.addEventListener("submit", (e) => {
+							e.preventDefault();
+							window.alert("Pls Login");
+						});
+					});
+				}
+				likebooks.forEach((like) => {
+					like.addEventListener("click", () => {
+						document.getElementById(`Sub${like.dataset.idb}`).click();
+					});
+				});
 			});
-		});
 	});
-
-const filterY = function (books, year) {
-	return books.filter((book) => book.YearPub == year);
-};
-const filterX = (books, publiser) =>
-	books.filter((book) => book.Publiser === publiser);
-
-const filterA = (books, author) =>
-	books.filter((book) => book.Author === author);

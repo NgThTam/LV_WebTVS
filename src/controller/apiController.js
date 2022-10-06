@@ -32,6 +32,12 @@ let getAllComment = (req, res) => {
 		return res.status(200).json(data);
 	});
 };
+let getAllLikes = (req, res) => {
+	connection.query("SELECT * FROM `likes`", (err, results, fields) => {
+		let data = results.map((dt) => dt);
+		return res.status(200).json(data);
+	});
+};
 
 const random = (length) => {
 	var result = "";
@@ -124,6 +130,22 @@ let updateStatus = (req, res) => {
 	);
 	return res.redirect("/admin");
 };
+let updateLikes = (req, res) => {
+	let { Idu, listBlike } = req.body;
+	connection.query("UPDATE `likes` SET `ListBook`=? WHERE `IDu`=?", [
+		listBlike,
+		Idu,
+	]);
+	return res.redirect("/books");
+};
+let createLikes = (req, res) => {
+	let { Idu, listBlike } = req.body;
+	connection.query("INSERT INTO `likes`(`IDu`, `ListBook`) VALUES (?,?)", [
+		Idu,
+		listBlike,
+	]);
+	return res.redirect("/books");
+};
 
 module.exports = {
 	createUser,
@@ -131,6 +153,7 @@ module.exports = {
 	getAllUser,
 	getAllRating,
 	getAllOder,
+	getAllLikes,
 	getAllComment,
 	createComment,
 	createOder,
@@ -140,4 +163,6 @@ module.exports = {
 	updateBook,
 	deleteBook,
 	updateStatus,
+	updateLikes,
+	createLikes,
 };

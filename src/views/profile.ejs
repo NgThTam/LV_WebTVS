@@ -116,8 +116,8 @@
             <div id="scr1" class="scr js_scr js_show_scr">
                <div class="function">
                 <div class="bigfun">
-                    <div class="fun_voucher js_fun js_clstatus" data-srid = "sr1">
-                        <i class='bx bx-bookmark color_icon'></i>
+                    <div class="fun_voucher js_fun js_clstatus boder_click" data-srid = "sr1">
+                        <i class='bx bx-bookmark color_icon text_color'></i>
                         <div class="icon">
                             <i class='bx bx-book-reader'></i>
                             <p>rental voucher</p>
@@ -136,7 +136,7 @@
                 
                </div>
                <!-- hiddenSr -->
-               <div id="sr1" class="bodyfun  js_srfun">
+               <div id="sr1" class="bodyfun hiddenSr showSr js_srfun">
                     <h1>Rental voucher</h1>
                     <div class="funbody">
                         <div class="funStatus">
@@ -176,7 +176,21 @@
                </div>
                <div id="sr2" class="bodyfun hiddenSr js_srfun">
                     <h1>Favorite books</h1>
-                    <div class="funbody"></div>
+                    <div class="bodylikeB">
+                        <div class="renderlikelist js_renderlikelist">
+                            <div class="paddingEllike">
+                                <div class="ellike">
+                                    <img src="http://images.amazon.com/images/P/0060915544.0" alt="">
+                                    <div class="iconlistLi">
+                                        <div><i class='bx bxs-heart' style="color: red;"></i></div>
+                                        <div><a href="/detail" class="js_likedetail"><i class='bx bx-search'></i></a></div>
+                                        <div><i class='bx bx-trash'></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
                </div>
             </div>
         </div>
