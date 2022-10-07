@@ -75,7 +75,14 @@ let createComment = (req, res) => {
 	return res.redirect("/detail");
 };
 let createOder = (req, res) => {
-	let { IDo, IDu, Cart, DateRental, DatePay } = req.body;
+	let { IDo, IDu, Cart, DateRental, DatePay, Listamount } = req.body;
+	let arrB = Listamount.split(";");
+	arrB.forEach((elarrB) => {
+		connection.query("UPDATE `books` SET `amount`=? WHERE `IDb`= ?", [
+			elarrB.split(",")[1] - 1,
+			elarrB.split(",")[0],
+		]);
+	});
 	connection.query(
 		"INSERT INTO `oders`(`IDo`, `IDu`, `Cart`, `DateRental`, `DatePay`) VALUES (?,?,?,?,?)",
 		[IDo, IDu, Cart, DateRental, DatePay]

@@ -27,6 +27,7 @@ const renderVou = (user, numCar, dateC) => `<div class="cntV">
                                                     <input hidden name="Cart">
                                                     <input hidden name="DateRental">
                                                     <input hidden name="DatePay">
+													<input hidden name="Listamount">
                                                 </div>
                                                 <div class="subVcart">
                                                     <button type="submit">OK</button>
@@ -38,61 +39,88 @@ const renderIB = (book) => `<div class="imageLB">
 fetch("http://localhost:3000/api/v1/users")
 	.then((respone) => respone.json())
 	.then((users) => {
-		const idu = localStorage.getItem("IDuser");
-		const user = users.find((us) => us.IDu == idu);
-		const cart = JSON.parse(localStorage.getItem("addCart"));
-		const dateBuy = localStorage.getItem("dateCreate");
-		const innerVou = document.querySelector(".js_renderV");
-		innerVou.innerHTML = renderVou(user, cart.length, dateBuy);
+		fetch("http://localhost:3000/api/v1/books")
+			.then((res) => res.json())
+			.then((books) => {
+				const idu = localStorage.getItem("IDuser");
+				const user = users.find((us) => us.IDu == idu);
+				const cart = JSON.parse(localStorage.getItem("addCart"));
+				const dateBuy = localStorage.getItem("dateCreate");
+				const innerVou = document.querySelector(".js_renderV");
+				innerVou.innerHTML = renderVou(user, cart.length, dateBuy);
 
-		const formVou = document.querySelector(".js_subV");
-		const dateCreatee = new Date();
-		formVou.addEventListener("submit", (e) => {
-			const getM = dateCreatee.getMonth() + 1;
-			const dateP = formVou[0].value;
-			// console.log(reverseDate(dateP).slice(0, 2));
-			if (!dateP) {
-				window.alert("NOoooooo");
-				e.preventDefault();
-			} else {
-				if (
-					parseInt(reverseDate(dateP).slice(6, 10)) >= dateCreatee.getFullYear()
-				) {
-					if (
-						parseInt(reverseDate(dateP).slice(6, 10)) ==
-						dateCreatee.getFullYear()
-					) {
-						if (parseInt(reverseDate(dateP).slice(3, 5)) >= getM) {
-							if (parseInt(reverseDate(dateP).slice(3, 5)) == getM) {
-								if (
-									parseInt(reverseDate(dateP).slice(0, 2)) >=
-									dateCreatee.getDate()
-								) {
-									alert("successful rental registration!!");
-								} else {
-									window.alert("date no!");
-									e.preventDefault();
-								}
-							}
-						} else {
-							window.alert("date no!");
-							e.preventDefault();
+				const formVou = document.querySelector(".js_subV");
+				const dateCreatee = new Date();
+				formVou.addEventListener("submit", (e) => {
+					let checkB = true;
+					cart.forEach((elcart) => {
+						const slbook = books.find((numbook) => numbook.IDb == elcart);
+						if (slbook.amount <= 0) {
+							window.alert(`idbook: ${slbook.IDb} `);
+							checkB = false;
+							// e.preventDefault();
 						}
+					});
+					if (checkB) {
+						// e.preventDefault();
+						const getM = dateCreatee.getMonth() + 1;
+						const dateP = formVou[0].value;
+						// console.log(reverseDate(dateP).slice(0, 2));
+						if (!dateP) {
+							window.alert("NOoooooo");
+							e.preventDefault();
+						} else {
+							if (
+								parseInt(reverseDate(dateP).slice(6, 10)) >=
+								dateCreatee.getFullYear()
+							) {
+								if (
+									parseInt(reverseDate(dateP).slice(6, 10)) ==
+									dateCreatee.getFullYear()
+								) {
+									if (parseInt(reverseDate(dateP).slice(3, 5)) >= getM) {
+										if (parseInt(reverseDate(dateP).slice(3, 5)) == getM) {
+											if (
+												parseInt(reverseDate(dateP).slice(0, 2)) >=
+												dateCreatee.getDate()
+											) {
+												alert("successful rental registration!!");
+												// console.log(cart);
+											} else {
+												window.alert("date no!");
+												e.preventDefault();
+											}
+										}
+									} else {
+										window.alert("date no!");
+										e.preventDefault();
+									}
+								}
+							} else {
+								window.alert("date no!");
+								e.preventDefault();
+							}
+						}
+
+						formVou[1].value = random(8);
+						formVou[2].value = idu;
+						formVou[3].value = cart.join(",");
+						formVou[4].value = dateBuy;
+						formVou[5].value = reverseDate(dateP);
+						const amountCart = [];
+						cart.forEach((aelecart) => {
+							const amcart = books.find((boook) => boook.IDb == aelecart);
+							amountCart.push(`${amcart.IDb},${amcart.amount}`);
+						});
+						// console.log(amountCart);
+						formVou[6].value = amountCart.join(";");
+
+						delete localStorage.addCart;
+					} else {
+						e.preventDefault();
 					}
-				} else {
-					window.alert("date no!");
-					e.preventDefault();
-				}
-			}
-
-			formVou[1].value = random(8);
-			formVou[2].value = idu;
-			formVou[3].value = cart.join(",");
-			formVou[4].value = dateBuy;
-			formVou[5].value = reverseDate(dateP);
-
-			delete localStorage.addCart;
-		});
+				});
+			});
 	});
 
 const random = (length) => {
