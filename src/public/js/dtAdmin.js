@@ -15,6 +15,7 @@ const renderBook = (book) => {
 				<td>${book.Author}</td>
 				<td>${book.YearPub}</td>
 				<td>${book.Publiser}</td>
+				<td>${book.amount}</td>
 				<td><i class='bx bxs-edit js_iconedit' data-idbedit="${book.IDb}"></i></td>
 				<td><i class='bx bx-x js_icondelete' data-iddelete="${book.IDb}"></i>
 					<form action="/delete-book" hidden method="POST">
@@ -69,13 +70,14 @@ const innerRVex = (oder) => {
 				<td>${oder.DatePay}</td>
 				<td><div class="status"><p class="exD">expired</p></div></td>
 				<td><i class='bx bxs-show divi js_viewO' data-idoder="${oder.IDo}"></i></td>
-				<td><form action="/update-paystatus" method="POST">
+				<td><form action="/update-paystatus" method="POST" class="js_formCheckoke" data-idform="${oder.Cart}">
                                         <input type="text" name="IDo" hidden value="${oder.IDo}">
                                         <input type="text" name="IDu" hidden value="${oder.IDu}">
                                         <input type="text" name="Cart" hidden value="${oder.Cart}">
                                         <input type="text" name="DateRental" hidden value="${oder.DateRental}">
                                         <input type="text" name="DatePay" hidden value="${oder.DatePay}">
                                         <input type="text" name="PayStatus" hidden value="1">
+										<input type="text" name="ListAmount" hidden >
                                         <button class="butPaystatus" type="submit">yes</button>
                                     </form></td>
 			</tr>`;
@@ -101,13 +103,14 @@ const innerRVunex = (oder) => {
 				<td>${oder.DatePay}</td>
 				<td><div class="status"><p class="unexD">unexpired</p></div></td>
 				<td><i class='bx bxs-show divi js_viewO' data-idoder="${oder.IDo}"></i></td>
-				<td><form action="/update-paystatus" method="POST">
+				<td><form action="/update-paystatus" method="POST" class="js_formCheckoke" data-idform="${oder.Cart}">
 										<input type="text" name="IDo" hidden value="${oder.IDo}">
 										<input type="text" name="IDu" hidden value="${oder.IDu}">
 										<input type="text" name="Cart" hidden value="${oder.Cart}">
 										<input type="text" name="DateRental" hidden value="${oder.DateRental}">
 										<input type="text" name="DatePay" hidden value="${oder.DatePay}">
                                         <input type="text" name="PayStatus" hidden value="1">
+										<input type="text" name="ListAmount" hidden >
                                         <button class="butPaystatus" type="submit">yes</button>
                                     </form></td>
 			</tr>`;
@@ -367,6 +370,19 @@ fetch("http://localhost:3000/api/v1/books")
 						});
 						const innerListOder = document.querySelector(".js_innOder");
 						innerListOder.innerHTML = newlistOder.join(" ");
+						const listformU = document.querySelectorAll(".js_formCheckoke");
+						listformU.forEach((formUp) => {
+							formUp.addEventListener("submit", (e) => {
+								// e.preventDefault();
+								const arrCart = formUp.dataset.idform.split(",");
+								const newCartamount = [];
+								arrCart.forEach((acrt) => {
+									const adBoook = books.find((bookk) => bookk.IDb == acrt);
+									newCartamount.push(`${adBoook.IDb},${adBoook.amount}`);
+								});
+								formUp[6].value = newCartamount.join(";");
+							});
+						});
 					})
 					.then(() => {
 						const iconfils = document.querySelectorAll(".js_filStatus");
@@ -391,6 +407,22 @@ fetch("http://localhost:3000/api/v1/books")
 									});
 									const innerListOder = document.querySelector(".js_innOder");
 									innerListOder.innerHTML = cntUn.join(" ");
+									const listformU =
+										document.querySelectorAll(".js_formCheckoke");
+									listformU.forEach((formUp) => {
+										formUp.addEventListener("submit", (e) => {
+											// e.preventDefault();
+											const arrCart = formUp.dataset.idform.split(",");
+											const newCartamount = [];
+											arrCart.forEach((acrt) => {
+												const adBoook = books.find(
+													(bookk) => bookk.IDb == acrt
+												);
+												newCartamount.push(`${adBoook.IDb},${adBoook.amount}`);
+											});
+											formUp[6].value = newCartamount.join(";");
+										});
+									});
 									const viewOs = document.querySelectorAll(".js_viewO");
 									const modalO = document.querySelector(".js_modalview");
 									const cntO = document.querySelector(".js_cntO");
@@ -434,6 +466,22 @@ fetch("http://localhost:3000/api/v1/books")
 									});
 									const innerListOder = document.querySelector(".js_innOder");
 									innerListOder.innerHTML = cntEx.join(" ");
+									const listformU =
+										document.querySelectorAll(".js_formCheckoke");
+									listformU.forEach((formUp) => {
+										formUp.addEventListener("submit", (e) => {
+											// e.preventDefault();
+											const arrCart = formUp.dataset.idform.split(",");
+											const newCartamount = [];
+											arrCart.forEach((acrt) => {
+												const adBoook = books.find(
+													(bookk) => bookk.IDb == acrt
+												);
+												newCartamount.push(`${adBoook.IDb},${adBoook.amount}`);
+											});
+											formUp[6].value = newCartamount.join(";");
+										});
+									});
 									const viewOs = document.querySelectorAll(".js_viewO");
 									const modalO = document.querySelector(".js_modalview");
 									const cntO = document.querySelector(".js_cntO");

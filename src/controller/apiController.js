@@ -130,7 +130,14 @@ let deleteBook = (req, res) => {
 };
 
 let updateStatus = (req, res) => {
-	let { IDo, IDu, Cart, DateRental, DatePay, PayStatus } = req.body;
+	let { IDo, IDu, Cart, DateRental, DatePay, PayStatus, ListAmount } = req.body;
+	let arrBAmount = ListAmount.split(";");
+	arrBAmount.forEach((amount) => {
+		connection.query("UPDATE `books` SET `amount`=? WHERE `IDb`= ?", [
+			parseInt(amount.split(",")[1]) + 1,
+			amount.split(",")[0],
+		]);
+	});
 	connection.query(
 		"UPDATE `oders` SET `IDu`=?,`Cart`=?,`DateRental`=?,`DatePay`=?,`PayStatus`=? WHERE `IDo`=?",
 		[IDu, Cart, DateRental, DatePay, PayStatus, IDo]
