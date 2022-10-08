@@ -11,11 +11,11 @@ const renderUser = (user, index) => {
 const renderBook = (book) => {
 	return `<tr class="tableBadmin">
 				<td><img src="${book.ImgB}" alt=""></td>
-				<td style="text-align:left;">${book.NameB}</td>
+				<td style="text-align:left;">${book.NameB} <span style="font-size: 12px;color: blue;">(${book.amount})</span></td>
 				<td>${book.Author}</td>
 				<td>${book.YearPub}</td>
 				<td>${book.Publiser}</td>
-				<td>${book.amount}</td>
+				<td><i class='bx bxs-pie-chart-alt-2 js_iconPie' data-amountb="${book.amount}" data-namepie="${book.NameB}"></i></td>
 				<td><i class='bx bxs-edit js_iconedit' data-idbedit="${book.IDb}"></i></td>
 				<td><i class='bx bx-x js_icondelete' data-iddelete="${book.IDb}"></i>
 					<form action="/delete-book" hidden method="POST">
@@ -213,6 +213,58 @@ fetch("http://localhost:3000/api/v1/books")
 			listdelete.forEach((icondele) => {
 				icondele.addEventListener("click", () => {
 					document.getElementById(icondele.dataset.iddelete).click();
+				});
+			});
+			const iconpies = document.querySelectorAll(".js_iconPie");
+			iconpies.forEach((iconPie) => {
+				iconPie.addEventListener("click", () => {
+					const clamount = iconPie.dataset.amountb;
+					const donamount = 10 - iconPie.dataset.amountb;
+					const nametitle = iconPie.dataset.namepie;
+					Highcharts.chart("HighChartOneB", {
+						colors: ["#01BAF2", "#ff0000ad"],
+						chart: {
+							type: "pie",
+						},
+						title: {
+							text: `<p style="font-weight: 600;">${nametitle}</p>`,
+						},
+						tooltip: {
+							valueSuffix: "books",
+						},
+						subtitle: {
+							text: "amount of books",
+						},
+						plotOptions: {
+							pie: {
+								allowPointSelect: true,
+								cursor: "pointer",
+								dataLabels: {
+									enabled: true,
+									format: "{point.name} ",
+								},
+								showInLegend: true,
+							},
+						},
+						series: [
+							{
+								name: "Quantity",
+								colorByPoint: true,
+								data: [
+									{
+										name: "Remaining",
+										y: parseInt(clamount),
+									},
+									{
+										name: "Unpaid",
+										sliced: true,
+										selected: true,
+										y: parseInt(donamount),
+									},
+								],
+							},
+						],
+					});
 				});
 			});
 		});
@@ -609,6 +661,110 @@ fetch("http://localhost:3000/api/v1/books")
 					],
 				});
 			});
+		return books;
+	})
+	// chartPie
+	.then((books) => {
+		const sumAllB = 10 * books.length;
+		const numAmounts = books.map((book) => book.amount);
+		let conNumB = numAmounts.reduce((sum, item) => sum + item);
+		let notBumB = sumAllB - conNumB;
+		Highcharts.chart("HighChartAllB", {
+			colors: ["#01BAF2", "#dfb027"],
+			chart: {
+				type: "pie",
+			},
+			title: {
+				text: '<p style="font-weight: 600;">Book inventory statistics</p>',
+			},
+			tooltip: {
+				valueSuffix: "books",
+			},
+			subtitle: {
+				text: "amount of books",
+			},
+			plotOptions: {
+				pie: {
+					allowPointSelect: true,
+					cursor: "pointer",
+					dataLabels: {
+						enabled: true,
+						format: "{point.name} ",
+					},
+					showInLegend: true,
+				},
+			},
+			series: [
+				{
+					name: "Quantity",
+					colorByPoint: true,
+					data: [
+						{
+							name: "Remaining",
+							y: conNumB,
+						},
+						{
+							name: "Unpaid",
+							sliced: true,
+							selected: true,
+							y: notBumB,
+						},
+					],
+				},
+			],
+		});
+		const iconpies = document.querySelectorAll(".js_iconPie");
+		iconpies.forEach((iconPie) => {
+			iconPie.addEventListener("click", () => {
+				const clamount = iconPie.dataset.amountb;
+				const donamount = 10 - iconPie.dataset.amountb;
+				const nametitle = iconPie.dataset.namepie;
+				Highcharts.chart("HighChartOneB", {
+					colors: ["#01BAF2", "#ff0000ad"],
+					chart: {
+						type: "pie",
+					},
+					title: {
+						text: `<p style="font-weight: 600;">${nametitle}</p>`,
+					},
+					tooltip: {
+						valueSuffix: "books",
+					},
+					subtitle: {
+						text: "amount of books",
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: "pointer",
+							dataLabels: {
+								enabled: true,
+								format: "{point.name} ",
+							},
+							showInLegend: true,
+						},
+					},
+					series: [
+						{
+							name: "Quantity",
+							colorByPoint: true,
+							data: [
+								{
+									name: "Remaining",
+									y: parseInt(clamount),
+								},
+								{
+									name: "Unpaid",
+									sliced: true,
+									selected: true,
+									y: parseInt(donamount),
+								},
+							],
+						},
+					],
+				});
+			});
+		});
 	});
 
 const formAddB = document.querySelector(".js_formAddBook");

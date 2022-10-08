@@ -2232,7 +2232,7 @@ body {
 .tableBadmin td img{
 	width: 30px;
 }
-.tableBadmin td i{
+.tableBadmin td .bx-x{
 	font-size: 30px;
 	color: red;
 	cursor: pointer;
@@ -2545,4 +2545,27 @@ body {
 .paddingEllike{
 	padding: 0px 30px 30px 0px;
 	/* width: 188px; */
+}
+.chartBookoder{
+	padding: 0px 30px 25px 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.highchar4{
+	min-width: 310px;
+	height: 400px;
+	max-width: 50%;
+	margin: 0 auto;
+}
+.highchar5{
+	min-width: 310px;
+	height: 400px;
+	max-width: 50%;
+	margin: 0 auto;
+}
+.bxs-pie-chart-alt-2{
+	font-size: 21px;
+    color: #01BAF2;
+    cursor: pointer;
 }
