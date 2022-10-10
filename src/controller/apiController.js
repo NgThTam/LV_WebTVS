@@ -160,6 +160,21 @@ let createLikes = (req, res) => {
 	]);
 	return res.redirect("/books");
 };
+let deleteLikeBook = (req, res) => {
+	let { idu, idb } = req.body;
+	connection.query(
+		"SELECT * FROM `likes` WHERE `IDu`=?",
+		[idu],
+		(err, results, fields) => {
+			const newListB = results[0].ListBook.split(",").filter((ib) => ib != idb);
+			connection.query("UPDATE `likes` SET `ListBook`=? WHERE `IDu`=?", [
+				newListB.join(","),
+				idu,
+			]);
+		}
+	);
+	return res.redirect("/profile");
+};
 
 module.exports = {
 	createUser,
@@ -179,4 +194,5 @@ module.exports = {
 	updateStatus,
 	updateLikes,
 	createLikes,
+	deleteLikeBook,
 };

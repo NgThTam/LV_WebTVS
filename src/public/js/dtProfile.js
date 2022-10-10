@@ -269,6 +269,12 @@ fetch("http://localhost:3000/api/v1/books")
 						localStorage.setItem("id_book", alike.dataset.idblike);
 					});
 				});
+				const formDebooklikes = document.querySelectorAll(".js_formdelikes");
+				formDebooklikes.forEach((formdelike) => {
+					formdelike.addEventListener("submit", () => {
+						formdelike[0].value = iduserLike;
+					});
+				});
 			});
 	});
 // fetch("http://localhost:3000/api/v1/oders")
@@ -495,7 +501,13 @@ const renderLike = (book) => {
 					<div class="iconlistLi">
 						<div><i class='bx bxs-heart' style="color: red;"></i></div>
 						<div><a href="/detail" class="js_likedetail" data-idblike="${book.IDb}"><i class='bx bx-search'></i></a></div>
-						<div><i class='bx bx-trash'></i></div>
+						<div>
+							<form action="/delete-book-like" method="POST" class="js_formdelikes">
+								<input type="text" name="idu" id="" hidden>
+								<input type="text" name="idb" id="" hidden value="${book.IDb}">
+								<button type="submit" class="submitdeLike"><i class='bx bx-trash'></i></button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>`;

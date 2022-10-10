@@ -289,6 +289,7 @@ fetch("http://localhost:3000/api/v1/books")
 		});
 		return books;
 	})
+	//chartcolumn
 	.then((books) => {
 		const YearPubs = [];
 		books.forEach((book) => {
@@ -362,6 +363,7 @@ fetch("http://localhost:3000/api/v1/books")
 		});
 		return books;
 	})
+	//oder
 	.then((books) => {
 		fetch("http://localhost:3000/api/v1/oders")
 			.then((res) => res.json())
@@ -791,14 +793,39 @@ formAddB.addEventListener("submit", (e) => {
 	}
 });
 
-const funaddbook = document.querySelector(".js_showAddbook");
-const inAddbook = document.querySelector(".js_showAB");
-funaddbook.addEventListener("click", () => {
-	inAddbook.classList.toggle("disflex");
-	funaddbook.classList.toggle("boderFun");
-});
+// const funaddbook = document.querySelector(".js_showAddbook");
+// const inAddbook = document.querySelector(".js_showAB");
+// funaddbook.addEventListener("click", () => {
+// 	inAddbook.classList.toggle("disflex");
+// 	funaddbook.classList.toggle("boderFun");
+// });
 const funedit = document.querySelector(".js_showedit");
 const closeEdit = document.querySelector(".js_closeE");
 closeEdit.addEventListener("click", () => {
 	funedit.setAttribute("style", "display: none;");
+});
+
+const funaddbooks = document.querySelectorAll(".js_showAddbook");
+const inAddbooks = document.querySelectorAll(".js_showAB");
+funaddbooks.forEach((fun) => {
+	fun.addEventListener("click", () => {
+		funaddbooks.forEach((funD) => {
+			funD.classList.remove("boderFun");
+		});
+		fun.classList.add("boderFun");
+		inAddbooks.forEach((inAddbook) => {
+			inAddbook.classList.remove("disflex");
+		});
+		document.querySelector(`.${fun.dataset.setsr}`).classList.add("disflex");
+		// const pieshows = document.querySelectorAll(".js_pieshow");
+		// if (fun.dataset.setsr == "srstatic") {
+		// 	pieshows.forEach((pieshow) => {
+		// 		pieshow.removeAttribute("hidden");
+		// 	});
+		// } else {
+		// 	pieshows.forEach((pieshow) => {
+		// 		pieshow.setAttribute("hidden", " ");
+		// 	});
+		// }
+	});
 });

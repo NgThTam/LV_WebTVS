@@ -30,6 +30,10 @@ const renderBook = (book) => {
 				</div>
 			</div>`;
 };
+const filterStar = (books, start, end) =>
+	books.filter((book) => book.avgStars > start && book.avgStars <= end);
+const filterStar1 = (books, start, end) =>
+	books.filter((book) => book.avgStars >= start && book.avgStars < end);
 
 fetch("http://localhost:3000/api/v1/books")
 	.then((Response) => Response.json())
@@ -383,6 +387,102 @@ fetch("http://localhost:3000/api/v1/books")
 					});
 			});
 		});
+		//show star
+		fetch("http://localhost:3000/api/v1/ratings")
+			.then((res) => res.json())
+			.then((ratings) => {
+				const newBookList = ab.map((book) => {
+					const listBookById = ratings.filter(
+						(rating) => rating.IDb === book.IDb
+					);
+
+					const avgStars =
+						listBookById.reduce((sum, curr) => sum + curr.Star, 0) /
+						listBookById.length;
+					return { ...book, avgStars };
+				});
+				const clickStars = document.querySelectorAll(".js_menu_ratings > li");
+				clickStars.forEach((clickstar) => {
+					clickstar.addEventListener("click", () => {
+						const fstar = clickstar.dataset.star;
+						let newStars = [];
+						if (fstar == 2) {
+							newStars = filterStar1(newBookList, 0, 2);
+						} else {
+							newStars = filterStar(newBookList, fstar - 2, fstar);
+						}
+						const abook = newStars.map((newStar) => {
+							return renderBook(newStar);
+						});
+						showBook.innerHTML = abook.join(" ");
+						const abooks = document.querySelectorAll(".js_lbk");
+						abooks.forEach((abook) => {
+							abook.addEventListener("click", (e) => {
+								localStorage.setItem("id_book", e.target.dataset.id);
+							});
+						});
+						//like book
+						fetch("http://localhost:3000/api/v1/likes")
+							.then((res) => res.json())
+							.then((likes) => {
+								const likebooks = document.querySelectorAll(".js_likeB");
+								const formlikes = document.querySelectorAll(".js_formlikes");
+								const iduser = localStorage.getItem("IDuser");
+								if (iduser) {
+									const userL = likes.find((like) => like.IDu == iduser);
+									if (userL) {
+										formlikes.forEach((flike) => {
+											flike.setAttribute("action", "/update-listlike");
+											flike.setAttribute("method", "POST");
+											flike[0].value = iduser;
+											// flike.addEventListener("submit", (e) => {
+											// 	e.preventDefault();
+											// });
+										});
+										const listNewBLike = userL.ListBook.split(",");
+										likebooks.forEach((ilike) => {
+											ilike.addEventListener("click", () => {
+												const formLikeID = document.getElementById(
+													`Get${ilike.dataset.idb}`
+												);
+												listNewBLike.push(ilike.dataset.idb);
+												console.log(ilike.dataset.idb);
+												const listBookNewO = [...new Set(listNewBLike)];
+												formLikeID[1].value = listBookNewO.join(",");
+											});
+										});
+									} else {
+										formlikes.forEach((like) => {
+											like.setAttribute("action", "/reate-listlike");
+											like.setAttribute("method", "POST");
+											like[0].value = iduser;
+										});
+										likebooks.forEach((ilike) => {
+											ilike.addEventListener("click", () => {
+												const formLikeID = document.getElementById(
+													`Get${ilike.dataset.idb}`
+												);
+												formLikeID[1].value = ilike.dataset.idb;
+											});
+										});
+									}
+								} else {
+									formlikes.forEach((flike) => {
+										flike.addEventListener("submit", (e) => {
+											e.preventDefault();
+											window.alert("Pls Login");
+										});
+									});
+								}
+								likebooks.forEach((like) => {
+									like.addEventListener("click", () => {
+										document.getElementById(`Sub${like.dataset.idb}`).click();
+									});
+								});
+							});
+					});
+				});
+			});
 		return ab;
 	})
 	.then((ab) => {

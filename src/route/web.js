@@ -29,6 +29,7 @@ const initWebRouter = (app) => {
 	router.post("/update-paystatus", apiController.updateStatus);
 	router.post("/update-listlike", apiController.updateLikes);
 	router.post("/reate-listlike", apiController.createLikes);
+	router.post("/delete-book-like", apiController.deleteLikeBook);
 	// router.get("/detail/:userId", getPage.getAllUser);
 
 	return app.use("/", router);

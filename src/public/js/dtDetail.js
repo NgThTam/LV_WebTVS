@@ -278,6 +278,8 @@ function onlyUnique(value, index, self) {
 
 // comment
 const formCmt = document.querySelector(".js_formcmt");
+// const butComment = document.getElementById("butsubcomment");
+// console.log(butComment)
 formCmt.addEventListener("submit", () => {
 	if (localStorage.getItem("IDuser")) {
 		const timeCmt = new Date();
@@ -337,7 +339,7 @@ formCmt.addEventListener("submit", () => {
 		// console.log(timeCmt.getDate() + "/" + timeCmt.getMonth());
 		// console.log(timeCmt.getHours() + ":" + timeCmt.getMinutes());
 	} else {
-		console.log("pls login");
+		window.alert("pls login");
 		event.preventDefault();
 	}
 

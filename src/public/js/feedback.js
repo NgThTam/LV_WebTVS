@@ -17,6 +17,7 @@ sts.forEach((star) => {
 			alert(`You have successfully rated the product ${vstar} star !!!`);
 		} else {
 			alert("Please login before rating the product!!");
+			e.preventDefault();
 		}
 	});
 });

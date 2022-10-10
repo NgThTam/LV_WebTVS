@@ -2548,7 +2548,7 @@ body {
 }
 .chartBookoder{
 	padding: 0px 30px 25px 30px;
-	display: flex;
+	/* display: none; */
 	align-items: center;
 	justify-content: center;
 }
@@ -2556,7 +2556,7 @@ body {
 	min-width: 310px;
 	height: 400px;
 	max-width: 50%;
-	margin: 0 auto;
+	/* margin: 0 auto; */
 }
 .highchar5{
 	min-width: 310px;
@@ -2567,5 +2567,13 @@ body {
 .bxs-pie-chart-alt-2{
 	font-size: 21px;
     color: #01BAF2;
+    cursor: pointer;
+}
+.submitdeLike{
+	background: none;
+    border: none;
+}
+.submitdeLike i{
+	font-size: 23px;
     cursor: pointer;
 }
