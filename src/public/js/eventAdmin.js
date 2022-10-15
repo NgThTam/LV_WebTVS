@@ -21,7 +21,7 @@ const divshow = document.querySelector(".js_showsearchF");
 const inputsfile = document.querySelector(".js_inputSFile");
 const nameFile = document.querySelector(".js_nameFile");
 funSfile.addEventListener("click", () => {
-	funSfile.classList.toggle("boderFun");
+	funSfile.classList.toggle("boderFunsearch");
 	divshow.classList.toggle("disBlock");
 });
 inputsfile.addEventListener("change", () => {

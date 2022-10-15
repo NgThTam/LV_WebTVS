@@ -11,11 +11,13 @@
     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css"/>
     <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css"/>
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
-
+<script src="https://unpkg.com/read-excel-file@5.x/bundle/read-excel-file.min.js"></script>
 <style>
     html{
         font-family: arial, sans-serif;
@@ -309,12 +311,12 @@
     <div class="modal_searchF js_MSF">
         <div class="bodysearchF js_bodyMSF">
             <div class="iconsSearchF">
-                <div class="icondowload"><i class='bx bxs-download'></i></div>
+                <div class="icondowload"><i class='bx bxs-download js_downpdf'></i></div>
                 <div class="iconcolseF js_iconcolseF"><i class='bx bx-x' ></i></div>
             </div>
-            <div class="table_searchF listRenbooks">
+            <div class="table_searchF listRenbooks" id="contentToPrint">
                 <table>
-                    <tr style="background-color: #fdc111;">
+                    <tr style="background-color: #0ceccd;">
                       <th>Image</th>
                       <th>Book title</th>
                       <th>Author</th>
@@ -323,8 +325,8 @@
                       <th>Amount</th>
                       <th>Current quantity</th>
                     </tr>
-                    <tbody class="">
-                        <tr class="tableBadmin">
+                    <tbody class="js_contentSF">
+                        <!-- <tr class="tableBadmin">
                             <td><img src="http://images.amazon.com/images/P/0312195516.0" alt=""></td>
                             <td style="text-align:left;">The Red Tent (Bestselling Backlist)</td>
                             <td>Anita Diamant</td>
@@ -332,7 +334,7 @@
                             <td>Picador USA</td>
                             <td>10</td>
                             <td>8</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>

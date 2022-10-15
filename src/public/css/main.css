@@ -2163,6 +2163,7 @@ body {
     padding: 5px;
 	background-color: whitesmoke;
 	margin-left: 30px;
+	border-radius: 4px;
 }
 .funBookad:hover{
 	/* border: 3px solid #102f41; */
@@ -2669,7 +2670,7 @@ body {
 	border-radius: 3px;
 	outline: none;
 	white-space: nowrap;
-	-webkit-user-select: none;
+	/* -webkit-user-select: none; */
 	cursor: pointer;
 	text-shadow: 1px 1px #fff;
 	font-weight: 700;
@@ -2755,4 +2756,11 @@ body {
 }
 .dispFlEx{
 	display: flex;
+}
+.boderFunsearch{
+	border: 3px solid #11adfd;
+}
+.table_searchF{
+	max-height: 100%;
+	max-width: 1158px;
 }

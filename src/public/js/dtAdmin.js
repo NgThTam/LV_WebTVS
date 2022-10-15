@@ -157,6 +157,17 @@ const innerDetailView = (oder, listName) => {
 				</div>
 			</div>`;
 };
+const innerBookSF = (book) => {
+	return `<tr class="tableBadmin">
+				<td><img src="${book.ImgB}" alt=""></td>
+				<td style="text-align:left;">${book.NameB}</td>
+				<td>${book.Author}</td>
+				<td>${book.YearPub}</td>
+				<td>${book.Publiser}</td>
+				<td>10</td>
+				<td>${book.amount}</td>
+			</tr>`;
+};
 
 // fetch("http://localhost:3000/api/v1/users")
 // 	.then((res) => res.json())
@@ -798,6 +809,44 @@ fetch("http://localhost:3000/api/v1/books")
 							],
 						},
 					],
+				});
+			});
+		});
+		return books;
+	})
+	// search file
+	.then((books) => {
+		const inputsfile = document.querySelector(".js_inputSFile");
+		const innerSearchF = document.querySelector(".js_contentSF");
+		const butDownload = document.querySelector(".js_downpdf");
+		inputsfile.addEventListener("change", () => {
+			readXlsxFile(inputsfile.files[0]).then((rows) => {
+				const listIDsearch = [];
+				rows.forEach((row) => {
+					listIDsearch.push(row.join(""));
+				});
+				const listBookSearchF = listIDsearch.map((idS) => {
+					return books.find((bookkkk) => bookkkk.IDb == idS);
+				});
+				innerSearchF.innerHTML = listBookSearchF
+					.map((booook) => innerBookSF(booook))
+					.join(" ");
+				butDownload.addEventListener("click", () => {
+					window.jsPDF = window.jspdf.jsPDF;
+					let doc = new jsPDF();
+					let elementHTML = document.querySelector("#contentToPrint");
+					doc.html(elementHTML, {
+						callback: function (doc) {
+							// Save the PDF
+							doc.save("books.pdf");
+						},
+						margin: [10, 10, 10, 10],
+						autoPaging: "text",
+						x: 0,
+						y: 0,
+						width: 190, //target width in the PDF document
+						windowWidth: 1200, //window width in CSS pixels
+					});
 				});
 			});
 		});
