@@ -158,22 +158,22 @@ const innerDetailView = (oder, listName) => {
 			</div>`;
 };
 
-fetch("http://localhost:3000/api/v1/users")
-	.then((res) => res.json())
-	.then((users) => {
-		const innerrenUser = document.querySelector(".js_renderUser");
-		const listUser = [];
-		users.forEach((user, index) => {
-			listUser.push(renderUser(user, index));
-		});
-		innerrenUser.innerHTML = listUser.join(" ");
-		const mails = document.querySelectorAll(".js_iconmail");
-		mails.forEach((mail) => {
-			mail.addEventListener("click", () => {
-				window.open(`mailto:${mail.dataset.emailu}`);
-			});
-		});
-	});
+// fetch("http://localhost:3000/api/v1/users")
+// 	.then((res) => res.json())
+// 	.then((users) => {
+// 		const innerrenUser = document.querySelector(".js_renderUser");
+// 		const listUser = [];
+// 		users.forEach((user, index) => {
+// 			listUser.push(renderUser(user, index));
+// 		});
+// 		innerrenUser.innerHTML = listUser.join(" ");
+// 		const mails = document.querySelectorAll(".js_iconmail");
+// 		mails.forEach((mail) => {
+// 			mail.addEventListener("click", () => {
+// 				window.open(`mailto:${mail.dataset.emailu}`);
+// 			});
+// 		});
+// 	});
 const innerRenB = document.querySelector(".js_renderB");
 fetch("http://localhost:3000/api/v1/books")
 	.then((response) => response.json())
@@ -210,10 +210,27 @@ fetch("http://localhost:3000/api/v1/books")
 				});
 			});
 			const listdelete = document.querySelectorAll(".js_icondelete");
+			const banner = document.querySelector(".js_banner");
+			const butNo = document.querySelector(".js_no");
+			const bodybanner = document.querySelector(".bodybanner");
+			const butYes = document.querySelector(".js_yes");
 			listdelete.forEach((icondele) => {
 				icondele.addEventListener("click", () => {
-					document.getElementById(icondele.dataset.iddelete).click();
+					banner.setAttribute("style", "display: flex;");
+					butYes.setAttribute("data-idfyes", `${icondele.dataset.iddelete}`);
 				});
+			});
+			butNo.addEventListener("click", () => {
+				banner.removeAttribute("style");
+			});
+			banner.addEventListener("click", () => {
+				banner.removeAttribute("style");
+			});
+			bodybanner.addEventListener("click", (e) => {
+				e.stopPropagation();
+			});
+			butYes.addEventListener("click", () => {
+				document.getElementById(butYes.dataset.idfyes).click();
 			});
 			const iconpies = document.querySelectorAll(".js_iconPie");
 			iconpies.forEach((iconPie) => {
@@ -282,10 +299,27 @@ fetch("http://localhost:3000/api/v1/books")
 			});
 		});
 		const listdelete = document.querySelectorAll(".js_icondelete");
+		const banner = document.querySelector(".js_banner");
+		const butNo = document.querySelector(".js_no");
+		const bodybanner = document.querySelector(".bodybanner");
+		const butYes = document.querySelector(".js_yes");
 		listdelete.forEach((icondele) => {
 			icondele.addEventListener("click", () => {
-				document.getElementById(icondele.dataset.iddelete).click();
+				banner.setAttribute("style", "display: flex;");
+				butYes.setAttribute("data-idfyes", `${icondele.dataset.iddelete}`);
 			});
+		});
+		butNo.addEventListener("click", () => {
+			banner.removeAttribute("style");
+		});
+		banner.addEventListener("click", () => {
+			banner.removeAttribute("style");
+		});
+		bodybanner.addEventListener("click", (e) => {
+			e.stopPropagation();
+		});
+		butYes.addEventListener("click", () => {
+			document.getElementById(butYes.dataset.idfyes).click();
 		});
 		return books;
 	})
@@ -801,8 +835,15 @@ formAddB.addEventListener("submit", (e) => {
 // });
 const funedit = document.querySelector(".js_showedit");
 const closeEdit = document.querySelector(".js_closeE");
+const bodyeditt = document.querySelector(".bodyedit");
 closeEdit.addEventListener("click", () => {
 	funedit.setAttribute("style", "display: none;");
+});
+funedit.addEventListener("click", () => {
+	funedit.setAttribute("style", "display: none;");
+});
+bodyeditt.addEventListener("click", (e) => {
+	e.stopPropagation();
 });
 
 const funaddbooks = document.querySelectorAll(".js_showAddbook");
@@ -829,3 +870,44 @@ funaddbooks.forEach((fun) => {
 		// }
 	});
 });
+
+const gridOptions = {
+	// each entry here represents one column
+	columnDefs: [
+		{ field: "Stt" },
+		{ field: "Account" },
+		{ field: "FullName" },
+		{ field: "Old" },
+		{ field: "Address" },
+	],
+
+	// default col def properties get applied to all columns
+	defaultColDef: { sortable: true, filter: true },
+
+	rowSelection: "multiple", // allow rows to be selected
+	animateRows: true, // have rows animate to new positions when sorted
+
+	// example event handler
+	//  onCellClicked: params => {
+	//    console.log('cell was clicked', params)
+	//  }
+};
+
+const eGridDiv = document.getElementById("myGrid");
+new agGrid.Grid(eGridDiv, gridOptions);
+
+// Fetch data from server
+fetch("http://localhost:3000/api/v1/users")
+	.then((response) => response.json())
+	.then((users) => {
+		const newUser = users.map((user, index) => {
+			return {
+				Stt: index,
+				Account: user.Email,
+				FullName: user.FullName,
+				Old: user.Old,
+				Address: user.Addr,
+			};
+		});
+		gridOptions.api.setRowData(newUser);
+	});

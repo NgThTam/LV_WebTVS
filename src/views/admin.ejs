@@ -8,10 +8,14 @@
     <link rel="icon" type="image/x-icon" href="image/favicon.ico">
     <link rel="stylesheet" href="css/main.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css"/>
 </head>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+
 <style>
     html{
         font-family: arial, sans-serif;
@@ -39,7 +43,7 @@
         <div class="content_admin">
             <div id="scr1" class="scr js_scr ">
                 <div class="renderListUser">
-                    <div class="bodyrenderUser">
+                    <!-- <div class="bodyrenderUser">
                         <table>
                             <tr style="background-color: #0ee985;">
                                 <th>Stt</th>
@@ -51,17 +55,18 @@
                                 
                             </tr>
                             <tbody class="js_renderUser">
-                                <!-- <tr>
+                                <tr>
                                     <td>0</td>
                                     <td>thanhtm352@gmail.com</td>
                                     <td>Nguyễn Thanh Tâm</td>
                                     <td>22</td>
                                     <td>Nui sap - thoai son - an giang</td>
                                     <td><div class="sendmail"><i class='bx bx-mail-send'></i></div></td>
-                                </tr> -->
+                                </tr>
                             </tbody>
                         </table>
-                    </div>
+                    </div> -->
+                    <div id="myGrid" class="ag-theme-alpine" style="height: 500px"></div>
                 </div>
             </div>
             <div id="scr2" class="scr js_scr js_show_scr">
@@ -73,6 +78,15 @@
                     <div class="funBookad js_showAddbook" data-setsr = "srstatic">
                         <div class="iconAd"><i class='bx bx-bar-chart-square'></i></div>
                         <p class="texticonad">book statistics</p>
+                    </div>
+                    <div class="funBookad js_eventSfile" style="position: relative; z-index: 10;">
+                        <div class="iconAd"><i class='bx bx-file-find'></i></div>
+                        <p class="texticonad">Search by file</p>
+                    </div>
+                    <div class="showsearchfile js_showsearchF">
+                        <input type="file" class="custom-file-input js_inputSFile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                        <div class="iconsearchfile js_showMSF"><i class='bx bx-search-alt'></i></div>
+                        <div class="namefile"><p class="js_nameFile"></p></div>
                     </div>
                 </div>
                 <div class="chartBook">
@@ -278,6 +292,49 @@
                         <div class="cntText"></div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="bannerdelete js_banner">
+        <div class="bodybanner">
+            <div class="textban">
+                <p><i class='bx bx-error-circle'></i>Are you sure you want to delete?</p>
+            </div>
+            <div class="chooseban">
+                <div class="huyban js_no">No</div>
+                <div class="okeban js_yes" >Yes</div>
+            </div>
+        </div>
+    </div>
+    <div class="modal_searchF js_MSF">
+        <div class="bodysearchF js_bodyMSF">
+            <div class="iconsSearchF">
+                <div class="icondowload"><i class='bx bxs-download'></i></div>
+                <div class="iconcolseF js_iconcolseF"><i class='bx bx-x' ></i></div>
+            </div>
+            <div class="table_searchF listRenbooks">
+                <table>
+                    <tr style="background-color: #fdc111;">
+                      <th>Image</th>
+                      <th>Book title</th>
+                      <th>Author</th>
+                      <th>Publishing year</th>
+                      <th>Publisher</th>
+                      <th>Amount</th>
+                      <th>Current quantity</th>
+                    </tr>
+                    <tbody class="">
+                        <tr class="tableBadmin">
+                            <td><img src="http://images.amazon.com/images/P/0312195516.0" alt=""></td>
+                            <td style="text-align:left;">The Red Tent (Bestselling Backlist)</td>
+                            <td>Anita Diamant</td>
+                            <td>1998</td>
+                            <td>Picador USA</td>
+                            <td>10</td>
+                            <td>8</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

@@ -18,6 +18,9 @@ let getProfilePage = (req, res) => {
 let getVoucherPage = (req, res) => {
 	return res.render("./vcart.ejs");
 };
+let test = (req, res) => {
+	return res.render("./test.ejs");
+};
 
 module.exports = {
 	getHomePage,
@@ -26,4 +29,5 @@ module.exports = {
 	getDetailPage,
 	getProfilePage,
 	getVoucherPage,
+	test,
 };

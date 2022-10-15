@@ -2388,6 +2388,15 @@ body {
     /* display: flex; */
     justify-content: center;
     align-items: center;
+	/* display: flex; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgb(0 0 0 / 49%);
+    backdrop-filter: blur(2px);
+    z-index: 10;
 }
 .bodyedit h3 i{
 	position: absolute;
@@ -2399,10 +2408,11 @@ body {
 }
 .bodyedit{
 	border: 1px solid;
-    width: 60%;
+    width: 50%;
     padding: 10px 20px 10px 20px;
 	min-height: 243px;
 	position: relative;
+	background-color: white;
 }
 .imageEdit img{
 	height: 208px;
@@ -2576,4 +2586,173 @@ body {
 .submitdeLike i{
 	font-size: 23px;
     cursor: pointer;
+}
+.bannerdelete{
+	position: fixed;
+    z-index: 11;
+    background-color: #0000001a;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.bodybanner{
+	background-color: white;
+    min-width: 300px;
+    min-height: 120px;
+	border: 1px solid #afa8a8;
+}
+.textban{
+	padding: 30px;
+    text-align: center;
+}
+.chooseban{
+	display: flex;
+    justify-content: space-around;
+}
+.huyban , .okeban{
+	width: 25%;
+    text-align: center;
+    border: 1px solid #0000006e;
+    padding: 5px 0px 5px 0px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+.okeban{
+	background-color: #ff0000b8;
+    color: white;
+}
+.textban i{
+	color: #ffa705;
+    font-size: 20px;
+    position: relative;
+    top: 2px;
+    margin-right: 5px;
+}
+.iconsearchfile{
+	border: 1px solid #999;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #fdc1118c; */
+    border-radius: 2px;
+	margin-top: -13px;
+	cursor: pointer;
+}
+.showsearchfile{
+	padding-left: 5px;
+	position: relative;
+	display: none;
+	animation: search_file ease 0.6s;
+}
+.disBlock{
+	display: block;
+}
+/* input type file */
+.custom-file-input::-webkit-file-upload-button {
+	visibility: hidden;
+}
+.custom-file-input{
+	width: 30px;
+    height: 30px;
+}
+.custom-file-input::before {
+	content: '+';
+	display: flex;
+	background: linear-gradient(top, #f9f9f9, #e3e3e3);
+	border: 1px solid #999;
+	border-radius: 3px;
+	outline: none;
+	white-space: nowrap;
+	-webkit-user-select: none;
+	cursor: pointer;
+	text-shadow: 1px 1px #fff;
+	font-weight: 700;
+	font-size: 22px;
+	width: 28px;
+    height: 28px;
+    justify-content: center;
+    align-items: center;
+}
+.custom-file-input:hover::before {
+	border-color: black;
+}
+.custom-file-input:active::before {
+	background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+.namefile{
+	font-size: 13px;
+    color: #878282bf;
+    position: absolute;
+    top: 7px;
+    left: 40px;
+}
+@keyframes search_file {
+	from {
+		opacity: 0;
+		transform: translateX(-50px);
+		/* width: 0; */
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+		/* width: 30px; */
+	}
+}
+.iconsearchfile:hover{
+	border-color: black;
+}
+.modal_searchF{
+    position: fixed;
+    background: rgb(0 0 0 / 49%);
+    backdrop-filter: blur(2px);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 15;
+	/* display: flex; */
+    justify-content: center;
+    align-items: center;
+	display: none;
+}
+.bodysearchF{
+	min-width: 50rem;
+    min-height: 40rem;
+    background-color: white;
+}
+.table_searchF{
+	padding: 5px 15px 0px 15px;
+}
+.iconsSearchF{
+	display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+	position: relative;
+}
+.iconcolseF{
+	position: absolute;
+    right: 4px;
+	color: red;
+}
+.iconcolseF i{
+	font-weight: 600;
+    font-size: 26px;
+	cursor: pointer;
+}
+.icondowload{
+	padding-left: 13px;
+    padding-top: 3px;
+}
+.icondowload i{
+	font-size: 20px;
+	cursor: pointer;
+}
+.dispFlEx{
+	display: flex;
 }

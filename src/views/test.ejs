@@ -1,0 +1,69 @@
+<html lang="en">
+ <head>
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta
+     name="viewport"
+     content="width=device-width, initial-scale=1.0"
+   />
+   <title>Ag Grid App</title>
+   <!-- Include the JS for AG Grid -->
+   <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+   <!-- Include the core CSS, this is needed by the grid -->
+   <link rel="stylesheet"
+     href="https://unpkg.com/ag-grid-community/styles/ag-grid.css"/>
+   <!-- Include the theme CSS, only need to import the theme you are going to use -->
+   <link rel="stylesheet"
+     href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css"/>
+ </head>
+ <body>
+   <div id="myGrid" class="ag-theme-alpine" style="height: 500px"></div>
+   <script type="text/javascript">
+       // Grid Options are properties passed to the grid
+       const gridOptions = {
+
+         // each entry here represents one column
+         columnDefs: [
+           { field: "Title" },
+           { field: "Author" },
+           { field: "Publisher" },
+           { field: "YearPub" },
+           { field: "amount" },
+         ],
+
+         // default col def properties get applied to all columns
+         defaultColDef: {sortable: true, filter: true},
+
+         rowSelection: 'multiple', // allow rows to be selected
+         animateRows: true, // have rows animate to new positions when sorted
+
+         // example event handler
+        //  onCellClicked: params => {
+        //    console.log('cell was clicked', params)
+        //  }
+       };
+
+       const eGridDiv = document.getElementById("myGrid");
+       new agGrid.Grid(eGridDiv, gridOptions);
+
+       // Fetch data from server
+       fetch("http://localhost:3000/api/v1/books")
+       .then(response => response.json())
+       .then(data => {
+        const newdata = data.map((dt)=> {
+            return {
+                Title : dt.NameB,
+                Author : dt.Author,
+                Publisher : dt.Publiser,
+                YearPub : dt.YearPub,
+                amount : dt.amount
+            }
+        })
+        const tests = () => `oke`
+         // load fetched data into grid
+         gridOptions.api.setRowData(newdata);
+       });
+   </script>
+ </body>
+
+</html>
