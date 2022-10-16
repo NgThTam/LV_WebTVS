@@ -43,3 +43,25 @@ msf.addEventListener("click", () => {
 bodymsf.addEventListener("click", (e) => {
 	e.stopPropagation();
 });
+
+const srchoosedl = document.querySelector(".js_showicondown");
+const icondown = document.querySelector(".js_icondown");
+const twochoose = document.querySelectorAll(".js_closeevent");
+icondown.addEventListener("click", (e) => {
+	srchoosedl.classList.toggle("dlblock");
+	icondown.classList.toggle("bggray");
+	e.stopPropagation();
+});
+bodymsf.addEventListener("click", () => {
+	srchoosedl.classList.remove("dlblock");
+	icondown.classList.remove("bggray");
+});
+srchoosedl.addEventListener("click", (e) => {
+	e.stopPropagation();
+});
+twochoose.forEach((ic) => {
+	ic.addEventListener("click", () => {
+		srchoosedl.classList.remove("dlblock");
+		icondown.classList.remove("bggray");
+	});
+});

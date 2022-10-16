@@ -2764,3 +2764,37 @@ body {
 	max-height: 100%;
 	max-width: 1158px;
 }
+.chooseDownload{
+	display: none;
+	background-color: white;
+    min-width: 150px;
+    min-height: 75px;
+    position: absolute;
+    top: 25px;
+    left: 16px;
+    border-radius: 2px;
+    border: 1px solid #a09d9d;
+    box-shadow: rgb(136 136 136) 2px 2px 5px;
+}
+.bodychoosedownload{
+	padding-top: 5px;
+}
+.bodychoosedownload div{
+	padding: 0.5em 1em;
+    color: rgb(51, 51, 51);
+    font-size: 11px;
+	cursor: pointer;
+	display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+.bodychoosedownload div:hover{
+	background-color: #6262f3;
+    color: white;
+}
+.dlblock{
+	display: block;
+}
+.bggray{
+	background-color: #e5e2e2;
+}

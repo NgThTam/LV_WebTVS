@@ -310,8 +310,17 @@
     </div>
     <div class="modal_searchF js_MSF">
         <div class="bodysearchF js_bodyMSF">
+            <!-- js_downpdf -->
             <div class="iconsSearchF">
-                <div class="icondowload"><i class='bx bxs-download js_downpdf'></i></div>
+                <div class="icondowload">
+                    <i class='bx bxs-download js_icondown'></i>
+                    <div class="chooseDownload js_showicondown">
+                        <div class="bodychoosedownload">
+                            <div class="downpdf js_downpdf js_closeevent"><i class='bx bxs-file-pdf'></i> Download PDF</div>
+                            <div class="downexcel js_downexcel js_closeevent"><i class='bx bxs-file-export' ></i> Download Excel</div>
+                        </div>
+                    </div>
+                </div>
                 <div class="iconcolseF js_iconcolseF"><i class='bx bx-x' ></i></div>
             </div>
             <div class="table_searchF listRenbooks" id="contentToPrint">
@@ -335,6 +344,32 @@
                             <td>10</td>
                             <td>8</td>
                         </tr> -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="table_excel" hidden>
+                <table id="tblData">
+                    <tr>
+                        <th>ID</th>
+                        <th>Book title</th>
+                        <th>Author</th>
+                        <th>Publishing year</th>
+                        <th>Publisher</th>
+                        <th>Amount</th>
+                        <th>Current quantity</th>
+                        <th>Image</th>
+                    </tr>
+                    <tbody class="js_bodyexcelfile">
+                        <tr>
+                            <td>id</td>
+                            <td>title</td>
+                            <td>au</td>
+                            <td>pubye</td>
+                            <td>pub</td>
+                            <td>a</td>
+                            <td>ca</td>
+                            <td>link</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

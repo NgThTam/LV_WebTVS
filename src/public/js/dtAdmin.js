@@ -168,6 +168,18 @@ const innerBookSF = (book) => {
 				<td>${book.amount}</td>
 			</tr>`;
 };
+const innerBookexcel = (book) => {
+	return `<tr>
+				<td>B-${book.IDb}</td>
+				<td>${book.NameB}</td>
+				<td>${book.Author}</td>
+				<td>${book.YearPub}</td>
+				<td>${book.Publiser}</td>
+				<td>10</td>
+				<td>${book.amount}</td>
+				<td>${book.ImgB}</td>
+			</tr>`;
+};
 
 // fetch("http://localhost:3000/api/v1/users")
 // 	.then((res) => res.json())
@@ -819,6 +831,8 @@ fetch("http://localhost:3000/api/v1/books")
 		const inputsfile = document.querySelector(".js_inputSFile");
 		const innerSearchF = document.querySelector(".js_contentSF");
 		const butDownload = document.querySelector(".js_downpdf");
+		const butDownloadExcel = document.querySelector(".js_downexcel");
+		const innerSearchEx = document.querySelector(".js_bodyexcelfile");
 		inputsfile.addEventListener("change", () => {
 			readXlsxFile(inputsfile.files[0]).then((rows) => {
 				const listIDsearch = [];
@@ -830,6 +844,9 @@ fetch("http://localhost:3000/api/v1/books")
 				});
 				innerSearchF.innerHTML = listBookSearchF
 					.map((booook) => innerBookSF(booook))
+					.join(" ");
+				innerSearchEx.innerHTML = listBookSearchF
+					.map((boook) => innerBookexcel(boook))
 					.join(" ");
 				butDownload.addEventListener("click", () => {
 					window.jsPDF = window.jspdf.jsPDF;
@@ -847,6 +864,35 @@ fetch("http://localhost:3000/api/v1/books")
 						width: 190, //target width in the PDF document
 						windowWidth: 1200, //window width in CSS pixels
 					});
+				});
+				butDownloadExcel.addEventListener("click", (filename = "") => {
+					let downloadLink;
+					let dataType = "application/vnd.ms-excel";
+					let tableSelect = document.getElementById("tblData");
+					let tableHTML = tableSelect.outerHTML.replace(/ /g, "%20");
+
+					// Specify file name
+					filename = "Books_data.xls";
+					// Create download link element
+					downloadLink = document.createElement("a");
+
+					document.body.appendChild(downloadLink);
+
+					if (navigator.msSaveOrOpenBlob) {
+						var blob = new Blob(["\ufeff", tableHTML], {
+							type: dataType,
+						});
+						navigator.msSaveOrOpenBlob(blob, filename);
+					} else {
+						// Create a link to the file
+						downloadLink.href = "data:" + dataType + ", " + tableHTML;
+
+						// Setting the file name
+						downloadLink.download = filename;
+
+						//triggering the function
+						downloadLink.click();
+					}
 				});
 			});
 		});
