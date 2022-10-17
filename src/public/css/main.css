@@ -17,7 +17,7 @@ body {
 /* header */
 .header {
 	/* background-color: aliceblue; */
-	background-color: #000000a2;
+	background-color: black;
 	/* background: none !important; */
 	/* width: 1535px; */
 	width: 100%;
@@ -117,12 +117,13 @@ body {
 	font-family: Montserrat;
 	letter-spacing: 0.14em;
 	cursor: default;
+	background-color: black;
 }
 
 .header_bot {
 	/* width: 1535px; */
 	width: 100%;
-	height: 46rem;
+	height: 43rem;
 	/* background-image: url("./back.png");
     object-fit: cover;  */
 	position: relative;
@@ -132,6 +133,11 @@ body {
 .header_bot img {
 	width: 100%;
 	height: 100%;
+	/* top: 53px;
+    z-index: -1;
+    position: relative;
+    width: 100%;
+    height: 92%; */
 }
 @keyframes slg {
 	from {
@@ -165,7 +171,7 @@ body {
 	animation: slg linear 1s;
 }
 .slg3 {
-	color: white;
+	color: #010101;
 	letter-spacing: normal;
 	font-size: 10px;
 	text-transform: uppercase;
@@ -192,17 +198,29 @@ body {
 	/* background-color: #00bfc5; */
 	align-items: center;
 	text-decoration: none;
-	color: #fffffff1;
+	color: #000000ad;
 	/* border: 1px solid; */
 	letter-spacing: 0.1em;
-	border: 4px solid;
+	border: 4px solid #000000ad;
 	background-color: #00bfc587;
+	z-index: 6;
+}
+.khungback{
+	width: 99.2%;
+    height: 82%;
+    position: absolute;
+    top: 244px;
+    left: 5px;
+
+    border: 7px solid #000000cf;
+    z-index: 5;
 }
 .start_content:hover {
 	/* border: 4px solid; */
 	/* background-color: #00bfc593; */
 	background-color: #00bfc5;
 	border: 1px solid;
+	color: white;
 }
 .modal {
 	position: fixed;
@@ -1766,6 +1784,7 @@ body {
     min-height: 20rem;
     width: 60%;
 	padding-top: 15px;
+	border-radius: 5px;
 }
 .bodyVoucher{
 	padding-top: 15px;
@@ -1825,6 +1844,7 @@ body {
 	width: 30%;
     border: 1px solid black;
 	padding-top: 15px;
+	border-radius: 5px;
 }
 .VListbooks h1{
 	text-align: center;
