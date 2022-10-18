@@ -31,7 +31,7 @@ const initWebRouter = (app) => {
 	router.post("/reate-listlike", apiController.createLikes);
 	router.post("/delete-book-like", apiController.deleteLikeBook);
 	// router.get("/detail/:userId", getPage.getAllUser);
-	router.get("/test", getPage.test);
+	// router.get("/test", getPage.test);
 
 	return app.use("/", router);
 };

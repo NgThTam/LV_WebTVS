@@ -718,7 +718,7 @@ body {
 	position: fixed;
 	z-index: 9;
 	bottom: 20px;
-	right: 20px;
+	left: 20px;
 	animation: backHome ease 0.5s;
 	display: none;
 }
