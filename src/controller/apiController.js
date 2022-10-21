@@ -1,4 +1,6 @@
 import connection from "../configs/connectDB";
+import readXlsxFile from "read-excel-file/node";
+var appRoot = require("app-root-path");
 
 let getAllbook = (req, res) => {
 	connection.query("SELECT * FROM `books` ", (err, results, fields) => {
@@ -175,6 +177,25 @@ let deleteLikeBook = (req, res) => {
 	);
 	return res.redirect("/profile");
 };
+const map = {
+	id: "id",
+	title: "title",
+	author: "author",
+	yearPub: "yearPub",
+	publisher: "publisher",
+	image: "image",
+	amount: "amount",
+};
+let addbookfile = (req, res, next) => {
+	readXlsxFile(appRoot + "/src/public/fileExcel/" + req.file.filename, {
+		map,
+	}).then(({ rows }) => {
+		rows.forEach((row) => {
+			console.log(row.id);
+		});
+	});
+	return res.redirect("/test");
+};
 
 module.exports = {
 	createUser,
@@ -195,4 +216,5 @@ module.exports = {
 	updateLikes,
 	createLikes,
 	deleteLikeBook,
+	addbookfile,
 };

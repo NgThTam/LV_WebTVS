@@ -20,9 +20,11 @@ const funSfile = document.querySelector(".js_eventSfile");
 const divshow = document.querySelector(".js_showsearchF");
 const inputsfile = document.querySelector(".js_inputSFile");
 const nameFile = document.querySelector(".js_nameFile");
+const funaddfile = document.querySelector(".js_addfile");
 funSfile.addEventListener("click", () => {
 	funSfile.classList.toggle("boderFunsearch");
 	divshow.classList.toggle("disBlock");
+	funaddfile.classList.toggle("left100");
 });
 inputsfile.addEventListener("change", () => {
 	nameFile.innerHTML = inputsfile.files[0].name;

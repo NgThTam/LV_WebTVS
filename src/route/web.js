@@ -2,11 +2,25 @@ import express from "express";
 import getPage from "../controller/homeController";
 import apiController from "../controller/apiController";
 import bodyParser from "body-parser";
-
+import multer from "multer";
+var appRoot = require("app-root-path");
+// /src/public/fileExcel/
 let router = express.Router();
+
+const storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, appRoot + "/src/public/fileExcel/");
+	},
+	filename: function (req, file, cb) {
+		cb(null, file.fieldname + "-" + Date.now() + ".xlsx");
+	},
+});
+
+const upload = multer({ storage: storage });
 
 const initWebRouter = (app) => {
 	router.get("/", getPage.getHomePage);
+	router.get("/test", getPage.test);
 	router.get("/books", getPage.getBooksPage);
 	router.get("/admin", getPage.getAdminPage);
 	router.get("/detail", getPage.getDetailPage);
@@ -30,8 +44,12 @@ const initWebRouter = (app) => {
 	router.post("/update-listlike", apiController.updateLikes);
 	router.post("/reate-listlike", apiController.createLikes);
 	router.post("/delete-book-like", apiController.deleteLikeBook);
+	router.post(
+		"/upload-file-addbooks",
+		upload.single("myFile"),
+		apiController.addbookfile
+	);
 	// router.get("/detail/:userId", getPage.getAllUser);
-	// router.get("/test", getPage.test);
 
 	return app.use("/", router);
 };
