@@ -190,11 +190,9 @@ let addbookfile = (req, res, next) => {
 	readXlsxFile(appRoot + "/src/public/fileExcel/" + req.file.filename, {
 		map,
 	}).then(({ rows }) => {
-		rows.forEach((row) => {
-			console.log(row.id);
-		});
+		console.log(rows);
 	});
-	return res.redirect("/test");
+	return res.redirect("/admin");
 };
 
 module.exports = {

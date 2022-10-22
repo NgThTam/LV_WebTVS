@@ -2835,3 +2835,72 @@ body {
 .left6{
 	margin-left: 6px;
 }
+/* add book file */
+.modal_viewaddfile{
+	position: fixed;
+    background: rgb(0 0 0 / 49%);
+    backdrop-filter: blur(2px);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 15;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.flexdis{
+	display: flex;
+}
+.bodyaddfile{
+	min-width: 50rem;
+    min-height: 40rem;
+    background-color: white;
+}
+.chooseiconfile{
+	padding: 10px 15px 0px 15px;
+    display: flex;
+    justify-content: space-between;
+	position: relative;
+}
+.chooseiconfile i{
+	font-size: 28px;
+    color: red;
+    font-weight: 600;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+	cursor: pointer;
+}
+.butsubfile{
+	background-color: #3f6ad7;
+    padding: 2px;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    width: 58px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.butsubfile:hover{
+	background-color: #a9b7dc;
+	color: black;
+}
+.tablie_fileadd{
+	padding: 10px 15px 5px 15px;
+	max-width: 920px;
+}
+.tablie_fileadd table td{
+	font-size: 14px;
+}
+.showblock{
+	display: block;
+}
+.funBookad{
+	position: relative;
+    z-index: 9;
+}

@@ -67,3 +67,60 @@ twochoose.forEach((ic) => {
 		icondown.classList.remove("bggray");
 	});
 });
+//add file
+const map = {
+	id: "id",
+	title: "title",
+	author: "author",
+	yearPub: "yearPub",
+	publisher: "publisher",
+	image: "image",
+	amount: "amount",
+};
+const convbook = (book) => {
+	return `<tr class="tableBadmin">
+				<td>${book.id}</td>
+				<td style="text-align:left;">${book.title}</td>
+				<td>${book.author}</td>
+				<td>${book.yearPub}</td>
+				<td>${book.publisher}</td>
+				<td>${book.amount}</td>
+				<td><img src="${book.image}" alt=""></td>
+			</tr>`;
+};
+const inpbookfile = document.querySelector(".js_inputbookfile");
+const namefilebook = document.querySelector(".js_namebookflie");
+const iconviewfile = document.querySelector(".js_viewfileadd");
+const modaladdfile = document.querySelector(".js_modalfileadd");
+const bodymodaladd = document.querySelector(".js_bodymodalfileadd");
+const iconloseadd = document.querySelector(".js_iconloseaddfile");
+const twoformadd = document.querySelector(".js_showformadd");
+const innerfileadd = document.querySelector(".jd_contentaddfile");
+const butbodysub = document.querySelector(".js_butsubfileadd");
+inpbookfile.addEventListener("change", () => {
+	namefilebook.innerHTML = inpbookfile.files[0].name;
+});
+iconviewfile.addEventListener("click", () => {
+	modaladdfile.classList.add("flexdis");
+});
+modaladdfile.addEventListener("click", () => {
+	modaladdfile.classList.remove("flexdis");
+});
+bodymodaladd.addEventListener("click", (e) => {
+	e.stopPropagation();
+});
+iconloseadd.addEventListener("click", () => {
+	modaladdfile.classList.remove("flexdis");
+});
+funaddfile.addEventListener("click", () => {
+	funaddfile.classList.toggle("boderFunsearch");
+	twoformadd.classList.toggle("showblock");
+});
+inpbookfile.addEventListener("change", () => {
+	readXlsxFile(inpbookfile.files[0], { map }).then(({ rows }) => {
+		innerfileadd.innerHTML = rows.map((book) => convbook(book)).join(" ");
+	});
+});
+butbodysub.addEventListener("click", () => {
+	document.getElementById(butbodysub.dataset.idsubfile).click();
+});

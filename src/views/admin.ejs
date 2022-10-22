@@ -91,8 +91,17 @@
                         <div class="namefile"><p class="js_nameFile"></p></div>
                     </div>
                     <div class="funBookad js_addfile">
-                        <div class="iconAd"><i class='bx bx-file-find'></i></div>
-                        <p class="texticonad">asd</p>
+                        <div class="iconAd"><i class='bx bxs-file-import'></i></i></div>
+                        <p class="texticonad">Add by file</p>
+                    </div>
+                    <div class="showsearchfile js_showformadd">
+                        <form action="/upload-file-addbooks" method="post" enctype="multipart/form-data">
+                            <input type="file" name="myFile" class="custom-file-input js_inputbookfile" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                            <button id="submitAddbookfile" type="submit" hidden></button>
+                        </form>
+                        
+                        <div class="iconsearchfile js_viewfileadd"><i class='bx bx-upload'></i></div>
+                        <div class="namefile"><p class="js_namebookflie"></p></div>
                     </div>
                 </div>
                 <div class="chartBook">
@@ -374,6 +383,38 @@
                             <td>ca</td>
                             <td>link</td>
                         </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal_viewaddfile js_modalfileadd">
+        <div class="bodyaddfile js_bodymodalfileadd">
+            <div class="chooseiconfile">
+                <div class="butsubfile js_butsubfileadd" data-idsubfile="submitAddbookfile">Upload</div>
+                <i class='bx bx-x js_iconloseaddfile' ></i>
+            </div>
+            <div class="listRenbooks tablie_fileadd">
+                <table>
+                    <tr style="background-color: #e3a6a6;">
+                      <th>Id</th>
+                      <th>Book title</th>
+                      <th>Author</th>
+                      <th>Publishing year</th>
+                      <th>Publisher</th>
+                      <th>Amount</th>
+                      <th>Image</th>
+                    </tr>
+                    <tbody class="jd_contentaddfile">
+                        <!-- <tr class="tableBadmin">
+                            <td>0763879226</td>
+                            <td style="text-align:left;">The Red Tent (Bestselling Backlist)</td>
+                            <td>Anita Diamant</td>
+                            <td>1998</td>
+                            <td>Picador USA</td>
+                            <td>10</td>
+                            <td><img src="http://images.amazon.com/images/P/0312195516.0" alt=""></td>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
