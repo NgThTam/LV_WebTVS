@@ -126,8 +126,8 @@ let updateBook = (req, res) => {
 };
 let deleteBook = (req, res) => {
 	let { idB } = req.body;
-	console.log(idB);
-	// connection.query("DELETE FROM `books` WHERE `IDb`=?", [idB]);
+	// console.log(idB);
+	connection.query("DELETE FROM `books` WHERE `IDb`=?", [idB]);
 	return res.redirect("/admin");
 };
 
@@ -190,7 +190,20 @@ let addbookfile = (req, res, next) => {
 	readXlsxFile(appRoot + "/src/public/fileExcel/" + req.file.filename, {
 		map,
 	}).then(({ rows }) => {
-		console.log(rows);
+		rows.forEach((row) => {
+			connection.query(
+				"INSERT INTO `books`(`IDb`, `NameB`, `Author`, `YearPub`, `Publiser`, `ImgB`, `amount`) VALUES (?,?,?,?,?,?,?)",
+				[
+					row.id,
+					row.title,
+					row.author,
+					row.yearPub,
+					row.publisher,
+					row.image,
+					row.amount,
+				]
+			);
+		});
 	});
 	return res.redirect("/admin");
 };
