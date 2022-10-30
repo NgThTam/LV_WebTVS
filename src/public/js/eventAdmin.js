@@ -97,6 +97,7 @@ const iconloseadd = document.querySelector(".js_iconloseaddfile");
 const twoformadd = document.querySelector(".js_showformadd");
 const innerfileadd = document.querySelector(".jd_contentaddfile");
 const butbodysub = document.querySelector(".js_butsubfileadd");
+const butdownfilemau = document.querySelector(".js_fileaddmau");
 inpbookfile.addEventListener("change", () => {
 	namefilebook.innerHTML = inpbookfile.files[0].name;
 });
@@ -123,4 +124,56 @@ inpbookfile.addEventListener("change", () => {
 });
 butbodysub.addEventListener("click", () => {
 	document.getElementById(butbodysub.dataset.idsubfile).click();
+});
+// butdownfilemau.addEventListener("click", (filename = "") => {
+// 	let downloadLink;
+// 	let dataType = "application/vnd.ms-excel";
+// 	let tableSelect = document.getElementById("tblDatamau");
+// 	let tableHTML = tableSelect.outerHTML.replace(/ /g, "%20");
+
+// 	// Specify file name
+// 	filename = "Books_data_M.xls";
+// 	// Create download link element
+// 	downloadLink = document.createElement("a");
+
+// 	document.body.appendChild(downloadLink);
+
+// 	if (navigator.msSaveOrOpenBlob) {
+// 		var blob = new Blob(["\ufeff", tableHTML], {
+// 			type: dataType,
+// 		});
+// 		navigator.msSaveOrOpenBlob(blob, filename);
+// 	} else {
+// 		// Create a link to the file
+// 		downloadLink.href = "data:" + dataType + ", " + tableHTML;
+
+// 		// Setting the file name
+// 		downloadLink.download = filename;
+
+// 		//triggering the function
+// 		downloadLink.click();
+// 	}
+// });
+function ExportToExcel(type, fn, dl) {
+	var elt = document.getElementById("tblDatamau");
+	var wb = XLSX.utils.table_to_book(elt, {
+		sheet: "sheet1",
+	});
+	return dl
+		? XLSX.write(wb, {
+				bookType: type,
+				bookSST: true,
+				type: "base64",
+		  })
+		: XLSX.writeFile(wb, fn || "MySheetName." + (type || "xlsx"));
+}
+//filter
+const iconfil = document.querySelector(".js_iconfil");
+const bodyfil = document.querySelector(".js_bodyfil");
+const subfil = document.querySelector(".js_subfill");
+iconfil.addEventListener("click", () => {
+	bodyfil.classList.toggle("js_nn");
+});
+subfil.addEventListener("click", () => {
+	bodyfil.classList.remove("js_nn");
 });

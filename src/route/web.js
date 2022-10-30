@@ -32,6 +32,8 @@ const initWebRouter = (app) => {
 	router.get("/api/v1/oders", apiController.getAllOder);
 	router.get("/api/v1/comments", apiController.getAllComment);
 	router.get("/api/v1/likes", apiController.getAllLikes);
+	router.get("/api/v1/categories", apiController.getAllcategories);
+	router.get("/api/v1/book_category", apiController.getAllbookCategory);
 	router.post("/reate-new-oder", apiController.createOder);
 	router.post("/reate-new-rating", apiController.createRating);
 	router.post("/reate-new-user", apiController.createUser);

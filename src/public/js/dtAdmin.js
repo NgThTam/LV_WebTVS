@@ -348,76 +348,165 @@ fetch("http://localhost:3000/api/v1/books")
 	})
 	//chartcolumn
 	.then((books) => {
-		const YearPubs = [];
-		books.forEach((book) => {
-			YearPubs.push(book.YearPub);
-		});
-		const valueYearPub = [];
-		const newYearPubs = [...new Set(YearPubs)].sort();
-		newYearPubs.forEach((year) => {
-			let i = 0;
-			YearPubs.forEach((yep) => {
-				if (yep == year) {
-					i++;
-				}
+		fetch("http://localhost:3000/api/v1/categories")
+			.then((res) => res.json())
+			.then((categories) => {
+				fetch("http://localhost:3000/api/v1/book_category")
+					.then((res) => res.json())
+					.then((BookCategories) => {
+						const arrCate = BookCategories.map((cateB) => cateB.IDc);
+						let newArrCate = [...new Set(arrCate)];
+						let arrrrr = newArrCate.map((cate) => {
+							let countCt = BookCategories.filter((ct) => ct.IDc == cate);
+							let bookctamount = countCt.map((cct) => {
+								return books.find((boob) => boob.IDb == cct.IDb);
+							});
+							let amountC = bookctamount
+								.map((ba) => ba.amount)
+								.reduce((tot, num) => tot + num);
+							let amountM = bookctamount.length * 10 - amountC;
+							return {
+								IDc: cate,
+								count: countCt.length,
+								amountC: amountC,
+								amountM: amountM,
+							};
+						});
+						const nameC = [];
+						const contC = [];
+						const amC = [];
+						const amM = [];
+						arrrrr.forEach((alar) => {
+							contC.push(alar.count);
+							let okcate = categories.find((ctt) => ctt.IDc == alar.IDc);
+							if (okcate) {
+								nameC.push(okcate.NameC);
+							} else {
+								nameC.push(alar.IDc);
+							}
+							amC.push(alar.amountC);
+							amM.push(alar.amountM);
+						});
+						Highcharts.setOptions({
+							colors: ["#90ed7d", "#7cb5ec", "red"],
+						});
+						Highcharts.chart("HighChartPubYear", {
+							chart: {
+								type: "column",
+								zoomType: "y",
+							},
+							title: {
+								text: "Number of books available at the bookstore",
+							},
+							subtitle: {
+								text: "Statistics by book genre",
+							},
+							xAxis: {
+								categories: nameC,
+								title: {
+									text: null,
+								},
+								accessibility: {
+									description: "Countries",
+								},
+							},
+							yAxis: {
+								title: {
+									text: "The number of books the bookstore has",
+								},
+								labels: {
+									overflow: "justify",
+									format: "{value}",
+								},
+							},
+							plotOptions: {
+								column: {
+									dataLabels: {
+										enabled: true,
+									},
+								},
+							},
+							tooltip: {
+								valueSuffix: " books",
+								stickOnContact: true,
+								backgroundColor: "rgba(255, 255, 255, 0.93)",
+							},
+							legend: {
+								enabled: true,
+							},
+							series: [
+								{
+									name: "Different",
+									data: contC,
+								},
+								{
+									name: "Remaining",
+									data: amC,
+									borderColor: "#5997DE",
+								},
+								{
+									name: "Lent books",
+									data: amM,
+								},
+							],
+						});
+						// Highcharts.chart("HighChartPubYear", {
+						// 	chart: {
+						// 		type: "column",
+						// 		zoomType: "y",
+						// 	},
+						// 	title: {
+						// 		text: "Number of books available at the bookstore",
+						// 	},
+						// 	subtitle: {
+						// 		text: "Statistics by book genre",
+						// 	},
+						// 	xAxis: {
+						// 		categories: nameC,
+						// 		title: {
+						// 			text: null,
+						// 		},
+						// 		accessibility: {
+						// 			description: "Countries",
+						// 		},
+						// 	},
+						// 	yAxis: {
+						// 		min: 0,
+						// 		tickInterval: 2,
+						// 		title: {
+						// 			text: "The number of books the bookstore has",
+						// 		},
+						// 		labels: {
+						// 			overflow: "justify",
+						// 			format: "{value}",
+						// 		},
+						// 	},
+						// 	plotOptions: {
+						// 		column: {
+						// 			dataLabels: {
+						// 				enabled: true,
+						// 				format: "{y} books",
+						// 			},
+						// 		},
+						// 	},
+						// 	tooltip: {
+						// 		valueSuffix: " books",
+						// 		stickOnContact: true,
+						// 		backgroundColor: "rgba(255, 255, 255, 0.93)",
+						// 	},
+						// 	legend: {
+						// 		enabled: false,
+						// 	},
+						// 	series: [
+						// 		{
+						// 			name: "This bookstore has",
+						// 			data: contC,
+						// 			borderColor: "#5997DE",
+						// 		},
+						// 	],
+						// });
+					});
 			});
-			valueYearPub.push(i);
-		});
-		Highcharts.chart("HighChartPubYear", {
-			chart: {
-				type: "column",
-				zoomType: "y",
-			},
-			title: {
-				text: "Number of books available at the bookstore",
-			},
-			subtitle: {
-				text: "Statistics by year of publication",
-			},
-			xAxis: {
-				categories: newYearPubs,
-				title: {
-					text: null,
-				},
-				accessibility: {
-					description: "Countries",
-				},
-			},
-			yAxis: {
-				min: 0,
-				tickInterval: 2,
-				title: {
-					text: "The number of books the bookstore has",
-				},
-				labels: {
-					overflow: "justify",
-					format: "{value}",
-				},
-			},
-			plotOptions: {
-				column: {
-					dataLabels: {
-						enabled: true,
-						format: "{y} books",
-					},
-				},
-			},
-			tooltip: {
-				valueSuffix: " books",
-				stickOnContact: true,
-				backgroundColor: "rgba(255, 255, 255, 0.93)",
-			},
-			legend: {
-				enabled: false,
-			},
-			series: [
-				{
-					name: "This bookstore has",
-					data: valueYearPub,
-					borderColor: "#5997DE",
-				},
-			],
-		});
 		return books;
 	})
 	//oder
@@ -896,6 +985,147 @@ fetch("http://localhost:3000/api/v1/books")
 				});
 			});
 		});
+		return books;
+	})
+	//filter
+	.then((books) => {
+		fetch("http://localhost:3000/api/v1/categories")
+			.then((res) => res.json())
+			.then((categories) => {
+				const fillfic = document.querySelector(".js_fillfic");
+				const fillyear = document.querySelector(".js_fillyear");
+				let innerfilFic = categories.map(
+					(cate) => `<option value="${cate.IDc}">${cate.NameC}</option>`
+				);
+				innerfilFic.unshift(`<option value="all">All</option>`);
+				fillfic.innerHTML = innerfilFic.join(" ");
+				const fyear = books.map((book) => book.YearPub);
+				const filyear = [...new Set(fyear)].sort();
+				const innerfilyear = filyear.map(
+					(fy) => `<option value="${fy}">${fy}</option>`
+				);
+				innerfilyear.unshift(`<option value="all">All</option>`);
+				fillyear.innerHTML = innerfilyear.join(" ");
+
+				//sub
+				fetch("http://localhost:3000/api/v1/book_category")
+					.then((res) => res.json())
+					.then((Bcategory) => {
+						const subfill = document.querySelector(".js_subfill");
+						subfill.addEventListener("click", () => {
+							let Bfilcate = [];
+							if (fillfic.value != "all") {
+								Bfilcate = Bcategory.filter(
+									(bcat) => bcat.IDc == fillfic.value
+								);
+							} else {
+								Bfilcate = Bcategory.map((ct) => ct);
+							}
+							const bookcate = Bfilcate.map((bct) =>
+								books.find((book) => book.IDb == bct.IDb)
+							);
+							let newfilterB = bookcate;
+							if (fillyear.value != "all") {
+								newfilterB = bookcate.filter(
+									(bok) => bok.YearPub == fillyear.value
+								);
+							}
+							innerRenB.innerHTML = newfilterB
+								.map((newBo) => renderBook(newBo))
+								.join(" ");
+							const listedit = document.querySelectorAll(".js_iconedit");
+							const bodyformEdit = document.querySelector(".js_bodyformedit");
+							const funedit = document.querySelector(".js_showedit");
+							listedit.forEach((edit) => {
+								edit.addEventListener("click", () => {
+									const bookedit = books.find(
+										(book) => book.IDb == edit.dataset.idbedit
+									);
+									bodyformEdit.innerHTML = renderFormEdit(bookedit);
+									funedit.setAttribute("style", "display: flex;");
+								});
+							});
+							const listdelete = document.querySelectorAll(".js_icondelete");
+							const banner = document.querySelector(".js_banner");
+							const butNo = document.querySelector(".js_no");
+							const bodybanner = document.querySelector(".bodybanner");
+							const butYes = document.querySelector(".js_yes");
+							listdelete.forEach((icondele) => {
+								icondele.addEventListener("click", () => {
+									banner.setAttribute("style", "display: flex;");
+									butYes.setAttribute(
+										"data-idfyes",
+										`${icondele.dataset.iddelete}`
+									);
+								});
+							});
+							butNo.addEventListener("click", () => {
+								banner.removeAttribute("style");
+							});
+							banner.addEventListener("click", () => {
+								banner.removeAttribute("style");
+							});
+							bodybanner.addEventListener("click", (e) => {
+								e.stopPropagation();
+							});
+							butYes.addEventListener("click", () => {
+								document.getElementById(butYes.dataset.idfyes).click();
+							});
+							const iconpies = document.querySelectorAll(".js_iconPie");
+							iconpies.forEach((iconPie) => {
+								iconPie.addEventListener("click", () => {
+									const clamount = iconPie.dataset.amountb;
+									const donamount = 10 - iconPie.dataset.amountb;
+									const nametitle = iconPie.dataset.namepie;
+									Highcharts.chart("HighChartOneB", {
+										colors: ["#01BAF2", "#ff0000ad"],
+										chart: {
+											type: "pie",
+										},
+										title: {
+											text: `<p style="font-weight: 600;">${nametitle}</p>`,
+										},
+										tooltip: {
+											valueSuffix: "books",
+										},
+										subtitle: {
+											text: "amount of books",
+										},
+										plotOptions: {
+											pie: {
+												allowPointSelect: true,
+												cursor: "pointer",
+												dataLabels: {
+													enabled: true,
+													format: "{point.name} ",
+												},
+												showInLegend: true,
+											},
+										},
+										series: [
+											{
+												name: "Quantity",
+												colorByPoint: true,
+												data: [
+													{
+														name: "Remaining",
+														y: parseInt(clamount),
+													},
+													{
+														name: "Unpaid",
+														sliced: true,
+														selected: true,
+														y: parseInt(donamount),
+													},
+												],
+											},
+										],
+									});
+								});
+							});
+						});
+					});
+			});
 	});
 
 const formAddB = document.querySelector(".js_formAddBook");
@@ -1006,3 +1236,5 @@ fetch("http://localhost:3000/api/v1/users")
 		});
 		gridOptions.api.setRowData(newUser);
 	});
+
+//chart column

@@ -40,7 +40,18 @@ let getAllLikes = (req, res) => {
 		return res.status(200).json(data);
 	});
 };
-
+let getAllcategories = (req, res) => {
+	connection.query("SELECT * FROM `categories` ", (err, results, fields) => {
+		let data = results.map((dt) => dt);
+		return res.status(200).json(data);
+	});
+};
+let getAllbookCategory = (req, res) => {
+	connection.query("SELECT * FROM `book_category` ", (err, results, fields) => {
+		let data = results.map((dt) => dt);
+		return res.status(200).json(data);
+	});
+};
 const random = (length) => {
 	var result = "";
 	var characters =
@@ -216,6 +227,8 @@ module.exports = {
 	getAllOder,
 	getAllLikes,
 	getAllComment,
+	getAllcategories,
+	getAllbookCategory,
 	createComment,
 	createOder,
 	createRating,
