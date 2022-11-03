@@ -2106,9 +2106,12 @@ body {
 	font-family: arial, sans-serif;
 	padding-bottom: 10px;
 	display: flex;
+	align-items: flex-end;
+	position: relative;
 }
 .unex{
-	padding-left: 20px;
+	/* padding-left: 20px; */
+	padding-left: 8px;
 }
 .unex p{
 	width: 93px;
@@ -2277,6 +2280,17 @@ body {
     align-items: center; */
 	width: 60%;
 	padding: 10px 20px 10px 20px;
+	position: relative;
+}
+.delenewadd{
+	position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 27px;
+    color: red;
+}
+.delenewadd i{
+	cursor: pointer;
 }
 .divAdd h3{
 	text-align: center;
@@ -2338,7 +2352,7 @@ body {
 	width: 0%;
 	border-bottom: 2px solid #1b666a;
     position: absolute;
-    bottom: 14px;
+    bottom: 15px;
     transition: 0.4s;
     left: 88px;
 }
@@ -2668,6 +2682,7 @@ body {
 }
 .showsearchfile{
 	padding-left: 5px;
+	padding-top: 7px;
 	position: relative;
 	display: none;
 	animation: search_file ease 0.6s;
@@ -2963,4 +2978,104 @@ body {
 }
 .js_nn{
 	display: flex;
+}
+.iconfillV{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3be8d8;
+    font-size: 20px;
+    padding: 5px;
+    position: relative;
+	border: 1px solid #00000057;
+	border-radius: 2px;
+}
+.iconfillV:hover{
+	border: 1px solid black;
+    cursor: pointer;
+}
+.bodyfillV{
+	padding: 18px;
+    position: absolute;
+    min-width: 150px;
+    min-height: 50px;
+    left: 15px;
+    border-radius: 4px;
+    border: 1px solid #0000008c;
+    background-color: whitesmoke;
+	top: 31px;
+	z-index: 11;
+	display: flex;
+    flex-direction: column;
+}
+.datetext{
+	font-size: 12px;
+    padding-bottom: 5px;
+    font-weight: 600;
+}
+.monthV, .yearV{
+	padding-left: 15px;
+}
+.dayV select{
+	width: 70px;
+}
+.monthV select{
+	width: 87px;
+}
+.yearvinput::-webkit-datetime-edit-month-field,
+::-webkit-datetime-edit-day-field,
+::-webkit-datetime-edit-text {
+  display:none;
+}
+.semonth *{
+	background-color: whitesmoke;
+	border: 1px solid #0000008c;
+}
+.fillstatus{
+	cursor: default;
+}
+.fillstatus .datetext{
+	padding-top: 9px;
+    padding-bottom: 8px;
+}
+.fillstatus label{
+	padding-right: 20px;
+    padding-left: 5px;
+    font-size: 15px;
+}
+.FSexp:hover{
+	cursor: pointer;
+    color: #ed0808;
+}
+.FSunex:hover{
+	cursor: pointer;
+    color: #47b447;
+}
+.FSallF:hover{
+	cursor: pointer;
+    color: #1474c8;
+}
+.butFillSt{
+	width: 35px;
+    height: 22px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #00000026;
+	position: absolute;
+    right: 0;
+	cursor: pointer;
+	background-color: #298394;
+	color: white;
+	font-size: 13px;
+}
+.butFillSt:hover{
+	background-color: #89cfdc;
+	color: #797474;
+}
+.ctbutfillS{
+	padding-top: 8px;
+    position: relative;
+    height: 22px;
 }

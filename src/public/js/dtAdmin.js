@@ -755,6 +755,7 @@ fetch("http://localhost:3000/api/v1/books")
 					});
 				return oders;
 			})
+			//chart
 			.then((oders) => {
 				const value12month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 				const listvalueMonth = value12month.map((month) => {
@@ -808,7 +809,122 @@ fetch("http://localhost:3000/api/v1/books")
 						},
 					],
 				});
+				return oders;
+			})
+			//filterS
+			.then((oders) => {
+				const butfilSs = document.querySelector(".js_butFillSt");
+				const filldayF = document.querySelector(".js_date_day");
+				const filldmonthF = document.querySelector(".js_date_month");
+				const fillyearF = document.querySelector(".js_date_year");
+				const todayD = new Date();
+				fillyearF.value = `${todayD.getFullYear()}-01-01`;
+				butfilSs.addEventListener("click", () => {
+					let newarrFilldate = [];
+					let arrFillfinal = [];
+					let checkedSta = document.querySelector(
+						'input[name="statusF"]:checked'
+					);
+					const fillbyyear = oders.filter(
+						(oder) =>
+							oder.DateRental.slice(6, 10) == fillyearF.value.slice(0, 4)
+					);
+					if (filldayF.value == "00" && filldmonthF.value == "00") {
+						newarrFilldate = fillbyyear;
+					} else {
+						if (filldayF.value == "00" || filldmonthF.value == "00") {
+							if (filldayF.value == "00") {
+								newarrFilldate = fillbyyear.filter((byear) => {
+									return byear.DateRental.slice(3, 5) == filldmonthF.value;
+								});
+							} else {
+								newarrFilldate = fillbyyear.filter((byear1) => {
+									return byear1.DateRental.slice(0, 2) == filldayF.value;
+								});
+							}
+						} else {
+							let filFday = `${filldayF.value}/${
+								filldmonthF.value
+							}/${fillyearF.value.slice(0, 4)}`;
+							newarrFilldate = fillbyyear.filter((byear2) => {
+								return byear2.DateRental == filFday;
+							});
+						}
+					}
+					// console.log(newarrFilldate);
+					if (checkedSta.value == "All") {
+						arrFillfinal = newarrFilldate;
+					} else {
+						arrFillfinal = newarrFilldate.filter((arffdate) => {
+							return arffdate.status == checkedSta.value;
+						});
+					}
+					console.log(arrFillfinal);
+					//in
+					const finalF = [];
+					arrFillfinal.forEach((eloder) => {
+						if (eloder.status == "unexpired") {
+							if (eloder.PayStatus == 0) {
+								finalF.push(innerRVunex(eloder));
+							} else {
+								finalF.push(innerRVunex1(eloder));
+							}
+						} else {
+							if (eloder.PayStatus == 0) {
+								finalF.push(innerRVex(eloder));
+							} else {
+								finalF.push(innerRVex1(eloder));
+							}
+						}
+					});
+					const innerListOder = document.querySelector(".js_innOder");
+					innerListOder.innerHTML = finalF.join(" ");
+					const listformU = document.querySelectorAll(".js_formCheckoke");
+					listformU.forEach((formUp) => {
+						formUp.addEventListener("submit", (e) => {
+							// e.preventDefault();
+							const arrCart = formUp.dataset.idform.split(",");
+							const newCartamount = [];
+							arrCart.forEach((acrt) => {
+								const adBoook = books.find((bookk) => bookk.IDb == acrt);
+								newCartamount.push(`${adBoook.IDb},${adBoook.amount}`);
+							});
+							formUp[6].value = newCartamount.join(";");
+						});
+					});
+					const viewOs = document.querySelectorAll(".js_viewO");
+					const modalO = document.querySelector(".js_modalview");
+					const cntO = document.querySelector(".js_cntO");
+					viewOs.forEach((view) => {
+						view.addEventListener("click", () => {
+							modalO.classList.add("showM");
+							let listNameBooks = [];
+							const Ooder = oders.find((Odd) => Odd.IDo == view.dataset.idoder);
+							// console.log(Ooder);
+							const listIDb = Ooder.Cart.split(",");
+							listIDb.forEach((IDbook) => {
+								books.forEach((book) => {
+									if (IDbook == book.IDb) {
+										listNameBooks.push(book.NameB);
+									}
+								});
+							});
+							const detailView = document.querySelector(".js_detailView");
+							detailView.innerHTML = innerDetailView(
+								Ooder,
+								listNameBooks.join(" <span>;</span> ")
+							);
+						});
+					});
+					modalO.addEventListener("click", () => {
+						modalO.classList.remove("showM");
+					});
+					cntO.addEventListener("click", (e) => {
+						e.stopPropagation();
+					});
+				});
 			});
+
 		return books;
 	})
 	// chartPie
@@ -1173,6 +1289,13 @@ bodyeditt.addEventListener("click", (e) => {
 
 const funaddbooks = document.querySelectorAll(".js_showAddbook");
 const inAddbooks = document.querySelectorAll(".js_showAB");
+const cloaddbook = document.querySelector(".js_deadd");
+const reab = document.querySelector(".js_remAB");
+const rea = document.querySelector(".js_reb");
+cloaddbook.addEventListener("click", () => {
+	reab.classList.remove("disflex");
+	rea.classList.remove("boderFun");
+});
 funaddbooks.forEach((fun) => {
 	fun.addEventListener("click", () => {
 		funaddbooks.forEach((funD) => {

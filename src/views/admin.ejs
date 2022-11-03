@@ -72,9 +72,9 @@
                     <div id="myGrid" class="ag-theme-alpine" style="height: 500px"></div>
                 </div>
             </div>
-            <div id="scr2" class="scr js_scr js_show_scr">
+            <div id="scr2" class="scr js_scr ">
                 <div class="iconFunAdmins">
-                    <div class="funBookad js_showAddbook" data-setsr = "sraddb">
+                    <div class="funBookad js_showAddbook js_reb" data-setsr = "sraddb">
                         <div class="iconAd"><i class='bx bx-book-add'></i></div>
                         <p class="texticonad">Add new books</p>
                     </div>
@@ -126,7 +126,7 @@
                     <div id="HighChartAllB" class="highchar4"></div>
                     <div id="HighChartOneB" class="highchar5"></div>
                 </div>
-                <div class="addNewBook hiddenSr js_showAB sraddb">
+                <div class="addNewBook hiddenSr js_showAB sraddb js_remAB">
                     <div class="divAdd">
                         <h3>Add new books</h3>
                         <form action="/reate-new-book" class="js_formAddBook" method="POST">
@@ -168,7 +168,9 @@
                                 <button type="submit">Save</button>
                             </div>
                         </form>
+                        <div class="delenewadd"><i class='bx bx-x js_deadd'></i></div>
                     </div>
+                    
                 </div>
                 <div class="funEdit cssnone js_showedit">
                     <div class="bodyedit">
@@ -262,13 +264,89 @@
                     </div>
                 </div>
             </div>
-            <div id="scr3" class="scr js_scr ">
+            <div id="scr3" class="scr js_scr js_show_scr">
                 <div class="bodyRenderOders">
                     <div class="chartOder">
                         <div id="ChartOderY" class="highchar2"></div>
                     </div>
                     <div class="funStatus">
-                        <p><i class='bx bx-filter-alt'style="position: relative;top: 2px;padding-right: 4px;"></i>: </p>
+                        <div class="iconfillV"><i class='bx bx-filter-alt' ></i></div>
+                        <div class="bodyfillV">
+                            <div style="display: flex;">
+                                <div class="dayV">
+                                    <div class="datetext">Day :</div>
+                                    <select class="semonth js_date_day" name="" id="">
+                                        <option value="00">All day</option>
+                                        <option value="01">1</option>
+                                        <option value="02">2</option>
+                                        <option value="03">3</option>
+                                        <option value="04">4</option>
+                                        <option value="05">5</option>
+                                        <option value="06">6</option>
+                                        <option value="07">7</option>
+                                        <option value="08">8</option>
+                                        <option value="09">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                        <option value="25">25</option>
+                                        <option value="26">26</option>
+                                        <option value="27">27</option>
+                                        <option value="28">28</option>
+                                        <option value="29">29</option>
+                                        <option value="30">30</option>
+                                        <option value="31">31</option>
+                                    </select>
+                                </div>
+                                <div class="monthV">
+                                    <div class="datetext">Month :</div>
+                                    <select class="semonth js_date_month" name="" id="">
+                                        <option value="00">All month</option>
+                                        <option value="01">1</option>
+                                        <option value="02">2</option>
+                                        <option value="03">3</option>
+                                        <option value="04">4</option>
+                                        <option value="05">5</option>
+                                        <option value="06">6</option>
+                                        <option value="07">7</option>
+                                        <option value="08">8</option>
+                                        <option value="09">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                                <div class="yearV">
+                                    <div class="datetext">Year :</div>
+                                    <input class="yearvinput js_date_year" type="date" >
+                                </div>
+                            </div>
+                            <div class="fillstatus">
+                                <div class="datetext">Confirmation slip status :</div>
+                                <input type="radio" name="statusF" id="AllF" checked="checked" value="All">
+                                <label class="FSallF" for="AllF">All</label>
+                                <input type="radio" name="statusF" id="ExpiredF" value="expired">
+                                <label class="FSexp" for="ExpiredF">expired</label>
+                                <input type="radio" name="statusF" id="UnexpiredF" value="unexpired">
+                                <label class="FSunex" for="UnexpiredF">unexpired</label>
+                            </div>
+                            <div class="ctbutfillS">
+                                <div class="butFillSt js_butFillSt">Ok</div>
+                            </div>
+                        </div>
+                        <p><i class='bx bx-filter'style="position: relative;top: 2px;padding-right: 4px; padding-left: 18px;"></i>: </p>
                         <div class="unex ">
                             <p class="js_filStatus">unexpired</p>
                         </div>
