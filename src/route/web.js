@@ -15,8 +15,16 @@ const storage = multer.diskStorage({
 		cb(null, file.fieldname + "-" + Date.now() + ".xlsx");
 	},
 });
-
+const storage1 = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, appRoot + "/src/public/image/");
+	},
+	filename: function (req, file, cb) {
+		cb(null, Date.now() + "-" + file.originalname);
+	},
+});
 const upload = multer({ storage: storage });
+const upload1 = multer({ storage: storage1 });
 
 const initWebRouter = (app) => {
 	router.get("/", getPage.getHomePage);
@@ -50,6 +58,11 @@ const initWebRouter = (app) => {
 		"/upload-file-addbooks",
 		upload.single("myFile"),
 		apiController.addbookfile
+	);
+	router.post(
+		"/reate-new-book-image",
+		upload1.single("fileimage"),
+		apiController.createBookimagefile
 	);
 	// router.get("/detail/:userId", getPage.getAllUser);
 

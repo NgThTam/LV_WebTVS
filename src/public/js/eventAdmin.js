@@ -177,3 +177,14 @@ iconfil.addEventListener("click", () => {
 subfil.addEventListener("click", () => {
 	bodyfil.classList.remove("js_nn");
 });
+
+//filterV
+const iconFV = document.querySelector(".js_iconfillV");
+const bodyFV = document.querySelector(".js_bodyFV");
+const butloseFV = document.querySelector(".js_loseSubV");
+iconFV.addEventListener("click", () => {
+	bodyFV.classList.toggle("dflexFV");
+});
+butloseFV.addEventListener("click", () => {
+	bodyFV.classList.remove("dflexFV");
+});

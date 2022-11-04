@@ -72,7 +72,7 @@
                     <div id="myGrid" class="ag-theme-alpine" style="height: 500px"></div>
                 </div>
             </div>
-            <div id="scr2" class="scr js_scr ">
+            <div id="scr2" class="scr js_scr js_show_scr">
                 <div class="iconFunAdmins">
                     <div class="funBookad js_showAddbook js_reb" data-setsr = "sraddb">
                         <div class="iconAd"><i class='bx bx-book-add'></i></div>
@@ -155,7 +155,7 @@
                                     <div class="textAdd textImage">Image :
                                         <div class="chooseImg">
                                             <div style="cursor:pointer" id="btnImg">add by file</div>
-                                            <input type="file" id="inputImg" style="display:none" accept="image/png, image/gif, image/jpeg">
+                                            <input type="file" name="fileimage"  id="inputImg" style="display:none" accept="image/png, image/gif, image/jpeg">
                                             <span>or add by link</span>
                                             <input type="text">
                                             <input type="text" name="image" hidden>
@@ -264,14 +264,15 @@
                     </div>
                 </div>
             </div>
-            <div id="scr3" class="scr js_scr js_show_scr">
+            <div id="scr3" class="scr js_scr ">
                 <div class="bodyRenderOders">
                     <div class="chartOder">
                         <div id="ChartOderY" class="highchar2"></div>
                     </div>
                     <div class="funStatus">
-                        <div class="iconfillV"><i class='bx bx-filter-alt' ></i></div>
-                        <div class="bodyfillV">
+                        <div class="iconfillV js_iconfillV"><i class='bx bx-filter-alt' ></i></div>
+                        <div class="bodyfillV js_bodyFV">
+                            <!-- <div class="datetext">Book rental date :</div> -->
                             <div style="display: flex;">
                                 <div class="dayV">
                                     <div class="datetext">Day :</div>
@@ -342,8 +343,17 @@
                                 <input type="radio" name="statusF" id="UnexpiredF" value="unexpired">
                                 <label class="FSunex" for="UnexpiredF">unexpired</label>
                             </div>
+                            <div class="fillstatus">
+                                <div class="datetext">Payment status :</div>
+                                <input type="radio" name="statusPayment" id="AllP" checked="checked" value="All">
+                                <label class="FSallF" for="AllP">All</label>
+                                <input type="radio" name="statusPayment" id="unpaidP" value="0">
+                                <label class="FSexp" for="unpaidP">unpaid</label>
+                                <input type="radio" name="statusPayment" id="paidP" value="1">
+                                <label class="FSunex" for="paidP">paid</label>
+                            </div>
                             <div class="ctbutfillS">
-                                <div class="butFillSt js_butFillSt">Ok</div>
+                                <div class="butFillSt js_butFillSt js_loseSubV">Ok</div>
                             </div>
                         </div>
                         <p><i class='bx bx-filter'style="position: relative;top: 2px;padding-right: 4px; padding-left: 18px;"></i>: </p>

@@ -121,10 +121,21 @@ let updateUser = (req, res) => {
 };
 let createBook = (req, res) => {
 	let { title, author, yearPub, publisher, image, Idb } = req.body;
-	connection.query(
-		"INSERT INTO `books`(`IDb`, `NameB`, `Author`, `YearPub`, `Publiser`, `ImgB`) VALUES (?,?,?,?,?,?)",
-		[Idb, title, author, yearPub, publisher, image]
-	);
+	console.log(req.body);
+	// connection.query(
+	// 	"INSERT INTO `books`(`IDb`, `NameB`, `Author`, `YearPub`, `Publiser`, `ImgB`) VALUES (?,?,?,?,?,?)",
+	// 	[Idb, title, author, yearPub, publisher, image]
+	// );
+	// return res.redirect("/admin");
+};
+let createBookimagefile = (req, res) => {
+	let { title, author, yearPub, publisher, image, Idb } = req.body;
+	console.log(req.body);
+	console.log(req.file.filename);
+	// connection.query(
+	// 	"INSERT INTO `books`(`IDb`, `NameB`, `Author`, `YearPub`, `Publiser`, `ImgB`) VALUES (?,?,?,?,?,?)",
+	// 	[Idb, title, author, yearPub, publisher, image]
+	// );
 	return res.redirect("/admin");
 };
 let updateBook = (req, res) => {
@@ -234,6 +245,7 @@ module.exports = {
 	createRating,
 	updateUser,
 	createBook,
+	createBookimagefile,
 	updateBook,
 	deleteBook,
 	updateStatus,

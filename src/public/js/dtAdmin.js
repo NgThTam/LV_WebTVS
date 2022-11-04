@@ -822,8 +822,12 @@ fetch("http://localhost:3000/api/v1/books")
 				butfilSs.addEventListener("click", () => {
 					let newarrFilldate = [];
 					let arrFillfinal = [];
+					let arrFillfinal1 = [];
 					let checkedSta = document.querySelector(
 						'input[name="statusF"]:checked'
+					);
+					let checkedpayment = document.querySelector(
+						'input[name="statusPayment"]:checked'
 					);
 					const fillbyyear = oders.filter(
 						(oder) =>
@@ -859,10 +863,17 @@ fetch("http://localhost:3000/api/v1/books")
 							return arffdate.status == checkedSta.value;
 						});
 					}
-					console.log(arrFillfinal);
+					if (checkedpayment.value == "All") {
+						arrFillfinal1 = arrFillfinal;
+					} else {
+						arrFillfinal1 = arrFillfinal.filter((arrf1) => {
+							return arrf1.PayStatus == checkedpayment.value;
+						});
+					}
+					// console.log(checkedpayment.value);
 					//in
 					const finalF = [];
-					arrFillfinal.forEach((eloder) => {
+					arrFillfinal1.forEach((eloder) => {
 						if (eloder.status == "unexpired") {
 							if (eloder.PayStatus == 0) {
 								finalF.push(innerRVunex(eloder));
@@ -1245,6 +1256,11 @@ fetch("http://localhost:3000/api/v1/books")
 	});
 
 const formAddB = document.querySelector(".js_formAddBook");
+const inputImgA = document.getElementById("inputImg");
+inputImgA.addEventListener("change", () => {
+	formAddB.setAttribute("action", "/reate-new-book-image");
+	formAddB.setAttribute("enctype", "multipart/form-data");
+});
 formAddB.addEventListener("submit", (e) => {
 	// e.preventDefault();
 	// for (let i = 0; i <= 6; i++) {

@@ -2087,6 +2087,7 @@ body {
     min-height: 20rem;
     background-color: white;
 	padding-top: 15px;
+	border-radius: 3px;
 }
 .content_viewOder h1{
 	text-align: center;
@@ -2281,6 +2282,7 @@ body {
 	width: 60%;
 	padding: 10px 20px 10px 20px;
 	position: relative;
+	border-radius: 3px;
 }
 .delenewadd{
 	position: absolute;
@@ -3004,9 +3006,12 @@ body {
     border: 1px solid #0000008c;
     background-color: whitesmoke;
 	top: 31px;
-	z-index: 11;
-	display: flex;
+	z-index: 9;
+	display: none;
     flex-direction: column;
+}
+.dflexFV{
+	display: flex;
 }
 .datetext{
 	font-size: 12px;
