@@ -2874,6 +2874,7 @@ body {
 	min-width: 50rem;
     min-height: 40rem;
     background-color: white;
+	border-radius: 3px;
 }
 .chooseiconfile{
 	padding: 10px 15px 0px 15px;
@@ -2910,7 +2911,7 @@ body {
 }
 .tablie_fileadd{
 	padding: 10px 15px 5px 15px;
-	max-width: 920px;
+	max-width: 1000px;
 }
 .tablie_fileadd table td{
 	font-size: 14px;
@@ -3083,4 +3084,18 @@ body {
 	padding-top: 8px;
     position: relative;
     height: 22px;
+}
+.inpCategories{
+	width: 40%;
+    padding-left: 3px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #00000057;
+    margin-left: 14px;
+}
+.imglinkip{
+	margin-left: 5px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid;
 }

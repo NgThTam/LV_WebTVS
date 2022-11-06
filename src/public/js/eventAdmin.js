@@ -76,6 +76,7 @@ const map = {
 	publisher: "publisher",
 	image: "image",
 	amount: "amount",
+	categories: "categories",
 };
 const convbook = (book) => {
 	return `<tr class="tableBadmin">
@@ -86,6 +87,7 @@ const convbook = (book) => {
 				<td>${book.publisher}</td>
 				<td>${book.amount}</td>
 				<td><img src="${book.image}" alt=""></td>
+				<td>${book.categories}</td>
 			</tr>`;
 };
 const inpbookfile = document.querySelector(".js_inputbookfile");

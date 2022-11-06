@@ -486,6 +486,106 @@ fetch("http://localhost:3000/api/v1/books")
 		return ab;
 	})
 	.then((ab) => {
+		const contentCate = document.querySelector(".js_content_cate");
+		fetch("http://localhost:3000/api/v1/categories")
+			.then((res) => res.json())
+			.then((categories) => {
+				contentCate.innerHTML = categories
+					.map(
+						(cate) => `<span><a data-idc="${cate.IDc}">${cate.NameC}</a></span>`
+					)
+					.join(" ");
+				fetch("http://localhost:3000/api/v1/book_category")
+					.then((res) => res.json())
+					.then((book_cate) => {
+						const cateconts = document.querySelectorAll(
+							".js_content_cate span a"
+						);
+						cateconts.forEach((catecont) => {
+							catecont.addEventListener("click", () => {
+								const catefinal = book_cate.filter(
+									(bct) => bct.IDc == catecont.dataset.idc
+								);
+								const bookincate = catefinal.map((bookct) => {
+									let bookcate = ab.find((elab) => elab.IDb == bookct.IDb);
+									return renderBook(bookcate);
+								});
+								showBook.innerHTML = bookincate.join(" ");
+								const abooks = document.querySelectorAll(".js_lbk");
+								abooks.forEach((abook) => {
+									abook.addEventListener("click", (e) => {
+										localStorage.setItem("id_book", e.target.dataset.id);
+									});
+								});
+								//like book
+								fetch("http://localhost:3000/api/v1/likes")
+									.then((res) => res.json())
+									.then((likes) => {
+										const likebooks = document.querySelectorAll(".js_likeB");
+										const formlikes =
+											document.querySelectorAll(".js_formlikes");
+										const iduser = localStorage.getItem("IDuser");
+										if (iduser) {
+											const userL = likes.find((like) => like.IDu == iduser);
+											if (userL) {
+												formlikes.forEach((flike) => {
+													flike.setAttribute("action", "/update-listlike");
+													flike.setAttribute("method", "POST");
+													flike[0].value = iduser;
+													// flike.addEventListener("submit", (e) => {
+													// 	e.preventDefault();
+													// });
+												});
+												const listNewBLike = userL.ListBook.split(",");
+												likebooks.forEach((ilike) => {
+													ilike.addEventListener("click", () => {
+														const formLikeID = document.getElementById(
+															`Get${ilike.dataset.idb}`
+														);
+														listNewBLike.push(ilike.dataset.idb);
+														console.log(ilike.dataset.idb);
+														const listBookNewO = [...new Set(listNewBLike)];
+														formLikeID[1].value = listBookNewO.join(",");
+													});
+												});
+											} else {
+												formlikes.forEach((like) => {
+													like.setAttribute("action", "/reate-listlike");
+													like.setAttribute("method", "POST");
+													like[0].value = iduser;
+												});
+												likebooks.forEach((ilike) => {
+													ilike.addEventListener("click", () => {
+														const formLikeID = document.getElementById(
+															`Get${ilike.dataset.idb}`
+														);
+														formLikeID[1].value = ilike.dataset.idb;
+													});
+												});
+											}
+										} else {
+											formlikes.forEach((flike) => {
+												flike.addEventListener("submit", (e) => {
+													e.preventDefault();
+													window.alert("Pls Login");
+												});
+											});
+										}
+										likebooks.forEach((like) => {
+											like.addEventListener("click", () => {
+												document
+													.getElementById(`Sub${like.dataset.idb}`)
+													.click();
+											});
+										});
+									});
+							});
+						});
+					});
+			});
+		return ab;
+	})
+	.then((ab) => {
 		const boxSearch = document.getElementById("boxsearch");
 		boxSearch.addEventListener("keyup", () => {
 			let Textvalue = boxSearch.value.toUpperCase();

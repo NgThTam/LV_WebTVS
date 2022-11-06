@@ -113,6 +113,7 @@
                                     <th>publisher</th>
                                     <th>image</th>
                                     <th>amount</th>
+                                    <th>categories</th>
                                 </thead>
                             </table>
                         </div>
@@ -157,12 +158,22 @@
                                             <div style="cursor:pointer" id="btnImg">add by file</div>
                                             <input type="file" name="fileimage"  id="inputImg" style="display:none" accept="image/png, image/gif, image/jpeg">
                                             <span>or add by link</span>
-                                            <input type="text">
+                                            <input class="imglinkip" type="text">
                                             <input type="text" name="image" hidden>
                                         </div>
                                     </div>
                                 </div>
                                 <input type="text" name="Idb" hidden>
+                                <div class="elAdd">
+                                    <div class="textAdd">Categories :</div>
+                                    <select class="inpCategories" name="category" id="">
+                                        <option value="Cg1">Biography & Autobiography</option>
+                                        <option value="Cg2">History</option>
+                                        <option value="Cg3">Fiction</option>
+                                        <option value="Cg4">Juvenile Fiction</option>
+                                        <option value="Cg5">Literary Criticism</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="butSubmit">
                                 <button type="submit">Save</button>
@@ -532,6 +543,7 @@
                       <th>Publisher</th>
                       <th>Amount</th>
                       <th>Image</th>
+                      <th>Categories</th>
                     </tr>
                     <tbody class="jd_contentaddfile">
                         <!-- <tr class="tableBadmin">

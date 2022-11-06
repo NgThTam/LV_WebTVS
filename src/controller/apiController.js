@@ -120,22 +120,32 @@ let updateUser = (req, res) => {
 	return res.redirect("/profile");
 };
 let createBook = (req, res) => {
-	let { title, author, yearPub, publisher, image, Idb } = req.body;
-	console.log(req.body);
-	// connection.query(
-	// 	"INSERT INTO `books`(`IDb`, `NameB`, `Author`, `YearPub`, `Publiser`, `ImgB`) VALUES (?,?,?,?,?,?)",
-	// 	[Idb, title, author, yearPub, publisher, image]
-	// );
-	// return res.redirect("/admin");
+	let { title, author, yearPub, publisher, fileimage, image, Idb, category } =
+		req.body;
+	let numamount = 10;
+
+	connection.query(
+		"INSERT INTO `books`(`IDb`, `NameB`, `Author`, `YearPub`, `Publiser`, `ImgB`, `amount`) VALUES (?,?,?,?,?,?,?)",
+		[Idb, title, author, yearPub, publisher, image, numamount]
+	);
+	connection.query("INSERT INTO `book_category`(`IDb`, `IDc`) VALUES (?,?)", [
+		Idb,
+		category,
+	]);
+	return res.redirect("/admin");
 };
 let createBookimagefile = (req, res) => {
-	let { title, author, yearPub, publisher, image, Idb } = req.body;
-	console.log(req.body);
-	console.log(req.file.filename);
-	// connection.query(
-	// 	"INSERT INTO `books`(`IDb`, `NameB`, `Author`, `YearPub`, `Publiser`, `ImgB`) VALUES (?,?,?,?,?,?)",
-	// 	[Idb, title, author, yearPub, publisher, image]
-	// );
+	let { title, author, yearPub, publisher, image, Idb, category } = req.body;
+	let numamount = 10;
+	let nameIm = `image/${req.file.filename}`;
+	connection.query(
+		"INSERT INTO `books`(`IDb`, `NameB`, `Author`, `YearPub`, `Publiser`, `ImgB`, `amount`) VALUES (?,?,?,?,?,?,?)",
+		[Idb, title, author, yearPub, publisher, nameIm, numamount]
+	);
+	connection.query("INSERT INTO `book_category`(`IDb`, `IDc`) VALUES (?,?)", [
+		Idb,
+		category,
+	]);
 	return res.redirect("/admin");
 };
 let updateBook = (req, res) => {
@@ -148,8 +158,8 @@ let updateBook = (req, res) => {
 };
 let deleteBook = (req, res) => {
 	let { idB } = req.body;
-	// console.log(idB);
 	connection.query("DELETE FROM `books` WHERE `IDb`=?", [idB]);
+	connection.query("DELETE FROM `book_category` WHERE `IDb`=?", [idB]);
 	return res.redirect("/admin");
 };
 
@@ -207,12 +217,34 @@ const map = {
 	publisher: "publisher",
 	image: "image",
 	amount: "amount",
+	categories: "categories",
 };
 let addbookfile = (req, res, next) => {
 	readXlsxFile(appRoot + "/src/public/fileExcel/" + req.file.filename, {
 		map,
 	}).then(({ rows }) => {
+		console.log(rows);
 		rows.forEach((row) => {
+			let IDctext;
+			switch (row.categories.toLowerCase()) {
+				case "biography & autobiography":
+					IDctext = "Cg1";
+					break;
+				case "history":
+					IDctext = "Cg2";
+					break;
+				case "fiction":
+					IDctext = "Cg3";
+					break;
+				case "juvenile fiction":
+					IDctext = "Cg4";
+					break;
+				case "literary criticism":
+					IDctext = "Cg5";
+					break;
+				default:
+					IDctext = "Cg1";
+			}
 			connection.query(
 				"INSERT INTO `books`(`IDb`, `NameB`, `Author`, `YearPub`, `Publiser`, `ImgB`, `amount`) VALUES (?,?,?,?,?,?,?)",
 				[
@@ -224,6 +256,10 @@ let addbookfile = (req, res, next) => {
 					row.image,
 					row.amount,
 				]
+			);
+			connection.query(
+				"INSERT INTO `book_category`(`IDb`, `IDc`) VALUES (?,?)",
+				[row.id, IDctext]
 			);
 		});
 	});
