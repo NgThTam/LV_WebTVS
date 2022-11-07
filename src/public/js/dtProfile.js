@@ -76,6 +76,24 @@ fetch("http://localhost:3000/api/v1/books")
 						hsdOder = "expired";
 					}
 					eloder.status = hsdOder;
+					let namPay = eloder.DatePay.slice(6, 10);
+					let namRen = eloder.DateRental.slice(6, 10);
+					let thangPay = parseInt(eloder.DatePay.slice(3, 5));
+					let thangRen = parseInt(eloder.DateRental.slice(3, 5));
+					let ngayPay = parseInt(eloder.DatePay.slice(0, 2));
+					let ngayRen = parseInt(eloder.DateRental.slice(0, 2));
+					let priceVcart = eloder.lenghtCart * 0.5;
+					let pricePay = 0;
+					if (namPay - namRen == 0) {
+						if (thangPay - thangRen == 0) {
+							let songay = ngayPay - ngayRen;
+							pricePay = priceVcart * songay;
+						} else {
+							let songay = (thangPay - thangRen) * 31 + ngayPay - ngayRen;
+							pricePay = priceVcart * songay;
+						}
+					}
+					eloder.pricePay = parseFloat(pricePay);
 					if (hsdOder == "unexpired") {
 						if (eloder.PayStatus == 0) {
 							newlistOder.push(innerRVunex(eloder));
@@ -90,6 +108,7 @@ fetch("http://localhost:3000/api/v1/books")
 						}
 					}
 				});
+				console.log(listOder);
 				const cntOder = document.querySelector(".js_tableRV");
 				cntOder.innerHTML = newlistOder.join(" ");
 				return listOder;
@@ -208,6 +227,47 @@ fetch("http://localhost:3000/api/v1/books")
 							cntO.addEventListener("click", (e) => {
 								e.stopPropagation();
 							});
+							//chi phi phat
+							const proPais = document.querySelectorAll(".js_pricepai_profile");
+							proPais.forEach((proPai) => {
+								proPai.addEventListener("click", () => {
+									const eloderoke = listOder.find(
+										(loder) => loder.IDo == proPai.dataset.idvpai
+									);
+									const homnaypaid = new Date();
+									let namnay = homnaypaid.getFullYear();
+									let nampaid = eloderoke.DatePay.slice(6, 10);
+									let thangnay = homnaypaid.getMonth() + 1;
+									let thangpaid = eloderoke.DatePay.slice(3, 5);
+									let ngaynay = homnaypaid.getDate();
+									let ngaypaid = eloderoke.DatePay.slice(0, 2);
+									let pricePaid;
+									if (eloderoke.status == "unexpired") {
+										pricePaid = 0;
+									} else {
+										if (namnay - nampaid == 0) {
+											if (thangnay - thangpaid == 0) {
+												let songaypaid = ngaynay - ngaypaid;
+												let priceacrtoder =
+													eloderoke.lenghtCart * 0.6 * songaypaid;
+												pricePaid = priceacrtoder;
+											} else {
+												let songaypaid =
+													(thangnay - thangpaid) * 31 + ngaynay - ngaypaid;
+												let priceacrtoder =
+													eloderoke.lenghtCart * 0.6 * songaypaid;
+												pricePaid = priceacrtoder;
+											}
+										} else {
+											console.log("khac nam");
+										}
+									}
+									// console.log(Math.round(pricePaid * 100) / 100);
+									document.getElementById(
+										`paid${proPai.dataset.idvpai}`
+									).innerHTML = `<p><span style="color: red;font-weight: 600;">$ </span>${pricePaid}</p>`;
+								});
+							});
 						}
 					});
 				});
@@ -244,6 +304,44 @@ fetch("http://localhost:3000/api/v1/books")
 				});
 				cntO.addEventListener("click", (e) => {
 					e.stopPropagation();
+				});
+				const proPais = document.querySelectorAll(".js_pricepai_profile");
+				proPais.forEach((proPai) => {
+					proPai.addEventListener("click", () => {
+						const eloderoke = listOder.find(
+							(loder) => loder.IDo == proPai.dataset.idvpai
+						);
+						const homnaypaid = new Date();
+						let namnay = homnaypaid.getFullYear();
+						let nampaid = eloderoke.DatePay.slice(6, 10);
+						let thangnay = homnaypaid.getMonth() + 1;
+						let thangpaid = eloderoke.DatePay.slice(3, 5);
+						let ngaynay = homnaypaid.getDate();
+						let ngaypaid = eloderoke.DatePay.slice(0, 2);
+						let pricePaid;
+						if (eloderoke.status == "unexpired") {
+							pricePaid = 0;
+						} else {
+							if (namnay - nampaid == 0) {
+								if (thangnay - thangpaid == 0) {
+									let songaypaid = ngaynay - ngaypaid;
+									let priceacrtoder = eloderoke.lenghtCart * 0.6 * songaypaid;
+									pricePaid = priceacrtoder;
+								} else {
+									let songaypaid =
+										(thangnay - thangpaid) * 31 + ngaynay - ngaypaid;
+									let priceacrtoder = eloderoke.lenghtCart * 0.6 * songaypaid;
+									pricePaid = priceacrtoder;
+								}
+							} else {
+								console.log("khac nam");
+							}
+						}
+						// console.log(Math.round(pricePaid * 100) / 100);
+						document.getElementById(
+							`paid${proPai.dataset.idvpai}`
+						).innerHTML = `<p><span style="color: red;font-weight: 600;">$ </span>${pricePaid}</p>`;
+					});
 				});
 			});
 		return books;
@@ -435,16 +533,16 @@ const innerInf = (
 	<div class="butInf cssnone js_inputInf"><button type="submit">Update</button></div>
 	</form>`;
 const innerRVunex = (oder) => `<tr>
-	<td>${oder.IDo}</td>
+	<td style="text-align: left;"><span style="color: #12a837; font-weight: 600;">$ </span>${oder.pricePay}</td>
 	<td>${oder.lenghtCart}</td>
 	<td>${oder.DateRental}</td>
 	<td>${oder.DatePay}</td>
 	<td><div class="status"><p class="unexD">unexpired</p></div></td>
 	<td><i class='bx bxs-show js_viewO' data-idoder='${oder.IDo}'></i></td>
-	<td><i class='bx bx-x-circle'></i></td>
+	<td id="paid${oder.IDo}"><i class='bx bxs-error-circle js_pricepai_profile' style="font-size: 19px; color: #f00a0a;cursor: pointer;" data-idvpai="${oder.IDo}"></i></td>
 	</tr>`;
 const innerRVunex1 = (oder) => `<tr>
-	<td>${oder.IDo}</td>
+	<td style="text-align: left;"><span style="color: #12a837; font-weight: 600;">$ </span>${oder.pricePay}</td>
 	<td>${oder.lenghtCart}</td>
 	<td>${oder.DateRental}</td>
 	<td>${oder.DatePay}</td>
@@ -453,16 +551,16 @@ const innerRVunex1 = (oder) => `<tr>
 	<td><i class='bx bx-check-circle'></i></td>
 	</tr>`;
 const innerRVex = (oder) => `<tr>
-	<td>${oder.IDo}</td>
+	<td style="text-align: left;"><span style="color: #12a837; font-weight: 600;">$ </span>${oder.pricePay}</td>
 	<td>${oder.lenghtCart}</td>
 	<td>${oder.DateRental}</td>
 	<td>${oder.DatePay}</td>
 	<td><div class="status"><p class="exD">expired</p></div></td>
 	<td><i class='bx bxs-show js_viewO' data-idoder='${oder.IDo}'></i></td>
-	<td><i class='bx bx-x-circle'></i></td>
+	<td id="paid${oder.IDo}"><i class='bx bxs-error-circle js_pricepai_profile' style="font-size: 19px; color: #f00a0a;cursor: pointer;" data-idvpai="${oder.IDo}"></i></td>
 	</tr>`;
 const innerRVex1 = (oder) => `<tr>
-	<td>${oder.IDo}</td>
+	<td style="text-align: left;"><span style="color: #12a837; font-weight: 600;">$ </span>${oder.pricePay}</td>
 	<td>${oder.lenghtCart}</td>
 	<td>${oder.DateRental}</td>
 	<td>${oder.DatePay}</td>

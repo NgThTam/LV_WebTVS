@@ -1376,4 +1376,117 @@ fetch("http://localhost:3000/api/v1/users")
 		gridOptions.api.setRowData(newUser);
 	});
 
-//chart column
+//dthu
+fetch("http://localhost:3000/api/v1/oders")
+	.then((response) => response.json())
+	.then((oders) => {
+		const inpdthu = document.querySelector(".js_inpdthu");
+		const butdthu = document.querySelector(".js_butdthu");
+		const innerRevenue = document.querySelector(".js_inner_revenue");
+		const innerNumren = document.querySelector(".js_inner_numRen");
+		const innernumPai = document.querySelector(".js_inner_numPai");
+		const innerPenfee = document.querySelector(".js_inner_penfee");
+		const innerNameMonth = document.querySelector(".js_name_month");
+		butdthu.addEventListener("click", () => {
+			let dtyear = inpdthu.value.slice(0, 4);
+			let dtmonth = inpdthu.value.slice(5, 7);
+			const oderyear = oders.filter(
+				(oder) => oder.DateRental.slice(6, 10) == dtyear
+			);
+			const oderfinal = oderyear.filter(
+				(odyear) => odyear.DateRental.slice(3, 5) == dtmonth
+			);
+			let numrental = oderfinal.length;
+			let revenue = 0;
+			let priceFinal = 0;
+			oderfinal.forEach((odfinal) => {
+				let priceV = odfinal.Cart.split(",").length * 0.5;
+				let namPay = odfinal.DatePay.slice(6, 10);
+				let namRen = odfinal.DateRental.slice(6, 10);
+				let thangPay = parseInt(odfinal.DatePay.slice(3, 5));
+				let thangRen = parseInt(odfinal.DateRental.slice(3, 5));
+				let ngayPay = parseInt(odfinal.DatePay.slice(0, 2));
+				let ngayRen = parseInt(odfinal.DateRental.slice(0, 2));
+				if (namPay - namRen == 0) {
+					if (thangPay - thangRen == 0) {
+						let songay = ngayPay - ngayRen;
+						let priceaV = songay * priceV;
+						priceFinal += priceaV;
+					} else {
+						let songay = (thangPay - thangRen) * 30 + ngayPay - ngayRen;
+						let priceaV = songay * priceV;
+						priceFinal += priceaV;
+					}
+				}
+				// console.log(odfinal);
+				// console.log(priceV);
+			});
+			const unpadRoder = oderfinal.filter((of) => of.PayStatus == 0);
+			let unpaidRen = unpadRoder.length;
+			let homnay = new Date();
+			let thangnay = homnay.getMonth() + 1;
+			let ngaynay = homnay.getDate();
+			let priceFPena = 0;
+			unpadRoder.forEach((upOder) => {
+				let priceaVou = upOder.Cart.split(",").length * 0.6;
+				let namtreP = upOder.DatePay.slice(6, 10);
+				let thangtreP = parseInt(upOder.DatePay.slice(3, 5));
+				let ngaytreP = parseInt(upOder.DatePay.slice(0, 2));
+				if (homnay.getFullYear() - namtreP == 0) {
+					if (thangnay - thangtreP == 0) {
+						let songayPai = ngaynay - ngaytreP;
+						let pricePai = songayPai * priceaVou;
+						priceFPena += pricePai;
+					} else {
+						let songayPai = (thangnay - thangtreP) * 31 + ngaynay - ngaytreP;
+						let pricePai = songayPai * priceaVou;
+						priceFPena += pricePai;
+					}
+				}
+			});
+			innerRevenue.innerHTML = `$ ${priceFinal}`;
+			innerNumren.innerHTML = `${numrental}`;
+			innernumPai.innerHTML = `${unpaidRen}`;
+			innerPenfee.innerHTML = `$ ${priceFPena}`;
+			let nameMonth = "October";
+			switch (dtmonth) {
+				case "01":
+					nameMonth = "January";
+					break;
+				case "02":
+					nameMonth = "February";
+					break;
+				case "03":
+					nameMonth = "March";
+					break;
+				case "04":
+					nameMonth = "April";
+					break;
+				case "05":
+					nameMonth = "May";
+					break;
+				case "06":
+					nameMonth = "June";
+					break;
+				case "07":
+					nameMonth = "July";
+					break;
+				case "08":
+					nameMonth = "August";
+					break;
+				case "09":
+					nameMonth = "September";
+					break;
+				case "10":
+					nameMonth = "October";
+					break;
+				case "11":
+					nameMonth = "November";
+					break;
+				case "12":
+					nameMonth = "December";
+					break;
+			}
+			innerNameMonth.innerHTML = `${nameMonth} revenue statistics`;
+		});
+	});
