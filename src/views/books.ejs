@@ -32,8 +32,8 @@
                                 </a>
                             </li>
                             <li class="menu_list">
-                                <a href="#" class="menu_list_home">
-                                    <span style="color: #00bfc5;font-size: 19px">Books</span>
+                                <a class="menu_list_home">
+                                    <span style="color: #00bfc5;font-size: 19px;cursor: pointer; ">Books</span>
                                 </a>
                             </li>
                             <div class="js_logout">
@@ -73,23 +73,23 @@
        <button class="but_search"><i class='bx bx-search-alt-2'></i></button>
        <div class="show_option">
             <div class="show_x3">
-            <span class="l_show_x3">
-                 <span></span>
-                 <span></span>
-                 <span></span>
-            </span>
-            <span class="l_show_x3">
-                 <span></span>
-                 <span></span>
-                 <span></span>
-             </span>
-             <span class="l_show_x3">
-                 <span></span>
-                 <span></span>
-                 <span></span>
-             </span>
-             </div>
-           <div class="show_x4">
+                <span class="l_show_x3">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="l_show_x3">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span class="l_show_x3">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </div>
+            <div class="show_x4">
                <span class="l_show_x4">
                     <span></span>
                     <span></span>
@@ -122,7 +122,17 @@
                      <span></span>
                      <span class="x2"></span>
                  </span>
-                 </div>
+            </div>
+            <div class="catesearch">
+                <div class="catechooseS">
+                    <select name="" id="catesearchSelect">
+                        <!-- <option value="">All</option> -->
+                    </select>
+                </div>
+                <div class="textwillsearch">
+                    <p>Books<span style="color: black;">/</span><span class="js_name_cate_book">All</span></p>
+                </div>
+            </div>
        </div>
     </div>
     <div class="books_content">
@@ -139,10 +149,10 @@
                         <span><a>St. Martin's Press</a></span>
                         <span><a>Oxford University Press</a></span>
                     </div>
-                    <li><a class="js_cate_pub">Categories <i class='bx bx-chevron-down'></i></a></li>
+                    <!-- <li><a class="js_cate_pub">Categories <i class='bx bx-chevron-down'></i></a></li>
                     <div class="publisher js_content_cate">
-                        <!-- <span><a>sg1</a></span> -->
-                    </div>
+                        <span><a>sg1</a></span>
+                    </div> -->
                     <li><a class="js_year">Year of Publication <i class='bx bx-chevron-down'></i></a></li>
                     <div class="year_pub js_year_pub">
                         <span><a>2000</a></span>
@@ -448,7 +458,7 @@
 <script src="js/validateRegister.js"></script>
 <script src="js/dtBooks.js"></script>
 <script src="js/addTocart.js"></script>
-<script src="js/botRasa.js"></script>
+<!-- <script src="js/botRasa.js"></script> -->
 
 
 </html>

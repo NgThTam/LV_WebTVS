@@ -1240,6 +1240,7 @@ body {
 	display: flex;
     align-items: center;
     justify-content: flex-end;
+	position: relative;
 }
 .l_show_x4, .l_show_x3, .l_show_x2{
 	display: flex;
@@ -3173,4 +3174,32 @@ body {
 }
 .butdthu:hover{
 	border: 1px solid #0a0909;
+}
+/* books cate */
+.catesearch{
+	position: absolute;
+    left: 0;
+	display: flex;
+}
+.catechooseS{
+	padding-right: 25px;
+}
+.catechooseS select{
+	min-width: 180px;
+    height: 28px;
+    outline: none;
+	border-color: #acb8b8;
+}
+.textwillsearch{
+	display: flex;
+    align-items: center;
+    font-family: sans-serif;
+}
+.textwillsearch p{
+	cursor: default;
+    color: #1471c3;
+    font-weight: 600;
+}
+.textwillsearch p span{
+	padding-left: 11px;
 }

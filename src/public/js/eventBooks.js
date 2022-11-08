@@ -23,17 +23,17 @@ year_pub.addEventListener("click", () => {
 	}
 });
 //categories
-const cate_content = document.querySelector(".js_content_cate");
-const cate_title = document.querySelector(".js_cate_pub");
-cate_title.addEventListener("click", () => {
-	cate_content.classList.toggle("flexdis");
-	let cate_class = cate_content.getAttribute("class");
-	if (cate_class.includes("flexdis")) {
-		cate_title.innerHTML = "Categories <i class='bx bx-chevron-up'></i>";
-	} else {
-		cate_title.innerHTML = "Categories <i class='bx bx-chevron-down'></i>";
-	}
-});
+// const cate_content = document.querySelector(".js_content_cate");
+// const cate_title = document.querySelector(".js_cate_pub");
+// cate_title.addEventListener("click", () => {
+// 	cate_content.classList.toggle("flexdis");
+// 	let cate_class = cate_content.getAttribute("class");
+// 	if (cate_class.includes("flexdis")) {
+// 		cate_title.innerHTML = "Categories <i class='bx bx-chevron-up'></i>";
+// 	} else {
+// 		cate_title.innerHTML = "Categories <i class='bx bx-chevron-down'></i>";
+// 	}
+// });
 
 const titlePub = document.querySelector(".js_title_pub");
 const pub_content = document.querySelector(".js_content_pub");
