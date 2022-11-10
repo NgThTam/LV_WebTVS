@@ -3203,3 +3203,356 @@ body {
 .textwillsearch p span{
 	padding-left: 11px;
 }
+/* page about us */
+.titltheadder{
+	min-height: 100px;
+    background-color: #4dcece4a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.titltH{
+	font-family: playfair display,serif;
+    font-size: 2.2222em;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.086em;
+	padding-bottom: 4px;
+}
+.linktitle{
+	display: flex;
+    color: #665f5f;
+	font-size: 15px;
+}
+.linktitle a{
+	text-decoration: none;
+    color: #665f5f;
+}
+.nexttiltheader i{
+    padding: 2px 3px 0px 3px;
+}
+.linktitle a:hover{
+	border-bottom: 1px solid;
+}
+.abslotion{
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.titleSli{
+	width: 1290px;
+    font-size: 50px;
+    text-align: center;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+	padding: 30px;
+}
+.daugachtitle{
+	width: 86px;
+    height: 1.2px;
+    background-color: #aba7a7;
+	margin-top: 18px;
+}
+.slotiong{
+	width: 1290px;
+    color: #8e8787;
+    font-family: serif;
+    padding: 10px 170px 0px 170px;
+    text-align: center;
+}
+.slotiong p{
+	font-size: 16px;
+    letter-spacing: 1px;
+}
+.imgsloti{
+	display: flex;
+    padding-top: 30px;
+    justify-content: center;
+}
+.imgsloti img{
+	width: 1290px;
+}
+.funsloti{
+	display: flex;
+    justify-content: center;
+}
+.bodyfunsloti{
+	display: flex;
+    width: 1290px;
+    justify-content: space-between;
+    padding: 70px 30px;
+}
+.elfunsloti{
+	width: 28%;
+}
+.iconfunsloti{
+	text-align: center;
+    font-size: 60px;
+    color: #f30808a1;
+}
+.titlefunslot{
+	font-size: 23px;
+    text-align: center;
+    font-weight: 400;
+    font-family: serif;
+}
+.contentfunsloti{
+	text-align: center;
+    padding: 10px 15px;
+    font-family: system-ui;
+    font-size: 15px;
+    color: #756f6f;
+}
+.nextfunsloti{
+	text-align: center;
+	cursor: pointer;
+	font-size: 23px;
+}
+.mostauthor{
+	min-height: 100px;
+    background-color: #f5f5f4;
+	display: flex;
+    justify-content: center;
+	flex-direction: column;
+    align-items: center;
+}
+.imgmostauthor img{
+	border: 1px solid #00000021;
+    width: 300px;
+	height: 380px;
+}
+.bodymostauthor{
+	display: flex;
+    width: 1290px;
+    justify-content: space-between;
+    padding-bottom: 50px;
+}
+.imgmostauthor{
+	padding-bottom: 10px;
+}
+.elementmostauth a{
+	font-size: 24px;
+    text-decoration: none;
+    color: black;
+    font-family: serif;
+}
+.elementmostauth a:hover{
+	color: #189f98;
+}
+.HVmostauthor{
+	font-family: system-ui;
+    color: #000000a8;
+}
+.butviewmore{
+	width: 1290px;
+    display: flex;
+    padding: 10px 0px 70px 0px;
+    justify-content: center;
+}
+.butviewm{
+	background-color: black;
+    color: white;
+    width: 135px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 7px 25px #55515187;
+    align-items: center;
+    font-family: system-ui;
+    cursor: pointer;
+	border: 2px solid black;
+}
+.butviewm:hover{
+	background-color: white;
+	color: black;
+}
+/* page contacts */
+.contentcontacts{
+	min-height: 100px;
+    /* background-color: bisque; */
+    width: 30%;
+}
+.formcontactmes{
+	min-height: 100px;
+    /* background: blue; */
+    width: 67%;
+}
+.bodycontacts{
+	display: flex;
+    justify-content: center;
+}
+.cssbodycontacts{
+	width: 1320px;
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 0px;
+}
+.contactsLH{
+	padding-bottom: 10px;
+}
+.titleContacts{
+	font-size: 55px;
+    padding-bottom: 10px;
+}
+.daugachLH{
+	height: 2px;
+    background-color: #908787;
+    width: 85px;
+}
+.adrcontact{
+	font-size: 17px;
+    font-family: sans-serif;
+    padding-bottom: 15px;
+    color: #7c8083;
+}
+.phonecontact{
+	font-size: 17px;
+    font-family: sans-serif;
+    color: #de0f0f;
+    padding-bottom: 13px;
+}
+.emailcontact{
+	font-size: 17px;
+    font-family: sans-serif;
+    padding-bottom: 10px;
+    color: #7c8083;
+}
+.eleiconcontact{
+	background-color: #e7dcdc;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+.boxiconcontact{
+	display: flex;
+    justify-content: space-between;
+    width: 35%;
+}
+.contactad{
+	padding: 30px 0px;
+}
+.nameandemailcontact, .phoneandsubcontact{
+	display: flex;
+    justify-content: space-between;
+	padding-bottom: 30px;
+}
+.nameandemailcontact input{
+	letter-spacing: 0.5px;
+    width: 48%;
+    height: 45px;
+    padding: 10px 15px;
+    outline: none;
+    background-color: #f5f5f4;
+    border: none;
+    font-family: revert;
+}
+.phoneandsubcontact input{
+	letter-spacing: 0.5px;
+    width: 48%;
+    height: 45px;
+    padding: 10px 15px;
+    outline: none;
+    background-color: #f5f5f4;
+    border: none;
+    font-family: revert;
+}
+.messacontact textarea{
+	letter-spacing: 0.5px;
+    width: 100%;
+    height: 45px;
+    padding: 10px 15px;
+    outline: none;
+    background-color: #f5f5f4;
+    border: none;
+    font-family: revert;
+    height: 140px;
+}
+.messacontact{
+	padding-bottom: 10px;
+}
+.checkagree{
+	display: flex;
+	padding-bottom: 30px;
+}
+.checkagree input{
+	width: 18px;
+    background-color: #f5f4f4;
+}
+.checkagree p{
+	padding-left: 6px;
+    font-family: revert;
+    color: #95958d;
+}
+.butsendmessa{
+	width: 20%;
+    background-color: black;
+    color: white;
+    height: 47px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    font-family: sans-serif;
+	box-shadow: 1px 2px 10px #555151
+}
+.butsendmessa:hover{
+	background-color: white;
+	color: black;
+}
+.formcontactmes input:focus{
+	border: 1px solid #0dafd8;
+}
+.chooseabout{
+	position: absolute;
+    background-color: white;
+    width: 140px;
+    top: 38px;
+    height: 74px;
+    border: 1px solid #00000042;
+	display: none;
+}
+.chooseabout::after{
+	content: " ";
+    width: 100%;
+    height: 18px;
+    position: absolute;
+    top: -19px;
+    left: 0;
+}
+.showchoose:hover ~ .chooseabout{
+	display: block;
+}
+.chooseabout:hover{
+	display: block;
+}
+.chooseabout{
+	padding: 10px 0px;
+}
+.chooseabout a{
+	text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+.chonaboutus{
+	height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+}
+.chonaboutus:hover, .choncontacts:hover{
+	background-color: #e0dedc;
+}
+.choncontacts{
+	height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+}

@@ -34,6 +34,8 @@ const initWebRouter = (app) => {
 	router.get("/detail", getPage.getDetailPage);
 	router.get("/voucher", getPage.getVoucherPage);
 	router.get("/profile", getPage.getProfilePage);
+	router.get("/aboutus", getPage.getAboutusPage);
+	router.get("/contacts", getPage.getContactsPage);
 	router.get("/api/v1/books", apiController.getAllbook);
 	router.get("/api/v1/users", apiController.getAllUser);
 	router.get("/api/v1/ratings", apiController.getAllRating);

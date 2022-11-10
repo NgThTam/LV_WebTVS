@@ -4,22 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Contacts</title>
     <link rel="icon" type="image/x-icon" href="image/favicon.ico">
     <link rel="stylesheet" href="css/main.css">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<style>
-    .menu_list{
-        font-family: inherit;
-    }
-    .pro_admin{
-        font-family: arial, sans-serif;
-    }
-    
-</style>
 <body>
-    <div class="header js_header" style="background-color:#070707; top: 0px">
+    <div class="header js_header" style="background-color:black; top: 0px">
         <div class="header_mid">
             <div class="header_content">
                 <div class="hd_logo">
@@ -34,7 +25,7 @@
                 </div>
                 <div class="hd_menu">
                     <nav class="hd_nav_menu">
-                        <ul class="menu_main pro">
+                        <ul class="menu_main">
                             <li class="menu_list">
                                 <a href="/" class="menu_list_home">
                                     <span class="list_color" >Home</span>
@@ -47,24 +38,14 @@
                             </li>
                             <li class="menu_list" style="position: relative; ">
                                 <a class="menu_list_home showchoose">
-                                    <span class="list_color">About</span>
+                                    <span style="color: #00bfc5;font-size: 19px;cursor: pointer;">About</span>
                                 </a>
                                 <div class="chooseabout">
                                     <a href="/aboutus"><div class="chonaboutus">About Us</div></a>
-                                    <a href="/contacts"><div class="choncontacts">Contacts</div></a>
+                                    <a href="#"><div class="choncontacts" style="color: #158db3;">Contacts</div></a>
                                 </div>
                             </li>
                             <div class="js_logout">
-                                <li class="menu_list">
-                                    <a href="#" class="menu_list_home">
-                                        <span style="color: #00bfc5; font-size: 19px;">Profile</span>
-                                    </a>
-                                </li>
-								<li class="menu_list">
-                                    <a href="/" class="menu_list_home js_out">
-                                        <span class="list_color">Logout</span>
-                                    </a>
-                                </li>
                                 <!-- <li class="menu_list">
                                     <a href="#" class="menu_list_home js_register">
                                         <span class="list_color">Register</span>
@@ -77,14 +58,13 @@
                                 </li> -->
                             </div>
                             <li class="menu_list">
-
-                                <!-- <a href="./books" class="menu_list_home"> -->
-                                    <span class="list_color js_cart numcart">
-                                        <i class='bx bx-cart'></i>
-                                        <div class="numelcart"><p class="js_num"></p></div>
-                                    </span>
-                                <!-- </a> -->
-                            </li>  
+                                    <!-- <a href="./books" class="menu_list_home"> -->
+                                        <span class="list_color js_cart numcart">
+                                            <i class='bx bx-cart'></i>
+                                            <div class="numelcart"><p class="js_num"></p></div>
+                                        </span>
+                                    <!-- </a> -->
+                                </li>  
                             <!-- <li class="menu_list js_contai_search">
                                 <a href="#" class="menu_list_home js_search">
                                     <span class="list_color"><i class='bx bx-search-alt-2'></i></span>
@@ -97,113 +77,65 @@
             </div>
         </div>
     </div>
-    <div class="admin_main">
-        <div class="pro_admin newprofile">
-            <div class="prof_ad newpro_ad">
-                <!-- <div><img src="https://cdn.pixabay.com/photo/2016/11/14/17/39/person-1824144_640.png" alt=""></div> -->
-                <div class="div">
-                    <div class="backgr_pro"><i class='bx bxs-edit js_edit'></i></div>
-                    <img src="https://cdn.pixabay.com/photo/2014/04/02/10/48/symbol-304598_960_720.png" alt="">
-                </div>
-                <p class="js_nametk">@-tên tài khoản</p>
-            </div>
-            <!-- js_inf_pro -->
-            <div class="inf_pro js_inf_pro">
-                <form action="">
-                <ul>
-                    <li><span class="titleinf"><i class='bx bx-user-pin'></i> Full name :</span> <div></div></li>
-                    <!-- <input class="ipnutInf cssnone" type="text" placeholder="thanhtam"> -->
-                    <li><span class="titleinf"><i class='bx bx-map'></i> Address :</span> <div></div></li>
-                    <!-- <input class="ipnutInf cssnone" type="text" placeholder="nui sap"> -->
-                    <li><span class="titleinf"><i class='bx bx-envelope'></i> Email :</span> <div></div></li>
-                </ul>
-                <!-- <div class="butInf cssnone"><button type="submit">submit</button></div> -->
-                </form>
-            </div>
+    <div class="titltheadder">
+        <div class="titltH">
+            Contacts
         </div>
-        <div class="content_admin content_profile">
-            <div id="scr1" class="scr js_scr js_show_scr">
-               <div class="function">
-                <div class="bigfun">
-                    <div class="fun_voucher js_fun js_clstatus boder_click" data-srid = "sr1">
-                        <i class='bx bx-bookmark color_icon text_color'></i>
-                        <div class="icon">
-                            <i class='bx bx-book-reader'></i>
-                            <p>rental voucher</p>
-                        </div>
+        <div class="linktitle">
+            <a href="/">Home</a><span class="nexttiltheader"><i class='bx bx-right-arrow-alt'></i></span><p>Contacts</p>
+        </div>
+    </div>
+    <div class="contactMap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31407.710295676698!2d105.2539854!3d10.2645015!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a09d33ab35b19%3A0x7c5b1b998c797dbb!2zxJDhu4FuIHRo4budIFRob-G6oWkgTmfhu41jIEjhuqd1!5e0!3m2!1svi!2s!4v1668062015928!5m2!1svi!2s" width="1519" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="bodycontacts">
+        <div class="cssbodycontacts">
+            <div class="contentcontacts">
+                <div class="contactsLH">
+                    <div class="titleContacts">Contact Us</div>
+                    <div class="daugachLH"></div>
+                </div>
+                <div class="contactad">
+                    <p class="adrcontact">Nui Sap, Thoai Son, An Giang</p>
+                    <p class="phonecontact">+0 123 456 789</p>
+                    <p class="emailcontact">books_books@gmail.com</p>
+                </div>
+                <div class="boxiconcontact">
+                    <div class="eleiconcontact"><i class='bx bxl-facebook'></i></div>
+                    <div class="eleiconcontact"><i class='bx bxl-twitter' ></i></div>
+                    <div class="eleiconcontact"><i class='bx bxl-instagram' ></i></div>
+                </div>
+            </div>
+            <div class="formcontactmes">
+                <div class="nameandemailcontact">
+                    <input type="text" name="" id="" placeholder="Name">
+                    <input type="text" name="" id="" placeholder="Email Address">
+                </div>
+                <div class="phoneandsubcontact">
+                    <input type="text" name="" id="" placeholder="Phone">
+                    <input type="text" name="" id="" placeholder="Subject">
+                </div>
+                <div class="messacontact">
+                    <textarea name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
+                </div>
+                <div class="checkagree">
+                    <input type="checkbox" name="" id="">
+                    <p>I agree that my submitted data is being collected and stored.</p>
+                </div>
+                <div class="butsendmessacontact">
+                    <div class="butsendmessa">
+                        SEND MESSAGE
                     </div>
                 </div>
-                <div class="bigfun">
-                    <div class="fun_voucher js_fun " data-srid = "sr2">
-                        <i class='bx bx-bookmark-heart'></i>
-                        <div class="icon">
-                            <i class='bx bx-heart'></i>
-                            <p>favorite books</p>
-                        </div>
-                    </div>
-                </div>
-                
-               </div>
-               <!-- hiddenSr -->
-               <div id="sr1" class="bodyfun hiddenSr showSr js_srfun">
-                    <h1>Rental voucher</h1>
-                    <div class="funbody">
-                        <div class="funStatus">
-                            <p><i class='bx bx-filter-alt'style="position: relative;top: 2px;padding-right: 4px;"></i>: </p>
-                            <div class="unex ">
-                                <p class="js_filStatus">unexpired</p>
-                            </div>
-                            <div class="ex">
-                                <p class="js_filStatus">expired</p>
-                            </div>
-                        </div>
-                        <div class="content-vrental">
-                            <table class="table_vrental">
-                                <tr>
-                                  <th>Cost</th>
-                                  <th>Number of books</th>
-                                  <th>Book rental date</th>
-                                  <th>Date of payment</th>
-                                  <th>Status</th>
-                                  <th>Detail</th>
-                                  <th>Payment</th>
-                                </tr>
-                                <tbody class="js_tableRV">
-                                    <!-- <tr>
-                                        <td>6EBP9qJv</td>
-                                        <td>5</td>
-                                        <td>24/09/2022</td>
-                                        <td>28/09/2022</td>
-                                        <td><div class="status"><p class="unexD">unexpired</p></div></td>
-                                        <td><i class='bx bxs-show js_viewO'></i></td>
-                                        <td><i class='bx bx-check-circle'></i></td>
-                                    </tr> -->
-                                </tbody>
-                              </table>
-                        </div>
-                    </div>
-               </div>
-               <div id="sr2" class="bodyfun hiddenSr js_srfun">
-                    <h1>Favorite books</h1>
-                    <div class="bodylikeB">
-                        <div class="renderlikelist js_renderlikelist">
-                            <div class="paddingEllike">
-                                <div class="ellike">
-                                    <img src="http://images.amazon.com/images/P/0060915544.0" alt="">
-                                    <div class="iconlistLi">
-                                        <div><i class='bx bxs-heart' style="color: red;"></i></div>
-                                        <div><a href="/detail" class="js_likedetail"><i class='bx bx-search'></i></a></div>
-                                        <div><i class='bx bx-trash'></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-               </div>
             </div>
         </div>
     </div>
+
+
+
+
+
+
 
 
     <div class="footer">
@@ -375,54 +307,14 @@
         </div>
         
     </div>
-    <div class="modal_viewOder js_modalview">
-        <div class="content_viewOder js_cntO">
-            <h1>Book rental confirmation <img src="image/ads-removebg-preview.png" alt=""></h1>
-            <div class="bodyVoucher ">
-                <div class="js_viewVouUser">
-                    <div class="cntV">
-                        <span><i class='bx bxs-user'></i> Full name of book tenant :</span>
-                        <div class="cntText"></div>
-                    </div>
-                    <div class="cntV">
-                        <span><i class='bx bxs-map-pin' ></i> The address of the book renter :</span>
-                        <div class="cntText"></div>
-                    </div>
-                    <div class="cntV">
-                        <span><i class='bx bx-mail-send'></i> Contact email :</span>
-                        <div class="cntText"></div>
-                    </div>
-                </div>
-                <div class="js_detailView">
-                    <div class="cntV">
-                        <span style="min-width: 143px;"><i class='bx bxs-book-add'></i> Rented books :</span>
-                        <div class="cntText"></div>
-                    </div>
-                    <div class="cntV">
-                        <span><i class='bx bx-calendar-check'></i> Book rental date :</span>
-                        <div class="cntText"></div>
-                    </div>
-                    <div class="cntV">
-                        <span><i class='bx bx-calendar-check'></i> Date of payment :</span>
-                        <div class="cntText"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <a href="#" class="link_back_home">
         <div class="back_home"><i style="font-size: 20px;" class='bx bxs-upvote'></i></div>
     </a>
-    <div class="webchat"></div>
+    <div id="webchat" />
 </body>
 <script src="js/main.js"></script>
-<script src="js/dtProfile.js"></script>
+<script src="js/login.js"></script>
+<script src="js/validateRegister.js"></script>
 <script src="js/addTocart.js"></script>
-<script>
-    const logout = document.querySelector(".js_out");
-    logout.addEventListener("click",()=>{
-        localStorage.removeItem("IDuser");
-    })
-</script>
-<!-- <script src="js/botRasa.js"></script> -->
+<script src="js/botRasa.js"></script>
 </html>

@@ -21,6 +21,12 @@ let getVoucherPage = (req, res) => {
 let test = (req, res) => {
 	return res.render("./test.ejs");
 };
+let getAboutusPage = (req, res) => {
+	return res.render("./aboutus.ejs");
+};
+let getContactsPage = (req, res) => {
+	return res.render("./contacts.ejs");
+};
 
 module.exports = {
 	getHomePage,
@@ -30,4 +36,6 @@ module.exports = {
 	getProfilePage,
 	getVoucherPage,
 	test,
+	getAboutusPage,
+	getContactsPage,
 };
