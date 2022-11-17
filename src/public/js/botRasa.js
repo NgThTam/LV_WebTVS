@@ -7,9 +7,16 @@
 		(e.onload = () => {
 			window.WebChat.default(
 				{
-					initPayload: "/greet",
-					customData: { language: "en" },
+					initPayload: "Chào mừng bạn đến với thư viện chúng tôi!!",
+					title: "BOOKs Bot",
+					subtitle: "Assistant",
+					customData: { language: "vi" },
 					socketUrl: "http://localhost:5005",
+					profileAvatar:
+						"https://cdn.icon-icons.com/icons2/1371/PNG/512/robot02_90810.png",
+					params: {
+						storage: "session",
+					},
 					// add other props here
 				},
 				null

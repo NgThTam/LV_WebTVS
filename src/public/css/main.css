@@ -3548,6 +3548,7 @@ body {
 }
 .chonaboutus:hover, .choncontacts:hover{
 	background-color: #e0dedc;
+	cursor: pointer;
 }
 .choncontacts{
 	height: 26px;
@@ -3556,3 +3557,20 @@ body {
     justify-content: flex-start;
     padding-left: 10px;
 }
+
+/* custom boxchat */
+.rw-carousel-container .rw-carousel-card .rw-carousel-card-image{
+	object-fit: contain;
+    background-color: #bac0c0;
+}
+.rw-carousel-container .rw-carousel-card .rw-carousel-buttons-container .rw-reply{
+	background-color: #870f99b8;
+    border-color: #870f99b8;
+}
+/* .rw-from-response .rw-with-avatar .rw-carousel-arrows-container{
+	height: 293px;
+} */
+/* .rw-carousel-container .rw-carousel-card {
+	min-height: 268px;
+    height: 268px;
+} */
