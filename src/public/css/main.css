@@ -2645,6 +2645,7 @@ body {
     min-width: 300px;
     min-height: 120px;
 	border: 1px solid #afa8a8;
+	border-radius: 2px;
 }
 .textban{
 	padding: 30px;
@@ -3499,7 +3500,8 @@ body {
     align-items: center;
     border: 2px solid black;
     font-family: sans-serif;
-	box-shadow: 1px 2px 10px #555151
+	box-shadow: 1px 2px 10px #555151;
+	font-size: 16px;
 }
 .butsendmessa:hover{
 	background-color: white;
@@ -3574,3 +3576,236 @@ body {
 	min-height: 268px;
     height: 268px;
 } */
+
+
+/* catepageadmin */
+.bodymanacate{
+	padding: 25px 30px 25px 30px;
+}
+.listRenCategories table{
+	font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+.listRenCategories th{
+	border: 0.5px solid #5d5c5c;
+}
+.listRenCategories td{
+	border: 1px solid #dddddd;
+	padding: 8px 30px;
+    cursor: default;
+}
+.listRenCategories td .bx-x{
+	font-size: 30px;
+    color: red;
+    cursor: pointer;
+}
+.addcategory{
+	padding-bottom: 10px;
+}
+.addcategory .addcate{
+	width: 28px;
+    height: 28px;
+    border: 1px solid #c8b9b9;
+    background-color: #f0c4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 600;
+    color: #00000099;
+    border-radius: 2px;
+}
+.addcategory .addcate:hover{
+	cursor: pointer;
+	border: 1px solid black;
+	color: black;
+}
+.contentbodycate{
+	/* border: 1px solid; */
+	border-radius: 2px;
+    width: 500px;
+    font-family: system-ui;
+	background-color: white;
+	max-height: 123px;
+    position: absolute;
+    top: 33px;
+	animation: addcateanim ease 0.6s;
+}
+.titleaddcate{
+	padding: 6px;
+    font-weight: 500;
+}
+.cntaddcate{
+	padding: 0px 0px 6px 6px;
+}
+.cntaddcate input{
+	width: 98%;
+    outline: none;
+    border: none;
+    border: 1px solid #00000066;
+    height: 29px;
+    padding-left: 10px;
+    color: #000000b0;
+}
+.butaddcate{
+	padding: 12px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.butaddcate .cancelcate{
+	border: 1px solid #00000075;
+    width: 66px;
+    padding: 2px 0px 6px 0px;
+    text-align: center;
+    border-radius: 3px;
+    color: #000000a8;
+    font-weight: 500;
+    cursor: default;
+}
+.butaddcate .cancelcate:hover{
+	color: red;
+    border-color: red;
+}
+.butaddcate button{
+	width: 66px;
+    border-radius: 2px;
+    border: 1px solid #18931a;
+    cursor: pointer;
+    color: #373535;
+    font-weight: 500;
+    font-family: system-ui;
+    font-size: 16px;
+    background-color: #71ed71;
+	padding: 2px 0px 6px 0px;
+}
+.butaddcate button:hover{
+	color: #18931a;
+	border: 1px solid #18931a;
+	background-color: #ffffff;
+}
+.bodyaddcate{
+	position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    justify-content: center;
+	background: rgb(0 0 0 / 49%);
+}
+.cateflex{
+	display: flex;
+}
+@keyframes addcateanim {
+	from {
+		opacity: 0;
+		transform: translateY(-140px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.bandele{
+	display: flex;
+}
+.listRenCategories .bxs-edit-alt{
+	font-size: 20px;
+    color: #10a513;
+    cursor: pointer;
+}
+.formeditcate .cancelupdatecate{
+	border: 1px solid #00000075;
+    width: 66px;
+    padding: 2px 0px 6px 0px;
+    text-align: center;
+    border-radius: 3px;
+    color: #000000a8;
+    font-weight: 500;
+    cursor: default;
+}
+.formeditcate .cancelupdatecate:hover{
+	color: red;
+    border-color: red;
+}
+.formeditcate button{
+	width: 66px;
+    border-radius: 2px;
+    border: 1px solid #18931a;
+    cursor: pointer;
+    color: #373535;
+    font-weight: 500;
+    font-family: system-ui;
+    font-size: 16px;
+    background-color: #71ed71;
+    padding: 2px 0px 6px 0px;
+}
+.formeditcate button:hover{
+	color: #18931a;
+	border: 1px solid #18931a;
+	background-color: #ffffff;
+}
+.formeditcate .bodycate{
+	border-radius: 3px;
+    width: 500px;
+    font-family: system-ui;
+	background-color: white;
+	max-height: 123px;
+	border: 1px solid;
+    /* position: absolute; */
+    /* top: 33px; */
+}
+.inputupdatecate input{
+	width: 98%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #00000066;
+    height: 29px;
+    padding-left: 10px;
+    color: #000000b0;
+}
+.inputupdatecate{
+	padding: 0px 0px 6px 6px;
+	position: relative;
+}
+.butupdatecate{
+	padding: 12px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.titleupdatecate{
+	padding: 6px;
+    font-weight: 500;
+}
+.titleupdatecate .bxs-hand-down{
+	padding-left: 7px;
+    position: relative;
+    top: 4px;
+}
+.inputupdatecate span{
+	width: 0%;
+    border-bottom: 2px solid #1b666a;
+    position: absolute;
+    bottom: 5px;
+    transition: 0.4s;
+    left: 6px;
+}
+.inputupdatecate input:focus ~ span{
+	width: 97%;
+}
+.formeditcate{
+	position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgb(0 0 0 / 49%);
+}
+.disedit{
+	display: flex;
+}

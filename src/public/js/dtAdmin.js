@@ -180,6 +180,20 @@ const innerBookexcel = (book) => {
 				<td>${book.ImgB}</td>
 			</tr>`;
 };
+const innercategories = (cate) => {
+	return `<tr>
+				<td>${cate.NameC}</td>
+				<td style="display: flex;justify-content: center;align-items: center;">
+					<i class='bx bxs-edit-alt js_editcate' data-namecate="${cate.NameC}" data-idcate="${cate.IDc}"></i>
+					<span style="padding: 0px 0px 0px 5px;">-</span>
+					<i class='bx bx-x js_but_dele_ban' data-idbancate="${cate.IDc}"></i>
+					<form action="/delete-acategory" hidden method="post">
+						<input type="text" name="idcategory" value="${cate.IDc}">
+						<button class="js_thucthi" type="submit" id="dele-${cate.IDc}"></button>
+					</form>
+				</td>
+			</tr>`;
+};
 
 // fetch("http://localhost:3000/api/v1/users")
 // 	.then((res) => res.json())
@@ -1261,6 +1275,7 @@ inputImgA.addEventListener("change", () => {
 	formAddB.setAttribute("action", "/reate-new-book-image");
 	formAddB.setAttribute("enctype", "multipart/form-data");
 });
+
 formAddB.addEventListener("submit", (e) => {
 	// e.preventDefault();
 	// for (let i = 0; i <= 6; i++) {
@@ -1444,10 +1459,10 @@ fetch("http://localhost:3000/api/v1/oders")
 					}
 				}
 			});
-			innerRevenue.innerHTML = `$ ${priceFinal}`;
+			innerRevenue.innerHTML = `$ ${priceFinal.toFixed(2)}`;
 			innerNumren.innerHTML = `${numrental}`;
 			innernumPai.innerHTML = `${unpaidRen}`;
-			innerPenfee.innerHTML = `$ ${priceFPena}`;
+			innerPenfee.innerHTML = `$ ${priceFPena.toFixed(2)}`;
 			let nameMonth = "October";
 			switch (dtmonth) {
 				case "01":
@@ -1488,5 +1503,88 @@ fetch("http://localhost:3000/api/v1/oders")
 					break;
 			}
 			innerNameMonth.innerHTML = `${nameMonth} revenue statistics`;
+		});
+	});
+
+//categories
+const formcate = document.querySelector(".js_form_addcate");
+formcate.addEventListener("submit", (e) => {
+	if (formcate[0].value) {
+		formcate[1].value = random(3);
+	} else {
+		window.alert("no empty!");
+		e.preventDefault();
+	}
+});
+
+fetch("http://localhost:3000/api/v1/categories")
+	.then((res) => res.json())
+	.then((categories) => {
+		const inputcate = document.getElementById("inputcate");
+		const innerCateinput = categories.map(
+			(cate) => `<option value="${cate.IDc}">${cate.NameC}</option>`
+		);
+		inputcate.innerHTML = innerCateinput.join(" ");
+		return categories;
+	})
+	.then((categories) => {
+		const contentcategory = document.querySelector(".js_tablecate");
+		const innerCate = categories.map((cate) => innercategories(cate));
+		contentcategory.innerHTML = innerCate.join(" ");
+		const bodyban = document.querySelector(".js_showban");
+		const buthuyban = document.querySelector(".js_huyshowban");
+		const contentban = document.querySelector(".js_contentban");
+		const butshowban = document.querySelectorAll(".js_but_dele_ban");
+		const okedelete = document.querySelector(".js_oke_delete");
+		butshowban.forEach((butdele) => {
+			butdele.addEventListener("click", () => {
+				bodyban.classList.add("bandele");
+				okedelete.setAttribute(
+					"data-idformdele",
+					`dele-${butdele.dataset.idbancate}`
+				);
+			});
+		});
+		buthuyban.addEventListener("click", () => {
+			bodyban.classList.remove("bandele");
+		});
+		bodyban.addEventListener("click", () => {
+			bodyban.classList.remove("bandele");
+		});
+		contentban.addEventListener("click", (e) => {
+			e.stopPropagation();
+		});
+		okedelete.addEventListener("click", () => {
+			const suboke = document.getElementById(okedelete.dataset.idformdele);
+			suboke.click();
+		});
+
+		const editcates = document.querySelectorAll(".js_editcate");
+		const titlecateup = document.querySelector(".js_titlecateupdate");
+		const formeditcate = document.querySelector(".js_form_edit");
+		const canceledits = document.querySelectorAll(".js_ccedit");
+		const bodycate = document.querySelector(".js_bodyeditcate");
+		const formsubupcate = document.querySelector(".js_formsubupcate");
+		editcates.forEach((editcate) => {
+			editcate.addEventListener("click", () => {
+				titlecateup.innerHTML = `${editcate.dataset.namecate} <i class='bx bxs-hand-down'></i>`;
+				formeditcate.classList.add("disedit");
+				formsubupcate[0].value = editcate.dataset.idcate;
+			});
+		});
+		canceledits.forEach((canceledit) => {
+			canceledit.addEventListener("click", () => {
+				formeditcate.classList.remove("disedit");
+			});
+		});
+		bodycate.addEventListener("click", (e) => {
+			e.stopPropagation();
+		});
+		formsubupcate.addEventListener("submit", (e) => {
+			if (formsubupcate[1].value) {
+			} else {
+				window.alert("no empty!");
+				e.preventDefault();
+			}
 		});
 	});

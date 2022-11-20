@@ -190,3 +190,22 @@ iconFV.addEventListener("click", () => {
 butloseFV.addEventListener("click", () => {
 	bodyFV.classList.remove("dflexFV");
 });
+
+//add cate
+
+const showcate = document.querySelector(".js_showaddcate");
+const bodycate = document.querySelector(".js_bodyaddcate");
+const butcancel = document.querySelector(".js_catecanel");
+const contentaddcate = document.querySelector(".js_contentaddcate");
+showcate.addEventListener("click", () => {
+	bodycate.classList.add("cateflex");
+});
+butcancel.addEventListener("click", () => {
+	bodycate.classList.remove("cateflex");
+});
+bodycate.addEventListener("click", () => {
+	bodycate.classList.remove("cateflex");
+});
+contentaddcate.addEventListener("click", (e) => {
+	e.stopPropagation();
+});

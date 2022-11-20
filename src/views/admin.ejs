@@ -40,6 +40,7 @@
                     <li data-id="scr1" class="js_admin_li "><i class='bx bxs-user'></i>User management</li>
                     <li data-id="scr2" class="js_admin_li js_admin_active"><i class='bx bxs-book'></i>Book management</li>
                     <li data-id="scr3" class="js_admin_li js_scr3"><i class='bx bxs-book-reader'></i>Book rental management</li>
+                    <li data-id="scr4" class="js_admin_li "><i class='bx bxs-category'></i>Catalog management</li>
                 </ul>
             </div>
         </div>
@@ -166,12 +167,12 @@
                                 <input type="text" name="Idb" hidden>
                                 <div class="elAdd">
                                     <div class="textAdd">Categories :</div>
-                                    <select class="inpCategories" name="category" id="">
-                                        <option value="Cg1">Biography & Autobiography</option>
-                                        <option value="Cg2">History</option>
+                                    <select class="inpCategories" name="category" id="inputcate">
+                                        <!-- <option value="Cg1">Biography & Autobiography</option> -->
+                                        <!-- <option value="Cg2">History</option>
                                         <option value="Cg3">Fiction</option>
                                         <option value="Cg4">Juvenile Fiction</option>
-                                        <option value="Cg5">Literary Criticism</option>
+                                        <option value="Cg5">Literary Criticism</option> -->
                                     </select>
                                 </div>
                             </div>
@@ -434,7 +435,75 @@
                                     </form></td>
                                 </tr> -->
                             </tbody>
-                          </table>                          
+                        </table>                          
+                    </div>
+                </div>
+            </div>
+            <div id="scr4" class="scr js_scr ">
+                <div class="bodymanacate">
+                    <div class="addcategory">
+                        <div class="addcate js_showaddcate">+</div>
+                    </div>
+                    <div class="listRenCategories">
+                        <table>
+                            <tr style="background-color: #dfb0e770;">
+                              <th style="text-align: left; padding: 8px 30px;">Category</th>
+                              <th>Edit - Delete</th>
+                            </tr>
+                            <tbody class="js_tablecate">
+                                <!-- <tr>
+                                    <td>Juvenile Fiction</td>
+                                    <td style="text-align: center;"><i class='bx bx-x'></i>
+                                        <form action="/delete-acategory" hidden method="post">
+                                            <input type="text" name="idcategory" value="">
+                                            <button class="js_thucthi"></button>
+                                        </form>
+                                    </td>
+                                </tr> -->
+                            </tbody>
+                        </table> 
+                    </div>
+                    <div class="bodyaddcate js_bodyaddcate">
+                        <div class="contentbodycate js_contentaddcate">
+                            <div class="titleaddcate">add new category</div>
+                            <form action="/create-category" method="post" class="js_form_addcate">
+                                <div class="cntaddcate">
+                                    <input type="text" name="NameCate">
+                                    <input type="text" name="idcate" hidden>
+                                </div>
+                                <div class="butaddcate">
+                                    <div class="cancelcate js_catecanel">cancel</div>
+                                    <button type="submit">add</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="bannerdelete js_showban">
+                        <div class="bodybanner js_contentban">
+                            <div class="textban">
+                                <p><i class='bx bx-error-circle'></i>Are you sure you want to delete?</p>
+                            </div>
+                            <div class="chooseban">
+                                <div class="huyban js_huyshowban">No</div>
+                                <div class="okeban js_oke_delete">Yes</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="formeditcate js_form_edit js_ccedit">
+                        <div class="bodycate js_bodyeditcate">
+                            <div class="titleupdatecate js_titlecateupdate">History <i class='bx bxs-hand-down'></i></div>
+                            <form class="js_formsubupcate" action="/update-acategory" method="post">
+                                <div class="inputupdatecate">
+                                    <input type="text" hidden name="IDc" value="asd">
+                                    <input type="text" name="newname">
+                                    <span></span>
+                                </div>
+                                <div class="butupdatecate">
+                                    <div class="cancelupdatecate js_ccedit">cancel</div>
+                                    <button type="submit">Update</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -223,7 +223,7 @@ let addbookfile = (req, res, next) => {
 	readXlsxFile(appRoot + "/src/public/fileExcel/" + req.file.filename, {
 		map,
 	}).then(({ rows }) => {
-		console.log(rows);
+		// console.log(rows);
 		rows.forEach((row) => {
 			let IDctext;
 			switch (row.categories.toLowerCase()) {
@@ -265,6 +265,36 @@ let addbookfile = (req, res, next) => {
 	});
 	return res.redirect("/admin");
 };
+let createCate = (req, res) => {
+	let { NameCate, idcate } = req.body;
+	connection.query("INSERT INTO `categories`(`IDc`, `NameC`) VALUES (?,?)", [
+		idcate,
+		NameCate,
+	]);
+	return res.redirect("/admin");
+};
+let delecate = (req, res) => {
+	let { idcategory } = req.body;
+	console.log(idcategory);
+	connection.query("DELETE FROM `categories` WHERE `IDc`=?", [idcategory]);
+	return res.redirect("/admin");
+};
+let updatecate = (req, res) => {
+	let { IDc, newname } = req.body;
+	connection.query("UPDATE `categories` SET `NameC`=? WHERE `IDc`=?", [
+		newname,
+		IDc,
+	]);
+	return res.redirect("/admin");
+};
+let createFeedback = (req, res) => {
+	let { fname, email, phone, title, message, date, idfb } = req.body;
+	connection.query(
+		"INSERT INTO `feedback`(`IDf`, `fbname`, `femail`, `phone`, `ftitle`, `message`, `fdate`) VALUES (?,?,?,?,?,?,?)",
+		[idfb, fname, email, phone, title, message, date]
+	);
+	return res.redirect("/contacts");
+};
 
 module.exports = {
 	createUser,
@@ -289,4 +319,8 @@ module.exports = {
 	createLikes,
 	deleteLikeBook,
 	addbookfile,
+	createCate,
+	delecate,
+	updatecate,
+	createFeedback,
 };

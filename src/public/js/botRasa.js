@@ -7,7 +7,7 @@
 		(e.onload = () => {
 			window.WebChat.default(
 				{
-					initPayload: "Chào mừng bạn đến với thư viện chúng tôi!!",
+					// initPayload: "Chào mừng bạn đến với thư viện chúng tôi!!",
 					title: "BOOKs Bot",
 					subtitle: "Assistant",
 					customData: { language: "vi" },

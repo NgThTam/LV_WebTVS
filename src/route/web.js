@@ -66,6 +66,10 @@ const initWebRouter = (app) => {
 		upload1.single("fileimage"),
 		apiController.createBookimagefile
 	);
+	router.post("/create-category", apiController.createCate);
+	router.post("/delete-acategory", apiController.delecate);
+	router.post("/update-acategory", apiController.updatecate);
+	router.post("/create-feedback", apiController.createFeedback);
 	// router.get("/detail/:userId", getPage.getAllUser);
 
 	return app.use("/", router);

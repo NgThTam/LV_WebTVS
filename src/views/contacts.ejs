@@ -107,26 +107,30 @@
                 </div>
             </div>
             <div class="formcontactmes">
-                <div class="nameandemailcontact">
-                    <input type="text" name="" id="" placeholder="Name">
-                    <input type="text" name="" id="" placeholder="Email Address">
-                </div>
-                <div class="phoneandsubcontact">
-                    <input type="text" name="" id="" placeholder="Phone">
-                    <input type="text" name="" id="" placeholder="Subject">
-                </div>
-                <div class="messacontact">
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Message"></textarea>
-                </div>
-                <div class="checkagree">
-                    <input type="checkbox" name="" id="">
-                    <p>I agree that my submitted data is being collected and stored.</p>
-                </div>
-                <div class="butsendmessacontact">
-                    <div class="butsendmessa">
-                        SEND MESSAGE
+                <form action="/create-feedback" class="js_formmessage" method="post">
+                    <div class="nameandemailcontact">
+                        <input type="text" name="fname" placeholder="Name">
+                        <input type="email" name="email" placeholder="Email Address">
                     </div>
-                </div>
+                    <div class="phoneandsubcontact">
+                        <input type="text" name="phone" placeholder="Phone">
+                        <input type="text" name="title" placeholder="Subject">
+                    </div>
+                    <div class="messacontact">
+                        <textarea  name="message" cols="30" rows="10" placeholder="Message"></textarea>
+                    </div>
+                    <div class="checkagree">
+                        <input type="checkbox" >
+                        <p>I agree that my submitted data is being collected and stored.</p>
+                    </div>
+                    <input hidden type="text" name="date">
+                    <input hidden type="text" name="idfb">
+                    <div class="butsendmessacontact">
+                        <button type="submit" class="butsendmessa">
+                            SEND MESSAGE
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -316,5 +320,6 @@
 <script src="js/login.js"></script>
 <script src="js/validateRegister.js"></script>
 <script src="js/addTocart.js"></script>
-<script src="js/botRasa.js"></script>
+<script src="js/eventcontacts.js"></script>
+<!-- <script src="js/botRasa.js"></script> -->
 </html>
