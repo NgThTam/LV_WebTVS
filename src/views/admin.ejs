@@ -19,6 +19,7 @@
 <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
 <script src="https://unpkg.com/read-excel-file@5.x/bundle/read-excel-file.min.js"></script>
 <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
 <style>
     html{
         font-family: arial, sans-serif;
@@ -41,6 +42,7 @@
                     <li data-id="scr2" class="js_admin_li js_admin_active"><i class='bx bxs-book'></i>Book management</li>
                     <li data-id="scr3" class="js_admin_li js_scr3"><i class='bx bxs-book-reader'></i>Book rental management</li>
                     <li data-id="scr4" class="js_admin_li "><i class='bx bxs-category'></i>Catalog management</li>
+                    <li data-id="scr5" class="js_admin_li "><i class='bx bx-repost'></i>Feedback management</li>
                 </ul>
             </div>
         </div>
@@ -503,6 +505,53 @@
                                     <button type="submit">Update</button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="scr5" class="scr js_scr ">
+                <div class="bodyfeedback">
+                    <div class="listRenfeedback">
+                        <table>
+                            <tr style="background-color: #ea9f9f70;">
+                              <th style="text-align: left;">Email</th>
+                              <th style="text-align: center;">Sent date</th>
+                              <th style="text-align: left;">Message</th>
+                              <th>Mailing</th>
+                              <th>Delete</th>
+                            </tr>
+                            <tbody class="js_list_feedback">
+                                <!-- <tr>
+                                    <td style="text-align:center;">thanhtm352@gmail.com</td>
+                                    <td>22/02/2002</td>
+                                    <td>I think your book rental price is too expensive compared to other libraries, I think you need to reconsider and adjust the price accordingly. thank</td>
+                                    <td style="text-align: center;"><i class='bx bx-mail-send'></i></td>
+                                    <td style="text-align: center;"><i class='bx bx-x'></i></td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="formsendmail js_formsendmail">
+                        <div class="bodyformsendmail js_bodysendmail">
+                            <div class="titlesend">Send to: <div class="utomail js_titleemail">thanhtm352@gmail.com</div></div>
+                            <div class="contentsend">
+                                <textarea id="messagemail" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="butsendmail">
+                                <div class="cancelsendmail js_ccsendmail">Cancel</div>
+                                <button id="submitsendmail">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bannerdelete js_formdelefb">
+                        <div class="bodybanner js_bodydelefb">
+                            <div class="textban">
+                                <p><i class='bx bx-error-circle'></i>Are you sure you want to delete?</p>
+                            </div>
+                            <div class="chooseban">
+                                <div class="huyban js_fbhuy">No</div>
+                                <div class="okeban js_fboke">Yes</div>
+                            </div>
                         </div>
                     </div>
                 </div>

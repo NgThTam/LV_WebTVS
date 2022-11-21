@@ -52,6 +52,12 @@ let getAllbookCategory = (req, res) => {
 		return res.status(200).json(data);
 	});
 };
+let getAllfeedbacks = (req, res) => {
+	connection.query("SELECT * FROM `feedback` ", (err, results, fields) => {
+		let data = results.map((dt) => dt);
+		return res.status(200).json(data);
+	});
+};
 const random = (length) => {
 	var result = "";
 	var characters =
@@ -275,7 +281,6 @@ let createCate = (req, res) => {
 };
 let delecate = (req, res) => {
 	let { idcategory } = req.body;
-	console.log(idcategory);
 	connection.query("DELETE FROM `categories` WHERE `IDc`=?", [idcategory]);
 	return res.redirect("/admin");
 };
@@ -295,6 +300,19 @@ let createFeedback = (req, res) => {
 	);
 	return res.redirect("/contacts");
 };
+let deleFeedback = (req, res) => {
+	let { idfb } = req.body;
+	connection.query("DELETE FROM `feedback` WHERE `IDf`=?", [idfb]);
+	return res.redirect("/admin");
+};
+let updatePassUser = (req, res) => {
+	let { passupdate, iduser } = req.body;
+	connection.query("UPDATE `users` SET `Pass`=? WHERE `IDu`= ?", [
+		passupdate,
+		iduser,
+	]);
+	return res.redirect("/profile");
+};
 
 module.exports = {
 	createUser,
@@ -306,6 +324,7 @@ module.exports = {
 	getAllComment,
 	getAllcategories,
 	getAllbookCategory,
+	getAllfeedbacks,
 	createComment,
 	createOder,
 	createRating,
@@ -323,4 +342,6 @@ module.exports = {
 	delecate,
 	updatecate,
 	createFeedback,
+	deleFeedback,
+	updatePassUser,
 };

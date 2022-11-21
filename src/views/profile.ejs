@@ -120,6 +120,9 @@
                 <!-- <div class="butInf cssnone"><button type="submit">submit</button></div> -->
                 </form>
             </div>
+            <div class="bodychangepass">
+                <div class="changepassword js_butshow_change"><i class='bx bxs-key'></i> Change the password</div>
+            </div>
         </div>
         <div class="content_admin content_profile">
             <div id="scr1" class="scr js_scr js_show_scr">
@@ -199,6 +202,44 @@
                             </div>
                             
                         </div>
+                    </div>
+               </div>
+               <div class="ttbodychangepassword js_bodyfullchange">
+                    <div class="contentbodychangep js_content_change_pass">
+                        <div class="titlechan">Change the password</div>
+                        <form action="/update-password-user" class="js_formchangepass" method="post">
+                            <div class="ttcontentpass">
+                                <div class="passcu csspaass">
+                                    <label for="">Old password:</label>
+                                    <div class="inppass">
+                                        <input type="password">
+                                        <span></span>
+                                        <small></small>
+                                    </div>
+                                </div>
+                                <div class="passmoi csspaass">
+                                    <label for="">New password:</label>
+                                    <div class="inppass">
+                                        <input type="password">
+                                        <span></span>
+                                        <small></small>
+                                    </div>
+                                </div>
+                                <div class="nhaplaipassmoi csspaass">
+                                    <label for="">Re-enter new password:</label>
+                                    <div class="inppass">
+                                        <input type="password" name="passupdate">
+                                        <span></span>
+                                        <small></small>
+                                    </div>
+                                </div>
+                                <input type="text" name="iduser" hidden>
+                                <div class="butsubchangepass">
+                                    <div class="cancelpass js_cancel_change_pass">Cancel</div>
+                                    <button type="submit">Update</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                </div>
             </div>

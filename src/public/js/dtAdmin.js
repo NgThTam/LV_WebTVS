@@ -194,6 +194,21 @@ const innercategories = (cate) => {
 				</td>
 			</tr>`;
 };
+const innerfeedback = (fb) => {
+	return `<tr>
+				<td>${fb.femail}</td>
+				<td>${fb.fdate}</td>
+				<td>${fb.message}</td>
+				<td style="text-align: center;"><i class='bx bx-mail-send js_iconmail' data-mailto="${fb.femail}"></i></td>
+				<td style="text-align: center;"><i class='bx bx-x js_icondelefeedback' data-idfeedback="${fb.IDf}"></i>
+					<form action="/delete-feedback" hidden method="post">
+						<input type="text" name="idfb" value="${fb.IDf}">
+						<button id="fb-${fb.IDf}" type="submit"></button>
+					</form>
+				</td>
+				
+			</tr>`;
+};
 
 // fetch("http://localhost:3000/api/v1/users")
 // 	.then((res) => res.json())
@@ -1586,5 +1601,77 @@ fetch("http://localhost:3000/api/v1/categories")
 				window.alert("no empty!");
 				e.preventDefault();
 			}
+		});
+	});
+
+//feedback
+const tableFeedback = document.querySelector(".js_list_feedback");
+fetch("http://localhost:3000/api/v1/feedback")
+	.then((res) => res.json())
+	.then((feedbacks) => {
+		tableFeedback.innerHTML = feedbacks
+			.map((feedb) => innerfeedback(feedb))
+			.join(" ");
+
+		const iconmails = document.querySelectorAll(".js_iconmail");
+		const formsendmail = document.querySelector(".js_formsendmail");
+		const cancelmail = document.querySelector(".js_ccsendmail");
+		const bodysendmail = document.querySelector(".js_bodysendmail");
+		const mailto = document.querySelector(".js_titleemail");
+		const submitsendmail = document.getElementById("submitsendmail");
+		const messageSendmail = document.getElementById("messagemail");
+		iconmails.forEach((iconmail) => {
+			iconmail.addEventListener("click", () => {
+				formsendmail.classList.add("mailflex");
+				mailto.innerHTML = iconmail.dataset.mailto;
+				submitsendmail.setAttribute("data-mailsend", iconmail.dataset.mailto);
+			});
+		});
+		cancelmail.addEventListener("click", () => {
+			formsendmail.classList.remove("mailflex");
+		});
+		formsendmail.addEventListener("click", () => {
+			formsendmail.classList.remove("mailflex");
+		});
+		bodysendmail.addEventListener("click", (e) => {
+			e.stopPropagation();
+		});
+		submitsendmail.addEventListener("click", () => {
+			Email.send({
+				SecureToken: "b18110c7-500f-465f-8968-7ae866a561fa",
+				Password: "8A0841320B0C87879AB7881739FF1D5AC931",
+				To: submitsendmail.dataset.mailsend,
+				From: "tamb1812301@student.ctu.edu.vn",
+				Subject: "Reply to feedback",
+				Body: messageSendmail.value,
+			}).then((message) => alert("mail sent successfully!"));
+			formsendmail.classList.remove("mailflex");
+			messageSendmail.value = " ";
+		});
+
+		//delete feedback
+		const icondelefbs = document.querySelectorAll(".js_icondelefeedback");
+		const formdelefb = document.querySelector(".js_formdelefb");
+		const huydele = document.querySelector(".js_fbhuy");
+		const bodydefb = document.querySelector(".js_bodydelefb");
+		const okedefb = document.querySelector(".js_fboke");
+		icondelefbs.forEach((icfb) => {
+			icfb.addEventListener("click", () => {
+				formdelefb.classList.add("deleflex");
+				okedefb.setAttribute("data-docdbdele", `fb-${icfb.dataset.idfeedback}`);
+			});
+		});
+		huydele.addEventListener("click", () => {
+			formdelefb.classList.remove("deleflex");
+		});
+		formdelefb.addEventListener("click", () => {
+			formdelefb.classList.remove("deleflex");
+		});
+		bodydefb.addEventListener("click", (e) => {
+			e.stopPropagation();
+		});
+		okedefb.addEventListener("click", () => {
+			let subfdele = document.getElementById(okedefb.dataset.docdbdele);
+			subfdele.click();
 		});
 	});

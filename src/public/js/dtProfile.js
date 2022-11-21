@@ -1,3 +1,47 @@
+const showErrorchangepass = (input, mess) => {
+	let parent = input.parentElement;
+	let small = parent.querySelector("small");
+	small.innerHTML = mess;
+};
+const valiformchange = (formchangepass) => {
+	const testpassnew = /^.{8,16}$/;
+	//mkcu
+	if (!formchangepass[0].value) {
+		showErrorchangepass(formchangepass[0], "No empty!");
+		return false;
+	} else {
+		showErrorchangepass(formchangepass[0], "");
+	}
+	//mkmoi
+	if (!formchangepass[1].value) {
+		showErrorchangepass(formchangepass[1], "No empty!");
+		return false;
+	} else {
+		if (!testpassnew.test(formchangepass[1].value)) {
+			showErrorchangepass(
+				formchangepass[1],
+				"Password must be between 8 and 16 characters"
+			);
+			return false;
+		} else {
+			showErrorchangepass(formchangepass[1], "");
+		}
+	}
+	//kt-mkmoi
+	if (!formchangepass[2].value) {
+		showErrorchangepass(formchangepass[2], "No empty!");
+		return false;
+	} else {
+		if (formchangepass[2].value != formchangepass[1].value) {
+			showErrorchangepass(formchangepass[2], "Password does not match");
+			return false;
+		} else {
+			showErrorchangepass(formchangepass[2], "");
+		}
+	}
+
+	return true;
+};
 fetch("http://localhost:3000/api/v1/users")
 	.then((response) => response.json())
 	.then((users) => {
@@ -13,6 +57,25 @@ fetch("http://localhost:3000/api/v1/users")
 		// console.log(localStorage.getItem("IDuser"));
 		const VOuser = document.querySelector(".js_viewVouUser");
 		VOuser.innerHTML = innerVOuser(Iuser);
+		// console.log(Iuser);
+		//vali form changepass word
+		const formchangepass = document.querySelector(".js_formchangepass");
+
+		formchangepass.addEventListener("submit", (e) => {
+			if (valiformchange(formchangepass)) {
+				if (formchangepass[0].value != atob(Iuser.Pass)) {
+					showErrorchangepass(formchangepass[0], "Incorrect password");
+					e.preventDefault();
+				} else {
+					formchangepass[2].value = btoa(formchangepass[1].value);
+					formchangepass[3].value = Iuser.IDu;
+					bodyfullchange.classList.remove("changePflex");
+					window.alert("Password update successful ^.^");
+				}
+			} else {
+				e.preventDefault();
+			}
+		});
 	})
 	.then(() => {
 		const inputInfs = document.querySelectorAll(".js_inputInf");
@@ -108,7 +171,7 @@ fetch("http://localhost:3000/api/v1/books")
 						}
 					}
 				});
-				console.log(listOder);
+				// console.log(listOder);
 				const cntOder = document.querySelector(".js_tableRV");
 				cntOder.innerHTML = newlistOder.join(" ");
 				return listOder;
@@ -610,3 +673,20 @@ const renderLike = (book) => {
 				</div>
 			</div>`;
 };
+
+const bodyfullchange = document.querySelector(".js_bodyfullchange");
+const butshowchange = document.querySelector(".js_butshow_change");
+const cancelchange = document.querySelector(".js_cancel_change_pass");
+const contentchangep = document.querySelector(".js_content_change_pass");
+butshowchange.addEventListener("click", () => {
+	bodyfullchange.classList.add("changePflex");
+});
+bodyfullchange.addEventListener("click", () => {
+	bodyfullchange.classList.remove("changePflex");
+});
+cancelchange.addEventListener("click", () => {
+	bodyfullchange.classList.remove("changePflex");
+});
+contentchangep.addEventListener("click", (e) => {
+	e.stopPropagation();
+});

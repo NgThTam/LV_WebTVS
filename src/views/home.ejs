@@ -142,12 +142,12 @@
                         <img src="http://images.amazon.com/images/P/0002005018.01.LZZZZZZZ.jpg" alt="">
                         <div class="image_hover">
                             <div class="search_image">
-                                <a href="/detail" class="icon_search"><i class='bx bx-search-alt-2'></i></a>
+                                <a href="/detail" class="icon_search js_home_detail_book" data-idb="0002005018"><i class='bx bx-search-alt-2'></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="tt_book">
-                        <a href="/detail" class="title_book">Clara Callan</a>
+                        <a href="/detail" class="title_book js_home_detail_book" data-idb="0002005018">Clara Callan</a>
                         <div class="aut_book">By: <span>Richard Bruce Wright</span></div>
                     </div>
                 </div>
@@ -156,12 +156,12 @@
                         <img src="http://images.amazon.com/images/P/0195153448.01.LZZZZZZZ.jpg" alt="">
                         <div class="image_hover">
                             <div class="search_image">
-                                <a href="/detail" class="icon_search"><i class='bx bx-search-alt-2'></i></a>
+                                <a href="/detail" class="icon_search js_home_detail_book" data-idb="0195153448"><i class='bx bx-search-alt-2'></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="tt_book">
-                        <a href="/detail" class="title_book">Classical Mythology</a>
+                        <a href="/detail" class="title_book js_home_detail_book" data-idb="0195153448">Classical Mythology</a>
                         <div class="aut_book">By: <span>Mark P.O.Morford</span></div>
                     </div>
                 </div>
@@ -170,12 +170,12 @@
                         <img src="http://images.amazon.com/images/P/0393045218.01.LZZZZZZZ.jpg" alt="">
                         <div class="image_hover">
                             <div class="search_image">
-                                <a href="/detail" class="icon_search"><i class='bx bx-search-alt-2'></i></a>
+                                <a href="/detail" class="icon_search js_home_detail_book" data-idb="0393045218"><i class='bx bx-search-alt-2'></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="tt_book">
-                        <a href="/detail" class="title_book">The Mummies of Urumchi</a>
+                        <a href="/detail" class="title_book js_home_detail_book" data-idb="0393045218">The Mummies of Urumchi</a>
                         <div class="aut_book">By: <span>E.J.W.Barber</span></div>
                     </div>
                 </div>
@@ -184,12 +184,12 @@
                         <img src="http://images.amazon.com/images/P/0440234743.01.LZZZZZZZ.jpg" alt="">
                         <div class="image_hover">
                             <div class="search_image">
-                                <a href="/detail" class="icon_search"><i class='bx bx-search-alt-2'></i></a>
+                                <a href="/detail" class="icon_search js_home_detail_book" data-idb="0440234743"><i class='bx bx-search-alt-2'></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="tt_book">
-                        <a href="/detail" class="title_book">The Testament</a>
+                        <a href="/detail" class="title_book js_home_detail_book" data-idb="0440234743">The Testament</a>
                         <div class="aut_book">By: <span>John Grisham</span></div>
                     </div>
                 </div>
@@ -198,12 +198,12 @@
                         <img src="http://images.amazon.com/images/P/0425182908.01.LZZZZZZZ.jpg" alt="">
                         <div class="image_hover">
                             <div class="search_image">
-                                <a href="/detail" class="icon_search"><i class='bx bx-search-alt-2'></i></a>
+                                <a href="/detail" class="icon_search js_home_detail_book" data-idb="0425182908"><i class='bx bx-search-alt-2'></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="tt_book">
-                        <a href="/detail" class="title_book">Isle of Dogs</a>
+                        <a href="/detail" class="title_book js_home_detail_book" data-idb="0425182908">Isle of Dogs</a>
                         <div class="aut_book">By: <span>Patricia Cornwell</span></div>
                     </div>
                 </div>
@@ -276,6 +276,7 @@
                 </div>
             </form>
             <footer class="modal_login_footer">
+                <p class="modal_help login_register js_relogin">Register</p>
                 <p class="modal_help">Need <a href="#">help?</a></p>
             </footer>
         </div>
@@ -341,6 +342,7 @@
                         </div>
                     </div>
                     <div class="modal_but">
+                        <div class="regis_login js_regislogin">Login</div>
                         <button type="submit">Start</button>
                     </div>
                     <!-- <div class="modal_register_footer">
@@ -393,5 +395,12 @@
 <script src="js/login.js"></script>
 <script src="js/addTocart.js"></script>
 <script src="js/botRasa.js"></script>
-
+<script>
+    const clickdetails = document.querySelectorAll(".js_home_detail_book")
+    clickdetails.forEach((cl)=>{
+        cl.addEventListener("click",()=>{
+            localStorage.setItem("id_book", cl.dataset.idb);
+        })
+    })
+</script>
 </html>

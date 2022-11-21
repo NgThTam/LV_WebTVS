@@ -43,6 +43,12 @@ fetch("http://localhost:3000/api/v1/users")
 			.then((res) => res.json())
 			.then((books) => {
 				const idu = localStorage.getItem("IDuser");
+				if (idu == "admin") {
+					const headerad = document.querySelector(".js_adminheader");
+					headerad.innerHTML = `<a href="/admin" class="menu_list_home">
+												<span class="list_color">Admin</span>
+											</a>`;
+				}
 				const user = users.find((us) => us.IDu == idu);
 				const cart = JSON.parse(localStorage.getItem("addCart"));
 				const dateBuy = localStorage.getItem("dateCreate");

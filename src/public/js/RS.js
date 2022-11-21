@@ -19,12 +19,12 @@ const fakeRS = `<div class="item_best_book">
 					<img src="http://images.amazon.com/images/P/0425182908.01.LZZZZZZZ.jpg" alt="">
 					<div class="image_hover">
 						<div class="search_image">
-							<a  class="icon_search"><i class='bx bx-search-alt-2'></i></a>
+							<a href="/detail" class="icon_search js_click_rs" data-idrs="0425182908"><i class='bx bx-search-alt-2'></i></a>
 						</div>
 					</div>
 				</div>
 				<div class="tt_book">
-					<a href="./DetailBooks.html" class="title_book">Isle of Dogs</a>
+					<a href="/detail js_click_rs" class="title_book" data-idrs="0425182908">Isle of Dogs</a>
 					<div class="aut_book">By: <span>Patricia Cornwell</span></div>
 				</div>
 				</div>
@@ -33,12 +33,12 @@ const fakeRS = `<div class="item_best_book">
 					<img src="http://images.amazon.com/images/P/0195153448.01.LZZZZZZZ.jpg" alt="">
 					<div class="image_hover">
 						<div class="search_image">
-							<a  class="icon_search"><i class='bx bx-search-alt-2'></i></a>
+							<a href="/detail" class="icon_search js_click_rs" data-idrs="0195153448"><i class='bx bx-search-alt-2'></i></a>
 						</div>
 					</div>
 				</div>
 				<div class="tt_book">
-					<a href="./DetailBooks.html" class="title_book">Classical Mythology</a>
+					<a href="/detail" class="title_book js_click_rs" data-idrs="0195153448">Classical Mythology</a>
 					<div class="aut_book">By: <span>Mark P.O.Morford</span></div>
 				</div>
 				</div>
@@ -47,12 +47,12 @@ const fakeRS = `<div class="item_best_book">
 					<img src="http://images.amazon.com/images/P/0393045218.01.LZZZZZZZ.jpg" alt="">
 					<div class="image_hover">
 						<div class="search_image">
-							<a  class="icon_search"><i class='bx bx-search-alt-2'></i></a>
+							<a href="/detail" class="icon_search js_click_rs" data-idrs="0393045218"><i class='bx bx-search-alt-2'></i></a>
 						</div>
 					</div>
 				</div>
 				<div class="tt_book">
-					<a href="./DetailBooks.html" class="title_book">The Mummies of Urumchi</a>
+					<a href="/detail" class="title_book js_click_rs" data-idrs="0393045218">The Mummies of Urumchi</a>
 					<div class="aut_book">By: <span>E.J.W.Barber</span></div>
 				</div>
 				</div>
@@ -61,12 +61,12 @@ const fakeRS = `<div class="item_best_book">
 					<img src="http://images.amazon.com/images/P/0440234743.01.LZZZZZZZ.jpg" alt="">
 					<div class="image_hover">
 						<div class="search_image">
-							<a  class="icon_search"><i class='bx bx-search-alt-2'></i></a>
+							<a href="/detail" class="icon_search js_click_rs" data-idrs="0440234743"><i class='bx bx-search-alt-2'></i></a>
 						</div>
 					</div>
 				</div>
 				<div class="tt_book">
-					<a href="./DetailBooks.html" class="title_book">The Testament</a>
+					<a href="/detail" class="title_book js_click_rs" data-idrs="0440234743">The Testament</a>
 					<div class="aut_book">By: <span>John Grisham</span></div>
 				</div>
 				</div>
@@ -75,12 +75,12 @@ const fakeRS = `<div class="item_best_book">
 					<img src="http://images.amazon.com/images/P/0002005018.01.LZZZZZZZ.jpg" alt="">
 					<div class="image_hover">
 						<div class="search_image">
-							<a  class="icon_search"><i class='bx bx-search-alt-2'></i></a>
+							<a href="/detail" class="icon_search js_click_rs" data-idrs="0195153448"><i class='bx bx-search-alt-2'></i></a>
 						</div>
 					</div>
 				</div>
 				<div class="tt_book">
-					<a href="./DetailBooks.html" class="title_book">Classical Mythology</a>
+					<a href="/detail" class="title_book js_click_rs" data-idrs="0195153448">Classical Mythology</a>
 					<div class="aut_book">By: <span>Mark P.O.Morford</span></div>
 				</div>
 				</div>`;
@@ -119,6 +119,12 @@ fetch("http://localhost:3000/api/v1/books")
 					Rss.innerHTML = renderRS.join(" ");
 				} else {
 					Rss.innerHTML = fakeRS;
+					const jscldetails = document.querySelectorAll(".js_click_rs");
+					jscldetails.forEach((rsdetail) => {
+						rsdetail.addEventListener("click", () => {
+							localStorage.setItem("id_book", rsdetail.dataset.idrs);
+						});
+					});
 				}
 			})
 			.then(() => {
