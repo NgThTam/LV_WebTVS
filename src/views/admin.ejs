@@ -28,7 +28,7 @@
 <body>
     <div class="header_admin">
         <div class="admin">Ad<span style="color: white;">min</span></div>
-        <a href="/"><i class='bx bx-log-out'></i></a>
+        <a onclick="history.back()"><i class='bx bx-log-out'></i></a>
     </div>
     <div class="admin_main">
         <div class="pro_admin">
@@ -81,10 +81,10 @@
                         <div class="iconAd"><i class='bx bx-book-add'></i></div>
                         <p class="texticonad">Add new books</p>
                     </div>
-                    <div class="funBookad js_showAddbook" data-setsr = "srstatic">
+                    <!-- <div class="funBookad js_showAddbook" data-setsr = "srstatic">
                         <div class="iconAd"><i class='bx bx-bar-chart-square'></i></div>
                         <p class="texticonad">book statistics</p>
-                    </div>
+                    </div> -->
                     <div class="funBookad js_eventSfile" style="position: relative; z-index: 10;">
                         <div class="iconAd"><i class='bx bx-file-find'></i></div>
                         <p class="texticonad">Search by file</p>
@@ -123,12 +123,14 @@
                         <div class="namefile"><p class="js_namebookflie"></p></div>
                     </div>
                 </div>
-                <div class="chartBook">
-                    <div id="HighChartPubYear" class="highchar1"></div>
-                </div>
-                <div class="chartBookoder hiddenSr js_showAB srstatic">
-                    <div id="HighChartAllB" class="highchar4"></div>
-                    <div id="HighChartOneB" class="highchar5"></div>
+                <div class="allchartdraw">
+                    <div class="chartBook">
+                        <div id="HighChartPubYear" class="highchar1"></div>
+                    </div>
+                    <div class="chartBookoder hiddenSr js_showAB srstatic disflex">
+                        <div id="HighChartAllB" class="highchar4"></div>
+                        <div id="HighChartOneB" class="highchar5"></div>
+                    </div>
                 </div>
                 <div class="addNewBook hiddenSr js_showAB sraddb js_remAB">
                     <div class="divAdd">
@@ -221,6 +223,7 @@
                 </div>
                 <div class="bodyRenderbooks">
                     <div class="searchBooks">
+                        <span class="asdtextfilj">Filter :</span>
                         <div class="fill">
                             <div class="iconSearch js_iconfil"><i class='bx bx-filter-alt' ></i></div>
                             <div class="bodyfill js_bodyfil">
@@ -311,6 +314,7 @@
                         <div id="ChartOderY" class="highchar2"></div>
                     </div>
                     <div class="funStatus">
+                        <span class="asdtextfilj">Filter :</span>
                         <div class="iconfillV js_iconfillV"><i class='bx bx-filter-alt' ></i></div>
                         <div class="bodyfillV js_bodyFV">
                             <!-- <div class="datetext">Book rental date :</div> -->
@@ -408,7 +412,6 @@
                     <div class="listRenOders">
                         <table>
                             <tr style="background-color: #3be8d8;">
-                              <th>ID</th>
                               <th>User</th>
                               <th>Number of books</th>
                               <th>Book rental date</th>
@@ -416,10 +419,11 @@
                               <th>Status</th>
                               <th>Detail</th>
                               <th>Payment</th>
+                              <th>Notification</th>
                             </tr>
+                            <!-- js_innOder -->
                             <tbody class="js_innOder">
                                 <!-- <tr>
-                                    <td>4nwkvurE</td>
                                     <td>Nguyen Thanh Tam</td>
                                     <td>2</td>
                                     <td>27/09/2022</td>
@@ -435,15 +439,50 @@
                                         <input type="text" name="PayStatus" hidden value="1">
                                         <button class="butPaystatus" type="submit">yes</button>
                                     </form></td>
+                                    <td>
+                                        <div class="contentsendnoti">
+                                            <p class="sendnotices js_clickshownoti">Send notifications</p>
+                                            <div class="choosesendnoti js_bodychosseno">
+                                                <div class="elechoosenoti">expired</div>
+                                                <div class="elechoosenoti">message</div>
+                                            </div>
+                                        </div>
+                                        
+                                    </td>
                                 </tr> -->
                             </tbody>
                         </table>                          
+                    </div>
+                    <div class="bodynotimessage js_bodymodalnotimessage">
+                        <div class="bodycontentnotimessage js_bodycontentnotimessage">
+                            <div class="tieudenotimessage">Send notifications to users</div>
+                            <div class="contentsendnoti">
+                                <form action="/create-notice" method="post" class="js_formcreatenoti">
+                                    <input type="text" hidden name="idu">
+                                    <input type="text" hidden name="ido">
+                                    <div class="titlesendnotiuser">
+                                        <p>Announcement title:</p>
+                                        <input type="text" name="title">
+                                        <span></span>
+                                    </div>
+                                    <div class="noidungnotiuser">
+                                        <p>Content to be notified:</p>
+                                        <textarea name="content" id="" cols="30" rows="10"></textarea>
+                                    </div>
+                                    <div class="butsubmitsendthongbao">
+                                        <div class="cancelsendthongbao js_cancel_notimessage">Cancel</div>
+                                        <button type="submit">Send</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div id="scr4" class="scr js_scr ">
                 <div class="bodymanacate">
                     <div class="addcategory">
+                        <span class="asdtextfilj">Add new category :</span>
                         <div class="addcate js_showaddcate">+</div>
                     </div>
                     <div class="listRenCategories">

@@ -690,3 +690,112 @@ cancelchange.addEventListener("click", () => {
 contentchangep.addEventListener("click", (e) => {
 	e.stopPropagation();
 });
+// thongbao
+const innerthongbao = (noti) => {
+	return `<div class="elementnoidungtb js_elementndnotic" data-notivoucher="${noti.IDo}">
+				<i class='bx bx-error'></i>
+				<div class="noidungtbhh">
+					<p class="titlenoidungtbhh">${noti.titlenotice}</p>
+					<p class="contentnoidungtbhh">${noti.contentnotice}</p>
+				</div>
+				<div class="bachamdele js_bachamstop">
+					<div class="clickbacham js_clicham" data-idnotic="id-${noti.stt}"><i class='bx bx-dots-vertical-rounded'></i></div>
+					<div class="contentbachamdele js_hopdeleba" id="id-${noti.stt}">
+						<div class="xndelenoti js_actiondele" data-idfdelenoti="idform-${noti.stt}">Delete</div>
+						<form action="/delate-notice" method="post" hidden>
+                                <input type="text" value="${noti.stt}" name="stt">
+                                 <button type="submit" id="idform-${noti.stt}"></button>
+                        </form>
+					</div>
+				</div>
+			</div>`;
+};
+fetch("http://localhost:3000/api/v1/notices")
+	.then((res) => res.json())
+	.then((notices) => {
+		const iduserNo = localStorage.getItem("IDuser");
+		const bodythongbao = document.querySelector(".js_noidungthongbao");
+		const slthongbao = document.querySelector(".js_slthongbao");
+		const iconchuong = document.querySelector(".js_iconchuong");
+		const allnoti = notices.filter((noti) => noti.IDu == iduserNo);
+		const newnoti = [];
+		iconchuong.addEventListener("click", () => {
+			bodythongbao.classList.toggle("noidungblock");
+		});
+		allnoti.forEach((nt) => {
+			newnoti.unshift(nt);
+		});
+		slthongbao.innerHTML = newnoti.length;
+		bodythongbao.innerHTML = newnoti
+			.map((nnoti) => innerthongbao(nnoti))
+			.join(" ");
+		// bacham
+		const elementnotis = document.querySelectorAll(".js_elementndnotic");
+		const bachams = document.querySelectorAll(".js_bachamstop");
+		const showphieuthue = document.querySelector(".js_modalview ");
+		elementnotis.forEach((anoti) => {
+			anoti.addEventListener("click", () => {
+				// console.log(anoti.dataset.notivoucher);
+				showphieuthue.classList.add("showM");
+				bodythongbao.classList.remove("noidungblock");
+				homdeles.forEach((hdele) => {
+					hdele.classList.remove("bacflex");
+				});
+			});
+		});
+		bachams.forEach((bac) => {
+			bac.addEventListener("click", (e) => {
+				e.stopPropagation();
+			});
+		});
+		//click bacham
+		const ic3chams = document.querySelectorAll(".js_clicham");
+		const butactiondelenotis = document.querySelectorAll(".js_actiondele");
+		const homdeles = document.querySelectorAll(".js_hopdeleba");
+		ic3chams.forEach((icch) => {
+			icch.addEventListener("click", () => {
+				const tabdele = document.getElementById(icch.dataset.idnotic);
+				tabdele.classList.toggle("bacflex");
+			});
+		});
+		butactiondelenotis.forEach((butdnoti) => {
+			butdnoti.addEventListener("click", () => {
+				const acfrom = document.getElementById(butdnoti.dataset.idfdelenoti);
+				homdeles.forEach((hdele) => {
+					hdele.classList.remove("bacflex");
+				});
+				acfrom.click();
+			});
+		});
+		// console.log(newnoti);
+	})
+	.then(() => {
+		fetch("http://localhost:3000/api/v1/oders")
+			.then((res) => res.json())
+			.then((oders) => {
+				fetch("http://localhost:3000/api/v1/books")
+					.then((res) => res.json())
+					.then((books) => {
+						const elementnotis =
+							document.querySelectorAll(".js_elementndnotic");
+						const detviewvouch = document.querySelector(".js_detailView");
+						elementnotis.forEach((anoti) => {
+							anoti.addEventListener("click", () => {
+								const detailoder = oders.find(
+									(oder) => oder.IDo == anoti.dataset.notivoucher
+								);
+								const Cartoder = detailoder.Cart.split(",");
+								const listbookoderr = Cartoder.map((elecart) =>
+									books.find((book) => book.IDb == elecart)
+								);
+								detailoder.lenghtCart = listbookoderr.length;
+								const listname = listbookoderr.map((lboode) => lboode.NameB);
+								detviewvouch.innerHTML = innerDetailView(
+									detailoder,
+									listname.join("<span>;</span>")
+								);
+							});
+						});
+					});
+			});
+	});

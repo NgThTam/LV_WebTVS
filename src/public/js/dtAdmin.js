@@ -63,7 +63,6 @@ const renderFormEdit = (book) => {
 };
 const innerRVex = (oder) => {
 	return `<tr>
-				<td>${oder.IDo}</td>
 				<td>${oder.User.FullName}</td>
 				<td>${oder.lenghtCart}</td>
 				<td>${oder.DateRental}</td>
@@ -79,12 +78,29 @@ const innerRVex = (oder) => {
                                         <input type="text" name="PayStatus" hidden value="1">
 										<input type="text" name="ListAmount" hidden >
                                         <button class="butPaystatus" type="submit">yes</button>
-                                    </form></td>
+                                    </form>
+				</td>
+				<td>
+                    <div class="contentsendnoti">
+                        <p class="sendnotices js_clickshownoti" data-idshow="id-${oder.IDo}">Send notifications</p>
+                        <div class="choosesendnoti js_body_choosenoti" id="id-${oder.IDo}">
+							<div class="elechoosenoti js_subformexnoti" data-idformex="ex-${oder.IDo}">expired</div>
+                            <div class="elechoosenoti js_shownotimessage" data-idumessage="${oder.IDu}" data-idomessage="${oder.IDo}">message</div>
+                        </div>
+						<form action="/create-notice" method="post" hidden>
+                                            <input type="text" name="idu" value="${oder.IDu}">
+                                            <input type="text" name="ido" value="${oder.IDo}">
+                                            <input type="text" name="title" value="Notice Expiration">
+                                            <input type="text" name="content" value="1 book rental voucher has expired">
+                                            <button type="submit" id="ex-${oder.IDo}"></button>
+                        </form>
+                    </div>
+                </td>
+				
 			</tr>`;
 };
 const innerRVex1 = (oder) => {
 	return `<tr>
-				<td>${oder.IDo}</td>
 				<td>${oder.User.FullName}</td>
 				<td>${oder.lenghtCart}</td>
 				<td>${oder.DateRental}</td>
@@ -92,11 +108,26 @@ const innerRVex1 = (oder) => {
 				<td><div class="status"><p class="exD">expired</p></div></td>
 				<td><i class='bx bxs-show divi js_viewO' data-idoder="${oder.IDo}"></i></td>
 				<td><i class='bx bx-check-circle'></i></td>
+				<td>
+                    <div class="contentsendnoti">
+                        <p class="sendnotices js_clickshownoti" data-idshow="id-${oder.IDo}">Send notifications</p>
+                        <div class="choosesendnoti js_body_choosenoti" id="id-${oder.IDo}">
+							<div class="elechoosenoti js_subformexnoti" data-idformex="ex-${oder.IDo}">expired</div>
+                            <div class="elechoosenoti js_shownotimessage" data-idumessage="${oder.IDu}" data-idomessage="${oder.IDo}">message</div>
+                        </div>
+						<form action="/create-notice" method="post" hidden>
+                                            <input type="text" name="idu" value="${oder.IDu}">
+                                            <input type="text" name="ido" value="${oder.IDo}">
+                                            <input type="text" name="title" value="Notice Expiration">
+                                            <input type="text" name="content" value="1 book rental voucher has expired">
+                                            <button type="submit" id="ex-${oder.IDo}"></button>
+                        </form>
+                    </div>
+                </td>
 			</tr>`;
 };
 const innerRVunex = (oder) => {
 	return `<tr>
-				<td>${oder.IDo}</td>
 				<td>${oder.User.FullName}</td>
 				<td>${oder.lenghtCart}</td>
 				<td>${oder.DateRental}</td>
@@ -113,11 +144,26 @@ const innerRVunex = (oder) => {
 										<input type="text" name="ListAmount" hidden >
                                         <button class="butPaystatus" type="submit">yes</button>
                                     </form></td>
+				<td>
+                    <div class="contentsendnoti">
+                        <p class="sendnotices js_clickshownoti" data-idshow="id-${oder.IDo}">Send notifications</p>
+                        <div class="choosesendnoti js_body_choosenoti" id="id-${oder.IDo}">
+							<div class="elechoosenoti js_subformexnoti" data-idformex="ex-${oder.IDo}">expired</div>
+                            <div class="elechoosenoti js_shownotimessage" data-idumessage="${oder.IDu}" data-idomessage="${oder.IDo}">message</div>
+                        </div>
+						<form action="/create-notice" method="post" hidden>
+                                            <input type="text" name="idu" value="${oder.IDu}">
+                                            <input type="text" name="ido" value="${oder.IDo}">
+                                            <input type="text" name="title" value="Notice Expiration">
+                                            <input type="text" name="content" value="1 book rental voucher has expired">
+                                            <button type="submit" id="ex-${oder.IDo}"></button>
+                        </form>
+                    </div>
+                </td>
 			</tr>`;
 };
 const innerRVunex1 = (oder) => {
 	return `<tr>
-				<td>${oder.IDo}</td>
 				<td>${oder.User.FullName}</td>
 				<td>${oder.lenghtCart}</td>
 				<td>${oder.DateRental}</td>
@@ -125,6 +171,22 @@ const innerRVunex1 = (oder) => {
 				<td><div class="status"><p class="unexD">unexpired</p></div></td>
 				<td><i class='bx bxs-show divi js_viewO' data-idoder="${oder.IDo}"></i></td>
 				<td><i class='bx bx-check-circle'></i></td>
+				<td>
+                    <div class="contentsendnoti">
+                        <p class="sendnotices js_clickshownoti" data-idshow="id-${oder.IDo}">Send notifications</p>
+                        <div class="choosesendnoti js_body_choosenoti" id="id-${oder.IDo}">
+                            <div class="elechoosenoti js_subformexnoti" data-idformex="ex-${oder.IDo}">expired</div>
+                            <div class="elechoosenoti js_shownotimessage" data-idumessage="${oder.IDu}" data-idomessage="${oder.IDo}">message</div>
+                        </div>
+						<form action="/create-notice" method="post" hidden>
+                                            <input type="text" name="idu" value="${oder.IDu}">
+                                            <input type="text" name="ido" value="${oder.IDo}">
+                                            <input type="text" name="title" value="Notice Expiration">
+                                            <input type="text" name="content" value="1 book rental voucher has expired">
+                                            <button type="submit" id="ex-${oder.IDo}"></button>
+                        </form>
+                    </div>
+                </td>
 			</tr>`;
 };
 const innerDetailView = (oder, listName) => {
@@ -210,22 +272,6 @@ const innerfeedback = (fb) => {
 			</tr>`;
 };
 
-// fetch("http://localhost:3000/api/v1/users")
-// 	.then((res) => res.json())
-// 	.then((users) => {
-// 		const innerrenUser = document.querySelector(".js_renderUser");
-// 		const listUser = [];
-// 		users.forEach((user, index) => {
-// 			listUser.push(renderUser(user, index));
-// 		});
-// 		innerrenUser.innerHTML = listUser.join(" ");
-// 		const mails = document.querySelectorAll(".js_iconmail");
-// 		mails.forEach((mail) => {
-// 			mail.addEventListener("click", () => {
-// 				window.open(`mailto:${mail.dataset.emailu}`);
-// 			});
-// 		});
-// 	});
 const innerRenB = document.querySelector(".js_renderB");
 fetch("http://localhost:3000/api/v1/books")
 	.then((response) => response.json())
@@ -599,6 +645,7 @@ fetch("http://localhost:3000/api/v1/books")
 						});
 						const innerListOder = document.querySelector(".js_innOder");
 						innerListOder.innerHTML = newlistOder.join(" ");
+						//check da thanh toan
 						const listformU = document.querySelectorAll(".js_formCheckoke");
 						listformU.forEach((formUp) => {
 							formUp.addEventListener("submit", (e) => {
@@ -610,6 +657,48 @@ fetch("http://localhost:3000/api/v1/books")
 									newCartamount.push(`${adBoook.IDb},${adBoook.amount}`);
 								});
 								formUp[6].value = newCartamount.join(";");
+							});
+						});
+						//show choose noti
+						const iconchoose = document.querySelectorAll(".js_clickshownoti");
+						iconchoose.forEach((icon) => {
+							icon.addEventListener("click", () => {
+								const bodyshow = document.getElementById(icon.dataset.idshow);
+								bodyshow.classList.toggle("showchnoti");
+							});
+						});
+						const allbodynoti = document.querySelectorAll(
+							".js_body_choosenoti"
+						);
+						const allclickshow = document.querySelectorAll(
+							".js_shownotimessage"
+						);
+						const subformexnoti =
+							document.querySelectorAll(".js_subformexnoti");
+						const bodyfullnotimassage = document.querySelector(
+							".js_bodymodalnotimessage"
+						);
+						subformexnoti.forEach((subf) => {
+							subf.addEventListener("click", () => {
+								const submitformexnotices = document.getElementById(
+									subf.dataset.idformex
+								);
+								submitformexnotices.click();
+								allbodynoti.forEach((bdnoti) => {
+									bdnoti.classList.remove("showchnoti");
+								});
+							});
+						});
+						allclickshow.forEach((aclickshow) => {
+							aclickshow.addEventListener("click", () => {
+								const formnotisubcreate =
+									document.querySelector(".js_formcreatenoti");
+								formnotisubcreate[0].value = aclickshow.dataset.idumessage;
+								formnotisubcreate[1].value = aclickshow.dataset.idomessage;
+								allbodynoti.forEach((bdnoti) => {
+									bdnoti.classList.remove("showchnoti");
+								});
+								bodyfullnotimassage.classList.add("notiflex");
 							});
 						});
 					})
@@ -685,6 +774,53 @@ fetch("http://localhost:3000/api/v1/books")
 									cntO.addEventListener("click", (e) => {
 										e.stopPropagation();
 									});
+									//show choose noti
+									const iconchoose =
+										document.querySelectorAll(".js_clickshownoti");
+									iconchoose.forEach((icon) => {
+										icon.addEventListener("click", () => {
+											const bodyshow = document.getElementById(
+												icon.dataset.idshow
+											);
+											bodyshow.classList.toggle("showchnoti");
+										});
+									});
+									const allbodynoti = document.querySelectorAll(
+										".js_body_choosenoti"
+									);
+									const allclickshow = document.querySelectorAll(
+										".js_shownotimessage"
+									);
+									const subformexnoti =
+										document.querySelectorAll(".js_subformexnoti");
+									const bodyfullnotimassage = document.querySelector(
+										".js_bodymodalnotimessage"
+									);
+									subformexnoti.forEach((subf) => {
+										subf.addEventListener("click", () => {
+											const submitformexnotices = document.getElementById(
+												subf.dataset.idformex
+											);
+											submitformexnotices.click();
+											allbodynoti.forEach((bdnoti) => {
+												bdnoti.classList.remove("showchnoti");
+											});
+										});
+									});
+									allclickshow.forEach((aclickshow) => {
+										aclickshow.addEventListener("click", () => {
+											const formnotisubcreate =
+												document.querySelector(".js_formcreatenoti");
+											formnotisubcreate[0].value =
+												aclickshow.dataset.idumessage;
+											formnotisubcreate[1].value =
+												aclickshow.dataset.idomessage;
+											allbodynoti.forEach((bdnoti) => {
+												bdnoti.classList.remove("showchnoti");
+											});
+											bodyfullnotimassage.classList.add("notiflex");
+										});
+									});
 								} else {
 									const cntEx = newlistEx.map((elEx) => {
 										if (elEx.PayStatus == 0) {
@@ -743,6 +879,53 @@ fetch("http://localhost:3000/api/v1/books")
 									});
 									cntO.addEventListener("click", (e) => {
 										e.stopPropagation();
+									});
+									//show choose noti
+									const iconchoose =
+										document.querySelectorAll(".js_clickshownoti");
+									iconchoose.forEach((icon) => {
+										icon.addEventListener("click", () => {
+											const bodyshow = document.getElementById(
+												icon.dataset.idshow
+											);
+											bodyshow.classList.toggle("showchnoti");
+										});
+									});
+									const allbodynoti = document.querySelectorAll(
+										".js_body_choosenoti"
+									);
+									const allclickshow = document.querySelectorAll(
+										".js_shownotimessage"
+									);
+									const subformexnoti =
+										document.querySelectorAll(".js_subformexnoti");
+									const bodyfullnotimassage = document.querySelector(
+										".js_bodymodalnotimessage"
+									);
+									subformexnoti.forEach((subf) => {
+										subf.addEventListener("click", () => {
+											const submitformexnotices = document.getElementById(
+												subf.dataset.idformex
+											);
+											submitformexnotices.click();
+											allbodynoti.forEach((bdnoti) => {
+												bdnoti.classList.remove("showchnoti");
+											});
+										});
+									});
+									allclickshow.forEach((aclickshow) => {
+										aclickshow.addEventListener("click", () => {
+											const formnotisubcreate =
+												document.querySelector(".js_formcreatenoti");
+											formnotisubcreate[0].value =
+												aclickshow.dataset.idumessage;
+											formnotisubcreate[1].value =
+												aclickshow.dataset.idomessage;
+											allbodynoti.forEach((bdnoti) => {
+												bdnoti.classList.remove("showchnoti");
+											});
+											bodyfullnotimassage.classList.add("notiflex");
+										});
 									});
 								}
 							});
@@ -962,6 +1145,43 @@ fetch("http://localhost:3000/api/v1/books")
 					cntO.addEventListener("click", (e) => {
 						e.stopPropagation();
 					});
+					//show choose noti
+					const iconchoose = document.querySelectorAll(".js_clickshownoti");
+					iconchoose.forEach((icon) => {
+						icon.addEventListener("click", () => {
+							const bodyshow = document.getElementById(icon.dataset.idshow);
+							bodyshow.classList.toggle("showchnoti");
+						});
+					});
+					const allbodynoti = document.querySelectorAll(".js_body_choosenoti");
+					const allclickshow = document.querySelectorAll(".js_shownotimessage");
+					const subformexnoti = document.querySelectorAll(".js_subformexnoti");
+					const bodyfullnotimassage = document.querySelector(
+						".js_bodymodalnotimessage"
+					);
+					subformexnoti.forEach((subf) => {
+						subf.addEventListener("click", () => {
+							const submitformexnotices = document.getElementById(
+								subf.dataset.idformex
+							);
+							submitformexnotices.click();
+							allbodynoti.forEach((bdnoti) => {
+								bdnoti.classList.remove("showchnoti");
+							});
+						});
+					});
+					allclickshow.forEach((aclickshow) => {
+						aclickshow.addEventListener("click", () => {
+							const formnotisubcreate =
+								document.querySelector(".js_formcreatenoti");
+							formnotisubcreate[0].value = aclickshow.dataset.idumessage;
+							formnotisubcreate[1].value = aclickshow.dataset.idomessage;
+							allbodynoti.forEach((bdnoti) => {
+								bdnoti.classList.remove("showchnoti");
+							});
+							bodyfullnotimassage.classList.add("notiflex");
+						});
+					});
 				});
 			});
 
@@ -1018,6 +1238,14 @@ fetch("http://localhost:3000/api/v1/books")
 			],
 		});
 		const iconpies = document.querySelectorAll(".js_iconPie");
+		const anchart = document.getElementById("HighChartAllB");
+		const hienonechart = document.getElementById("HighChartOneB");
+		iconpies.forEach((icpi) => {
+			icpi.addEventListener("click", () => {
+				anchart.classList.add("removechar");
+				hienonechart.classList.add("disaddshowchar");
+			});
+		});
 		iconpies.forEach((iconPie) => {
 			iconPie.addEventListener("click", () => {
 				const clamount = iconPie.dataset.amountb;
@@ -1314,12 +1542,6 @@ formAddB.addEventListener("submit", (e) => {
 	}
 });
 
-// const funaddbook = document.querySelector(".js_showAddbook");
-// const inAddbook = document.querySelector(".js_showAB");
-// funaddbook.addEventListener("click", () => {
-// 	inAddbook.classList.toggle("disflex");
-// 	funaddbook.classList.toggle("boderFun");
-// });
 const funedit = document.querySelector(".js_showedit");
 const closeEdit = document.querySelector(".js_closeE");
 const bodyeditt = document.querySelector(".bodyedit");
@@ -1333,37 +1555,35 @@ bodyeditt.addEventListener("click", (e) => {
 	e.stopPropagation();
 });
 
-const funaddbooks = document.querySelectorAll(".js_showAddbook");
-const inAddbooks = document.querySelectorAll(".js_showAB");
+const funaddbooks = document.querySelector(".js_showAddbook");
 const cloaddbook = document.querySelector(".js_deadd");
 const reab = document.querySelector(".js_remAB");
-const rea = document.querySelector(".js_reb");
+funaddbooks.addEventListener("click", () => {
+	funaddbooks.classList.toggle("boderFun");
+	document
+		.querySelector(`.${funaddbooks.dataset.setsr}`)
+		.classList.toggle("disflex");
+});
 cloaddbook.addEventListener("click", () => {
 	reab.classList.remove("disflex");
-	rea.classList.remove("boderFun");
+	funaddbooks.classList.remove("boderFun");
 });
-funaddbooks.forEach((fun) => {
-	fun.addEventListener("click", () => {
-		funaddbooks.forEach((funD) => {
-			funD.classList.remove("boderFun");
-		});
-		fun.classList.add("boderFun");
-		inAddbooks.forEach((inAddbook) => {
-			inAddbook.classList.remove("disflex");
-		});
-		document.querySelector(`.${fun.dataset.setsr}`).classList.add("disflex");
-		// const pieshows = document.querySelectorAll(".js_pieshow");
-		// if (fun.dataset.setsr == "srstatic") {
-		// 	pieshows.forEach((pieshow) => {
-		// 		pieshow.removeAttribute("hidden");
-		// 	});
-		// } else {
-		// 	pieshows.forEach((pieshow) => {
-		// 		pieshow.setAttribute("hidden", " ");
-		// 	});
-		// }
-	});
-});
+// const inAddbooks = document.querySelectorAll(".js_showAB");
+
+// const rea = document.querySelector(".js_reb");
+
+// funaddbooks.forEach((fun) => {
+// 	fun.addEventListener("click", () => {
+// 		funaddbooks.forEach((funD) => {
+// 			funD.classList.remove("boderFun");
+// 		});
+// 		fun.classList.add("boderFun");
+// 		inAddbooks.forEach((inAddbook) => {
+// 			inAddbook.classList.remove("disflex");
+// 		});
+// 		document.querySelector(`.${fun.dataset.setsr}`).classList.add("disflex");
+// 	});
+// });
 
 const gridOptions = {
 	// each entry here represents one column
@@ -1675,3 +1895,32 @@ fetch("http://localhost:3000/api/v1/feedback")
 			subfdele.click();
 		});
 	});
+
+//noti message
+const bodyfullnotimassage = document.querySelector(".js_bodymodalnotimessage");
+const cancelnoti = document.querySelector(".js_cancel_notimessage");
+const contentbodynoti = document.querySelector(".js_bodycontentnotimessage");
+cancelnoti.addEventListener("click", () => {
+	bodyfullnotimassage.classList.remove("notiflex");
+});
+bodyfullnotimassage.addEventListener("click", () => {
+	bodyfullnotimassage.classList.remove("notiflex");
+});
+contentbodynoti.addEventListener("click", (e) => {
+	e.stopPropagation();
+});
+const formnotisubcreate = document.querySelector(".js_formcreatenoti");
+formnotisubcreate.addEventListener("submit", (e) => {
+	if (!formnotisubcreate[2].value) {
+		window.alert("Title cannot be empty!");
+		e.preventDefault();
+	} else {
+		if (!formnotisubcreate[3].value) {
+			window.alert("The content must not be empty!");
+			e.preventDefault();
+		} else {
+			bodyfullnotimassage.classList.remove("notiflex");
+			window.alert("Send successful message");
+		}
+	}
+});

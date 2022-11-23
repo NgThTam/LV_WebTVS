@@ -45,6 +45,7 @@ const initWebRouter = (app) => {
 	router.get("/api/v1/categories", apiController.getAllcategories);
 	router.get("/api/v1/book_category", apiController.getAllbookCategory);
 	router.get("/api/v1/feedback", apiController.getAllfeedbacks);
+	router.get("/api/v1/notices", apiController.getAllnotices);
 	router.post("/reate-new-oder", apiController.createOder);
 	router.post("/reate-new-rating", apiController.createRating);
 	router.post("/reate-new-user", apiController.createUser);
@@ -73,6 +74,8 @@ const initWebRouter = (app) => {
 	router.post("/create-feedback", apiController.createFeedback);
 	router.post("/delete-feedback", apiController.deleFeedback);
 	router.post("/update-password-user", apiController.updatePassUser);
+	router.post("/delate-notice", apiController.deletenotice);
+	router.post("/create-notice", apiController.createnotice);
 	// router.get("/detail/:userId", getPage.getAllUser);
 
 	return app.use("/", router);

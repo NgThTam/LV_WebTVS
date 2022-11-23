@@ -58,6 +58,12 @@ let getAllfeedbacks = (req, res) => {
 		return res.status(200).json(data);
 	});
 };
+let getAllnotices = (req, res) => {
+	connection.query("SELECT * FROM `notices`", (err, results, fields) => {
+		let data = results.map((dt) => dt);
+		return res.status(200).json(data);
+	});
+};
 const random = (length) => {
 	var result = "";
 	var characters =
@@ -313,6 +319,20 @@ let updatePassUser = (req, res) => {
 	]);
 	return res.redirect("/profile");
 };
+let deletenotice = (req, res) => {
+	let { stt } = req.body;
+	connection.query("DELETE FROM `notices` WHERE `stt`=?", [stt]);
+	return res.redirect("/profile");
+};
+let createnotice = (req, res) => {
+	let { idu, ido, title, content } = req.body;
+	// console.log({ idu, ido, title, content });
+	connection.query(
+		"INSERT INTO `notices`(`IDu`, `IDo`, `titlenotice`, `contentnotice`) VALUES (?,?,?,?)",
+		[idu, ido, title, content]
+	);
+	return res.redirect("/admin");
+};
 
 module.exports = {
 	createUser,
@@ -344,4 +364,7 @@ module.exports = {
 	createFeedback,
 	deleFeedback,
 	updatePassUser,
+	getAllnotices,
+	deletenotice,
+	createnotice,
 };
