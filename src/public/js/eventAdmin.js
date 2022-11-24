@@ -127,6 +127,21 @@ inpbookfile.addEventListener("change", () => {
 butbodysub.addEventListener("click", () => {
 	document.getElementById(butbodysub.dataset.idsubfile).click();
 });
+
+//search mau
+function ExportToExcelExamsearch(type, fn, dl) {
+	var elt = document.getElementById("tblDatamausearch");
+	var wb = XLSX.utils.table_to_book(elt, {
+		sheet: "sheet1",
+	});
+	return dl
+		? XLSX.write(wb, {
+				bookType: type,
+				bookSST: true,
+				type: "base64",
+		  })
+		: XLSX.writeFile(wb, fn || "MySheetName." + (type || "xlsx"));
+}
 // butdownfilemau.addEventListener("click", (filename = "") => {
 // 	let downloadLink;
 // 	let dataType = "application/vnd.ms-excel";

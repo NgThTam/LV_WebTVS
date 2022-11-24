@@ -1456,6 +1456,14 @@ fetch("http://localhost:3000/api/v1/books")
 								document.getElementById(butYes.dataset.idfyes).click();
 							});
 							const iconpies = document.querySelectorAll(".js_iconPie");
+							const anchart = document.getElementById("HighChartAllB");
+							const hienonechart = document.getElementById("HighChartOneB");
+							iconpies.forEach((icpi) => {
+								icpi.addEventListener("click", () => {
+									anchart.classList.add("removechar");
+									hienonechart.classList.add("disaddshowchar");
+								});
+							});
 							iconpies.forEach((iconPie) => {
 								iconPie.addEventListener("click", () => {
 									const clamount = iconPie.dataset.amountb;
