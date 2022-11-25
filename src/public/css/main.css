@@ -1707,19 +1707,19 @@ body {
     height: 10px;
 }
 .tk5s .tkst{
-	width: 30%;
+	width: 5%;
     background-color: black;
     height: 10px;
     position: absolute;
 }
 .tk4s .tkst{
-	width: 20%;
+	width: 5%;
     background-color: black;
     height: 10px;
     position: absolute;
 }
 .tk3s .tkst{
-	width: 40%;
+	width: 5%;
     background-color: black;
     height: 10px;
     position: absolute;
@@ -4361,4 +4361,35 @@ body {
     padding-right: 10px;
     padding-bottom: 3px;
     font-family: system-ui;
+}
+/* profile filter */
+.iconfiltervoucher{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #3ce2e2;
+    width: 33px;
+    height: 33px;
+    border: 1px solid #b7a8a8;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.bodyfiltervoucher{
+	padding-right: 10px;
+}
+.iconfiltervoucher:hover{
+	border: 1px solid black;
+}
+/* fill voucher profile */
+.bodyfiltervoucher{
+	position: relative;
+}
+.filterprofilevoucher{
+	/* display: flex; */
+    min-width: 310px;
+    left: 12px;
+    top: 33px;
+}
+.showbodyfilpro{
+	display: flex;
 }

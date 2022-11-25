@@ -406,6 +406,243 @@ fetch("http://localhost:3000/api/v1/books")
 						).innerHTML = `<p><span style="color: red;font-weight: 600;">$ </span>${pricePaid}</p>`;
 					});
 				});
+				return listOder;
+			})
+			.then((listOder) => {
+				const listhhctt = listOder.filter((elhhctt) => {
+					return elhhctt.status == "expired" && elhhctt.PayStatus == 0;
+				});
+				const bodythongbaotudong = document.querySelector(".js_tudongthongbao");
+				bodythongbaotudong.innerHTML = listhhctt
+					.map((tbhhtd) => innerthongbaotudobg(tbhhtd))
+					.join(" ");
+				const elementndnotictudong = document.querySelectorAll(
+					".js_elementndnotictudong"
+				);
+				// view detail
+				const detviewvouch = document.querySelector(".js_detailView");
+				const showphieuthue = document.querySelector(".js_modalview ");
+				const bodythongbao = document.querySelector(".js_noidungthongbao");
+				const bachamss = document.querySelectorAll(".js_bachamstops");
+				elementndnotictudong.forEach((anoti) => {
+					anoti.addEventListener("click", () => {
+						// console.log(anoti.dataset.notivoucher);
+						showphieuthue.classList.add("showM");
+						bodythongbao.classList.remove("noidungblock");
+						// homdeles.forEach((hdele) => {
+						// 	hdele.classList.remove("bacflex");
+						// });
+					});
+				});
+				bachamss.forEach((bac) => {
+					bac.addEventListener("click", (e) => {
+						e.stopPropagation();
+					});
+				});
+				elementndnotictudong.forEach((noti) => {
+					noti.addEventListener("click", () => {
+						// console.log(noti.dataset.notivoucher);
+						const detailoder = listOder.find(
+							(oder) => oder.IDo == noti.dataset.notivoucher
+						);
+						const Cartoder = detailoder.Cart.split(",");
+						const listbookoderr = Cartoder.map((elecart) =>
+							books.find((book) => book.IDb == elecart)
+						);
+						detailoder.lenghtCart = listbookoderr.length;
+						const listname = listbookoderr.map((lboode) => lboode.NameB);
+						detviewvouch.innerHTML = innerDetailView(
+							detailoder,
+							listname.join("<span>;</span>")
+						);
+					});
+				});
+				//bacham
+				const homdeless = document.querySelectorAll(".js_hopdelebas");
+				const clciv3cham = document.querySelectorAll(".js_clvao3cham");
+				clciv3cham.forEach((b3cham) => {
+					b3cham.addEventListener("click", () => {
+						const elhopxoa = document.querySelector(
+							`.${b3cham.dataset.idnotic}`
+						);
+						elhopxoa.classList.toggle("bacflex");
+					});
+				});
+				//hidden ele
+				const buactionhid = document.querySelectorAll(".js_actiondelhiden");
+				buactionhid.forEach((butac) => {
+					butac.addEventListener("click", () => {
+						const elecanphaihid = document.querySelector(
+							`.${butac.dataset.hiddenelement}`
+						);
+						elecanphaihid.setAttribute("style", "display:none");
+						sloke--;
+						slthongbao.innerHTML = sloke;
+					});
+				});
+				//soluongthongbao
+				const slthongbao = document.querySelector(".js_slthongbao");
+				let solutbhhtd = localStorage.getItem("sothongbao");
+				let tongsl = listhhctt.length + parseInt(solutbhhtd);
+				let sloke = tongsl;
+				slthongbao.innerHTML = tongsl;
+				// console.log();
+				return listOder;
+			})
+			// filter
+			.then((listOder) => {
+				const butstartfil = document.querySelector(".js_butstartfil");
+				const showfilprofile = document.querySelector(".js_toggefilprofile");
+				const showbodyfpr = document.querySelector(".js_showprofilefil");
+				showfilprofile.addEventListener("click", () => {
+					showbodyfpr.classList.toggle("showbodyfilpro");
+				});
+				const fillyearFasd = document.querySelector(".js_date_yearasd");
+				const todayDasd = new Date();
+				fillyearFasd.value = `${todayDasd.getFullYear()}-01-01`;
+				const filldayFasd = document.querySelector(".js_date_dayasd");
+				const filldmonthFasd = document.querySelector(".js_date_monthasd");
+				butstartfil.addEventListener("click", () => {
+					let arrfilpro1 = [];
+					let arrfilpro2 = [];
+					let arrfinalfpro = [];
+					let newarrFilldate = [];
+					showbodyfpr.classList.remove("showbodyfilpro");
+					const fillbyyearasd = listOder.filter(
+						(oder) =>
+							oder.DateRental.slice(6, 10) == fillyearFasd.value.slice(0, 4)
+					);
+					if (filldayFasd.value == "00" && filldmonthFasd.value == "00") {
+						newarrFilldate = fillbyyearasd;
+					} else {
+						if (filldayFasd.value == "00" || filldmonthFasd.value == "00") {
+							if (filldayFasd.value == "00") {
+								newarrFilldate = fillbyyearasd.filter((byear) => {
+									return byear.DateRental.slice(3, 5) == filldmonthFasd.value;
+								});
+							} else {
+								newarrFilldate = fillbyyearasd.filter((byear1) => {
+									return byear1.DateRental.slice(0, 2) == filldayFasd.value;
+								});
+							}
+						} else {
+							let filFdayasd = `${filldayFasd.value}/${
+								filldmonthFasd.value
+							}/${fillyearFasd.value.slice(0, 4)}`;
+							newarrFilldate = fillbyyearasd.filter((byear2) => {
+								return byear2.DateRental == filFdayasd;
+							});
+						}
+					}
+					let checkedtinhtrang = document.querySelector(
+						'input[name="statusFasd"]:checked'
+					);
+					let checkedthanhtoan = document.querySelector(
+						'input[name="statusPaymentasd"]:checked'
+					);
+					if (checkedtinhtrang.value == "All") {
+						arrfilpro1 = newarrFilldate.filter((ord) => ord);
+					} else {
+						arrfilpro1 = newarrFilldate.filter((ord) => {
+							return ord.status == checkedtinhtrang.value;
+						});
+					}
+					if (checkedthanhtoan.value == "All") {
+						arrfilpro2 = arrfilpro1;
+					} else {
+						arrfilpro2 = arrfilpro1.filter((arf1) => {
+							return arf1.PayStatus == checkedthanhtoan.value;
+						});
+					}
+					arrfilpro2.forEach((eloder) => {
+						if (eloder.status == "unexpired") {
+							if (eloder.PayStatus == 0) {
+								arrfinalfpro.push(innerRVunex(eloder));
+							} else {
+								arrfinalfpro.push(innerRVunex1(eloder));
+							}
+						} else {
+							if (eloder.PayStatus == 0) {
+								arrfinalfpro.push(innerRVex(eloder));
+							} else {
+								arrfinalfpro.push(innerRVex1(eloder));
+							}
+						}
+					});
+					const cntOder = document.querySelector(".js_tableRV");
+					cntOder.innerHTML = arrfinalfpro.join(" ");
+					//view
+					const viewOs = document.querySelectorAll(".js_viewO");
+					const modalO = document.querySelector(".js_modalview");
+					const cntO = document.querySelector(".js_cntO");
+					viewOs.forEach((view) => {
+						view.addEventListener("click", () => {
+							modalO.classList.add("showM");
+							let listNameBooks = [];
+							const Ooder = listOder.find(
+								(Odd) => Odd.IDo == view.dataset.idoder
+							);
+							const listIDb = Ooder.Cart.split(",");
+							listIDb.forEach((IDbook) => {
+								books.forEach((book) => {
+									if (IDbook == book.IDb) {
+										listNameBooks.push(book.NameB);
+									}
+								});
+							});
+							const detailView = document.querySelector(".js_detailView");
+							detailView.innerHTML = innerDetailView(
+								Ooder,
+								listNameBooks.join(" <span>;</span> ")
+							);
+						});
+					});
+					modalO.addEventListener("click", () => {
+						modalO.classList.remove("showM");
+					});
+					cntO.addEventListener("click", (e) => {
+						e.stopPropagation();
+					});
+					const proPais = document.querySelectorAll(".js_pricepai_profile");
+					proPais.forEach((proPai) => {
+						proPai.addEventListener("click", () => {
+							const eloderoke = listOder.find(
+								(loder) => loder.IDo == proPai.dataset.idvpai
+							);
+							const homnaypaid = new Date();
+							let namnay = homnaypaid.getFullYear();
+							let nampaid = eloderoke.DatePay.slice(6, 10);
+							let thangnay = homnaypaid.getMonth() + 1;
+							let thangpaid = eloderoke.DatePay.slice(3, 5);
+							let ngaynay = homnaypaid.getDate();
+							let ngaypaid = eloderoke.DatePay.slice(0, 2);
+							let pricePaid;
+							if (eloderoke.status == "unexpired") {
+								pricePaid = 0;
+							} else {
+								if (namnay - nampaid == 0) {
+									if (thangnay - thangpaid == 0) {
+										let songaypaid = ngaynay - ngaypaid;
+										let priceacrtoder = eloderoke.lenghtCart * 0.6 * songaypaid;
+										pricePaid = priceacrtoder;
+									} else {
+										let songaypaid =
+											(thangnay - thangpaid) * 31 + ngaynay - ngaypaid;
+										let priceacrtoder = eloderoke.lenghtCart * 0.6 * songaypaid;
+										pricePaid = priceacrtoder;
+									}
+								} else {
+									console.log("khac nam");
+								}
+							}
+							// console.log(Math.round(pricePaid * 100) / 100);
+							document.getElementById(
+								`paid${proPai.dataset.idvpai}`
+							).innerHTML = `<p><span style="color: red;font-weight: 600;">$ </span>${pricePaid}</p>`;
+						});
+					});
+					// console.log(arrfilpro2);
+				});
 			});
 		return books;
 	})
@@ -578,7 +815,21 @@ fetch("http://localhost:3000/api/v1/books")
 // 			e.stopPropagation();
 // 		});
 // 	});
-
+const innerthongbaotudobg = (voucher) => {
+	return `<div class="elementnoidungtb js_elementndnotictudong canhid_${voucher.IDo}" data-notivoucher="${voucher.IDo}">
+				<i class='bx bx-error'></i>
+				<div class="noidungtbhh">
+					<p class="titlenoidungtbhh">Notice Expiration</p>
+					<p class="contentnoidungtbhh">1 book rental voucher has expired</p>
+				</div>
+				<div class="bachamdele js_bachamstops">
+					<div class="clickbacham js_clvao3cham" data-idnotic="idhid_${voucher.IDo}"><i class='bx bx-dots-vertical-rounded'></i></div>
+					<div class="contentbachamdele js_hopdelebas idhid_${voucher.IDo}">
+						<div class="xndelenoti js_actiondelhiden" data-hiddenelement="canhid_${voucher.IDo}">Delete</div>
+					</div>
+				</div>
+			</div>`;
+};
 const innerInf = (
 	user
 ) => `<form action="/update-user" method="POST" class="js_formUd">
@@ -715,7 +966,7 @@ fetch("http://localhost:3000/api/v1/notices")
 	.then((notices) => {
 		const iduserNo = localStorage.getItem("IDuser");
 		const bodythongbao = document.querySelector(".js_noidungthongbao");
-		const slthongbao = document.querySelector(".js_slthongbao");
+		const renderbodythongbao = document.querySelector(".js_renderbodythongbao");
 		const iconchuong = document.querySelector(".js_iconchuong");
 		const allnoti = notices.filter((noti) => noti.IDu == iduserNo);
 		const newnoti = [];
@@ -725,8 +976,9 @@ fetch("http://localhost:3000/api/v1/notices")
 		allnoti.forEach((nt) => {
 			newnoti.unshift(nt);
 		});
-		slthongbao.innerHTML = newnoti.length;
-		bodythongbao.innerHTML = newnoti
+		// slthongbao.innerHTML = newnoti.length;
+		localStorage.setItem("sothongbao", newnoti.length);
+		renderbodythongbao.innerHTML = newnoti
 			.map((nnoti) => innerthongbao(nnoti))
 			.join(" ");
 		// bacham
