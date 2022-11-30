@@ -289,12 +289,13 @@ formCmt.addEventListener("submit", () => {
 		formCmt[2].value = localStorage.getItem("IDuser");
 		let Strtime1 = "";
 		let htime = timeCmt.getHours() - 12;
-		if (timeCmt.getMonth() < 10) {
+		let gmonthday = timeCmt.getMonth() + 1;
+		if (gmonthday < 10) {
 			if (timeCmt.getHours() >= 12) {
 				Strtime1 =
 					timeCmt.getDate() +
 					"/0" +
-					timeCmt.getMonth() +
+					gmonthday +
 					" + " +
 					htime +
 					":" +
@@ -304,7 +305,7 @@ formCmt.addEventListener("submit", () => {
 				Strtime1 =
 					timeCmt.getDate() +
 					"/0" +
-					timeCmt.getMonth() +
+					gmonthday +
 					" + " +
 					timeCmt.getHours() +
 					":" +
@@ -316,7 +317,7 @@ formCmt.addEventListener("submit", () => {
 				Strtime1 =
 					timeCmt.getDate() +
 					"/" +
-					timeCmt.getMonth() +
+					gmonthday +
 					" + " +
 					htime +
 					":" +
@@ -326,7 +327,7 @@ formCmt.addEventListener("submit", () => {
 				Strtime1 =
 					timeCmt.getDate() +
 					"/" +
-					timeCmt.getMonth() +
+					gmonthday +
 					" + " +
 					timeCmt.getHours() +
 					":" +
@@ -353,12 +354,39 @@ const innerCmt = (user, cmt) => `<div class="cmt">
 		<div class="name">${user.FullName} <div class="date">${cmt.TimeCmt}</div></div>
 		<p>${cmt.Comment}</p>
 		<div class="cmtLike">
-			<p class="like"><i class='bx bx-like'></i> like</p>
-			<p class="rep">reply <i class='bx bx-reply'></i></p>
+			<p class="like colorlikeblu"><i class='bx bx-like'></i> like</p>
+			<p class="rep colorlikeblu js_showreplys" data-idformrepnew="idcmtrep-${cmt.IDcomment}">reply <i class='bx bx-reply'></i></p>
 		</div>
+		<div class="replycmt">
+        	<div class="asdcontentrepnewcmt js_show_new_idcmtrep-${cmt.IDcomment}">
+                                
+            </div>
+            <div class="cacrepcmts js_allcacreps js_idcmtrep-${cmt.IDcomment}">
+                <div class="imgCmt">
+                	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN0wR21lrB1tZAW3ihK1Zy3CXpXy4PazEU1w&usqp=CAU" alt="">
+                </div>
+                <div class="inpreplycmt">
+                    <form class="js_formrepcmtnews" data-idformrepnewff="idcmtrep-${cmt.IDcomment}">
+                        <input type="text" placeholder="leave a review comment here">
+                        <button type="submit" hidden></button>
+                    </form>
+                </div>
+        	</div>
+         </div>
 	</div>
 
 	</div>`;
+const innerRepcmt = (ten, ngay, nd) => {
+	return `<div class="cacrepcmts cacrepcmtssds">
+				<div class="imgCmt">
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN0wR21lrB1tZAW3ihK1Zy3CXpXy4PazEU1w&usqp=CAU" alt="">
+				</div>
+				<div class="contentrepcmt">
+					<div class="name">${ten} <div class="date">${ngay}</div></div>
+					<p>${nd}</p>
+				</div>
+			</div>`;
+};
 const divCmts = document.querySelector(".js_cmts");
 fetch("http://localhost:3000/api/v1/users")
 	.then((response) => response.json())
@@ -375,5 +403,106 @@ fetch("http://localhost:3000/api/v1/users")
 					newListComment.unshift(innerCmt(userComment, comment));
 				});
 				divCmts.innerHTML = newListComment.join(" ");
+				return comments;
+			})
+			.then((comments) => {
+				const alllikecmt = document.querySelectorAll(".cmts .cmt .like");
+				alllikecmt.forEach((onelike) => {
+					onelike.addEventListener("click", () => {
+						onelike.classList.toggle("colorlike");
+					});
+				});
+				const iconshowreps = document.querySelectorAll(".js_showreplys");
+				const allcacreps = document.querySelectorAll(".js_allcacreps");
+				iconshowreps.forEach((icrep) => {
+					icrep.addEventListener("click", () => {
+						allcacreps.forEach((loserep) => {
+							loserep.classList.remove("cacdisfle");
+						});
+						const formnewrepoke = document.querySelector(
+							`.js_${icrep.dataset.idformrepnew}`
+						);
+						formnewrepoke.classList.add("cacdisfle");
+					});
+				});
+
+				const formrepcmtnews = document.querySelectorAll(".js_formrepcmtnews");
+				formrepcmtnews.forEach((formrepnew) => {
+					let arrroke = [];
+					formrepnew.addEventListener("submit", (e) => {
+						let ndcmt = formrepnew[0].value;
+						let Strtime1 = "";
+						let idus = localStorage.getItem("IDuser");
+						if (localStorage.getItem("IDuser")) {
+							const timeCmt = new Date();
+
+							let htime = timeCmt.getHours() - 12;
+							let monthday = timeCmt.getMonth() + 1;
+							if (monthday < 10) {
+								if (timeCmt.getHours() >= 12) {
+									Strtime1 =
+										timeCmt.getDate() +
+										"/0" +
+										monthday +
+										" + " +
+										htime +
+										":" +
+										timeCmt.getMinutes() +
+										" PM";
+								} else {
+									Strtime1 =
+										timeCmt.getDate() +
+										"/0" +
+										monthday +
+										" + " +
+										timeCmt.getHours() +
+										":" +
+										timeCmt.getMinutes() +
+										" AM";
+								}
+							} else {
+								if (timeCmt.getHours() >= 12) {
+									Strtime1 =
+										timeCmt.getDate() +
+										"/" +
+										monthday +
+										" + " +
+										htime +
+										":" +
+										timeCmt.getMinutes() +
+										" PM";
+								} else {
+									Strtime1 =
+										timeCmt.getDate() +
+										"/" +
+										monthday +
+										" + " +
+										timeCmt.getHours() +
+										":" +
+										timeCmt.getMinutes() +
+										" AM";
+								}
+							}
+
+							// console.log(Strtime1);
+						} else {
+							window.alert("pls login");
+							event.preventDefault();
+						}
+						const useroke = users.find((user) => user.IDu == idus);
+						if (ndcmt != "" && idus) {
+							arrroke.push(
+								innerRepcmt(useroke.FullName, Strtime1, formrepnew[0].value)
+							);
+						}
+
+						let shownewrepcmt = document.querySelector(
+							`.js_show_new_${formrepnew.dataset.idformrepnewff}`
+						);
+						shownewrepcmt.innerHTML = arrroke.join(" ");
+						formrepnew[0].value = "";
+						e.preventDefault();
+					});
+				});
 			});
 	});
