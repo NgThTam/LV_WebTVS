@@ -506,3 +506,55 @@ fetch("http://localhost:3000/api/v1/users")
 				});
 			});
 	});
+
+// danh gia sao
+fetch("http://localhost:3000/api/v1/ratings")
+	.then((res) => res.json())
+	.then((ratings) => {
+		// console.log(ratings);
+		const ckeckuser = localStorage.getItem("IDuser");
+		const ckeckbook = localStorage.getItem("id_book");
+		const innerckStar = document.querySelector(".js_ckeckstarfinal");
+		const arrStar = [
+			`<li class="sta1" style="cursor: default;"><i class='bx bxs-star star_full'></i></li>`,
+			`<li class="sta1 " style="cursor: default;"><i class='bx bxs-star star_full'></i></li>`,
+			`<li class="sta1 " style="cursor: default;"><i class='bx bxs-star star_full'></i></li>`,
+			`<li class="sta1 " style="cursor: default;"><i class='bx bxs-star star_full'></i></li>`,
+			`<li class="sta1 " style="cursor: default;"><i class='bx bxs-star star_full'></i></li>`,
+			`<li class="sta1 " style="cursor: default;"><i class='bx bxs-star'></i></li>`,
+			`<li class="sta1 " style="cursor: default;"><i class='bx bxs-star'></i></li>`,
+			`<li class="sta1 " style="cursor: default;"><i class='bx bxs-star'></i></li>`,
+			`<li class="sta1 " style="cursor: default;"><i class='bx bxs-star'></i></li>`,
+			`<li class="sta1 " style="cursor: default;"><i class='bx bxs-star'></i></li>`,
+		];
+		if (ckeckuser) {
+			if (ckeckuser == "9999" || ckeckuser == "admin") {
+				console.log("admin");
+			} else {
+				const ratingB = ratings.find(
+					(rating) => rating.IDu == ckeckuser && rating.IDb == ckeckbook
+				);
+				if (ratingB) {
+					let innerStardareting;
+					switch (ratingB.Star) {
+						case 2:
+							innerStardareting = arrStar.slice(4, 9);
+							break;
+						case 4:
+							innerStardareting = arrStar.slice(3, 8);
+							break;
+						case 6:
+							innerStardareting = arrStar.slice(2, 7);
+							break;
+						case 8:
+							innerStardareting = arrStar.slice(1, 6);
+							break;
+						case 10:
+							innerStardareting = arrStar.slice(0, 5);
+							break;
+					}
+					innerckStar.innerHTML = innerStardareting.join(" ");
+				}
+			}
+		}
+	});
